@@ -1,5 +1,11 @@
+// Doc: https://github.com/wesssel/nuxt-unit-testing
+// Doc: https://nuxtjs.org/guide/development-tools/
 const hooks = require('require-extension-hooks')
-require('browser-env')()
+const env = require('browser-env')
+
+if (process.env.TEST === 'unit') {
+  env()
+}
 
 hooks('vue')
   .plugin('vue')

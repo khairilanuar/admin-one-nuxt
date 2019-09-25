@@ -10,7 +10,9 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "test": "ava"
+    "test:unit": "TEST=unit yarn ava ./test/unit/*.js --verbose",
+    "test:e2e": "TEST=e2e yarn ava ./test/e2e/*.js --verbose",
+    "test": "yarn test:unit & yarn test:e2e"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.6.0",
@@ -36,6 +38,7 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.0.1",
     "jest": "^24.1.0",
+    "jsdom": "^15.1.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.16.4",
     "require-extension-hooks": "^0.3.3",
@@ -45,8 +48,9 @@
     "vue-jest": "^4.0.0-0"
   },
   "ava": {
-    "files": [
-      "test/**/*"
-    ]
+    "require": [
+      "./test/setup.js"
+    ],
+    "snapshotDir": "./test/snapshot"
   }
 }
