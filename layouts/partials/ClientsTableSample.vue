@@ -93,7 +93,7 @@
 
 <script>
 import axios from 'axios'
-import ModalBox from '~/layouts/partials/ModalBox'
+import ModalBox from '~/components/ModalBox'
 
 export default {
   name: 'ClientsTableSample',

@@ -61,7 +61,7 @@
 <script>
 import Notification from '~/layouts/partials/Notification'
 import ClientsTableSample from '~/layouts/partials/ClientsTableSample'
-import CardComponent from '~/layouts/partials/CardComponent'
+import CardComponent from '~/components/CardComponent'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 export default {

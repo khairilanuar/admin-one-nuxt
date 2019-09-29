@@ -29,7 +29,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import CardComponent from '~/layouts/partials/CardComponent'
+import CardComponent from '~/components/CardComponent'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 import ProfileUpdateForm from '~/layouts/partials/ProfileUpdateForm'

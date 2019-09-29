@@ -15,6 +15,7 @@ import FooterBar from '~/layouts/partials/FooterBar'
 
 export default {
   name: 'Home',
+  middleware: ['authenticated'],
   components: {
     FooterBar,
     AsideMenu,

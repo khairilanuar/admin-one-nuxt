@@ -22,6 +22,9 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  router: {
+    middleware: ['check-auth', 'test']
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -51,13 +54,57 @@ export default {
     'nuxt-buefy',
     // ['nuxt-buefy', { css: false, materialDesignIcons: false }],
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // Doc: https://auth.nuxtjs.org/guide/setup.html
+    // '@nuxtjs/auth'
+    // Doc: https://github.com/nuxt-community/universal-storage-module
+    '@nuxtjs/universal-storage'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    // Doc: https://github.com/nuxt-community/axios-module#options
+    baseURL: 'https://laravel-restful.valet/api'
+  },
+  /*
+  auth: {
+    // Doc: https://www.stephanedoiron.com/posts/user-authentication-with-nuxtjs-and-laravel/
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'auth/login', method: 'post', propertyName: 'token' },
+          user: {
+            url: 'user/profile',
+            method: 'get',
+            propertyName: 'data.user'
+          }
+        },
+        tokenRequired: true,
+        tokenName: 'Authorization',
+        tokenType: 'Bearer'
+      }
+    },
+    // localStorage: true,
+    cookie: false,
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
+    }
+  },
+  */
+  storage: {
+    vuex: { namespace: 'storage' },
+    cookie: {
+      prefix: '',
+      options: { path: '/' }
+    },
+    localStorage: { prefix: 'app.' },
+    ignoreExceptions: false
+  },
   /*
    ** Build configuration
    */
@@ -65,6 +112,16 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      // Run ESLint on save
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
   }
 }

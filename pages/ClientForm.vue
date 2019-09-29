@@ -138,8 +138,8 @@ import find from 'lodash/find'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 import Tiles from '~/layouts/partials/Tiles'
-import CardComponent from '~/layouts/partials/CardComponent'
-import FilePicker from '~/layouts/partials/FilePicker'
+import CardComponent from '~/components/CardComponent'
+import FilePicker from '~/components/FilePicker'
 import UserAvatar from '~/layouts/partials/UserAvatar'
 import Notification from '~/layouts/partials/Notification'
 
@@ -155,6 +155,7 @@ export default {
     Notification
   },
   props: {
+    // eslint-disable-next-line vue/require-prop-types
     id: {
       default: null
     }

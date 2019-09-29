@@ -58,13 +58,13 @@
 
 <script>
 // @ is an alias to /src
-import * as chartConfig from '~/layouts/partials/Charts/chart.config'
+import * as chartConfig from '~/components/Charts/chart.config'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 import Tiles from '~/layouts/partials/Tiles'
-import CardWidget from '~/layouts/partials/CardWidget'
-import CardComponent from '~/layouts/partials/CardComponent'
-import LineChart from '~/layouts/partials/Charts/LineChart'
+import CardWidget from '~/components/CardWidget'
+import CardComponent from '~/components/CardComponent'
+import LineChart from '~/components/Charts/LineChart'
 import ClientsTableSample from '~/layouts/partials/ClientsTableSample'
 export default {
   name: 'Homepage',

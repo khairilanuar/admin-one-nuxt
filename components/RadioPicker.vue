@@ -1,21 +1,16 @@
 <template>
   <b-field grouped group-multiline>
     <div v-for="(v, k) in options" :key="k" class="control">
-      <b-checkbox
-        v-model="newValue"
-        :native-value="k"
-        :type="type"
-        @input="input"
-      >
+      <b-radio v-model="newValue" :native-value="k" :type="type" @input="input">
         {{ v }}
-      </b-checkbox>
+      </b-radio>
     </div>
   </b-field>
 </template>
 
 <script>
 export default {
-  name: 'CheckboxPicker',
+  name: 'RadioPicker',
   props: {
     options: {
       type: Object,
@@ -25,13 +20,14 @@ export default {
       type: String,
       default: null
     },
+    // eslint-disable-next-line vue/require-prop-types
     value: {
-      default: []
+      default: null
     }
   },
   data() {
     return {
-      newValue: []
+      newValue: null
     }
   },
   watch: {

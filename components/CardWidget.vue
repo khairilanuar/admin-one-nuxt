@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CardComponent from '~/layouts/partials/CardComponent'
+import CardComponent from '~/components/CardComponent'
 import GrowingNumber from '~/layouts/partials/GrowingNumber'
 export default {
   name: 'CardWidget',

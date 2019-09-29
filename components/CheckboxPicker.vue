@@ -1,16 +1,21 @@
 <template>
   <b-field grouped group-multiline>
     <div v-for="(v, k) in options" :key="k" class="control">
-      <b-radio v-model="newValue" :native-value="k" :type="type" @input="input">
+      <b-checkbox
+        v-model="newValue"
+        :native-value="k"
+        :type="type"
+        @input="input"
+      >
         {{ v }}
-      </b-radio>
+      </b-checkbox>
     </div>
   </b-field>
 </template>
 
 <script>
 export default {
-  name: 'RadioPicker',
+  name: 'CheckboxPicker',
   props: {
     options: {
       type: Object,
@@ -21,12 +26,15 @@ export default {
       default: null
     },
     value: {
-      default: null
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   data() {
     return {
-      newValue: null
+      newValue: []
     }
   },
   watch: {
