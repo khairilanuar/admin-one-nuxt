@@ -30,11 +30,9 @@
 </template>
 
 <script>
-import AsideMenuList from '~/layouts/partials/AsideMenuList'
-
 export default {
   name: 'AsideMenuItem',
-  components: { AsideMenuList },
+  components: {},
   props: {
     item: {
       type: Object,

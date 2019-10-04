@@ -1,5 +1,6 @@
 export default {
-  mode: 'universal',
+  // mode: 'universal',
+  mode: 'spa',
   /*
    ** Headers of the page
    */
@@ -23,7 +24,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   router: {
-    middleware: ['check-auth', 'test']
+    middleware: ['check-auth']
   },
   /*
    ** Customize the progress-bar color
@@ -36,7 +37,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/global-components.js'],
   /*
    ** Nuxt.js dev-modules
    */

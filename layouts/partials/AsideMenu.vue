@@ -22,11 +22,10 @@
 <script>
 import { mapState } from 'vuex'
 import AsideTools from '~/layouts/partials/AsideTools'
-import AsideMenuList from '~/layouts/partials/AsideMenuList'
 
 export default {
   name: 'AsideMenu',
-  components: { AsideTools, AsideMenuList },
+  components: { AsideTools },
   props: {
     menu: {
       type: Array,

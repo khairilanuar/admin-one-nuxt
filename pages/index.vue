@@ -12,7 +12,7 @@
           icon="account-multiple"
           :number="512"
           label="Clients"
-        />
+        ></card-widget>
         <card-widget
           class="tile is-child"
           type="is-info"
@@ -20,7 +20,7 @@
           :number="7770"
           prefix="$"
           label="Sales"
-        />
+        ></card-widget>
         <card-widget
           class="tile is-child"
           type="is-success"
@@ -28,7 +28,7 @@
           :number="256"
           suffix="%"
           label="Performance"
-        />
+        ></card-widget>
       </tiles>
 
       <card-component

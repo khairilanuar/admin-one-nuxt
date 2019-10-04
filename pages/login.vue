@@ -85,7 +85,7 @@
 export default {
   layout: 'empty',
   name: 'Login',
-  auth: false,
+  middleware: 'anonymous',
   data() {
     return {
       email: '',

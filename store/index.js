@@ -55,12 +55,3 @@ export const mutations = {
     state.isAsideMobileExpanded = isShow
   }
 }
-
-export const getters = {
-  isAuthenticated(state) {
-    return !!state.auth.user
-  },
-  loggedUser(state) {
-    return state.auth.user
-  }
-}

@@ -123,7 +123,11 @@ export default {
     menuToggleMobileIcon() {
       return this.isAsideMobileExpanded ? 'backburger' : 'forwardburger'
     },
-    ...mapState(['isNavBarVisible', 'isAsideMobileExpanded', 'userName'])
+    ...mapState({
+      isNavBarVisible: (state) => state.isNavBarVisible,
+      isAsideMobileExpanded: (state) => state.isAsideMobileExpanded,
+      userName: (state) => state.auth.user.first_name
+    })
   },
   methods: {
     menuToggleMobile() {
@@ -137,6 +141,13 @@ export default {
         message: 'Log out clicked',
         queue: false
       })
+
+      this.$store
+        .dispatch('auth/logout')
+        .then(() => this.$router.push('/?logout'))
+        .catch((err) => {
+          this.error = { message: err.message, error: err.error }
+        })
     }
   }
 }

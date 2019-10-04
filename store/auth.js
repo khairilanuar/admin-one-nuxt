@@ -8,7 +8,7 @@ export const state = () => {
 }
 
 export const mutations = {
-  SUCCESS(state, payload) {
+  SET_USER(state, payload) {
     this.$storage.setUniversal('user', payload.user || null)
     this.$storage.setUniversal('permissions', payload.permissions || null)
     this.$storage.setUniversal('roles', payload.roles || null)
@@ -24,22 +24,13 @@ export const mutations = {
     state.roles = payload.roles || null
     state.token = payload.token || null
   },
-  ERROR(state) {
+  CLEAR_USER(state) {
     state.token = null
     state.user = null
     state.permissions = null
     state.roles = null
 
-    this.$storage.removeUniversal('token')
-    this.$storage.removeUniversal('user')
-    this.$storage.removeUniversal('permissions')
-    this.$storage.removeUniversal('roles')
-  },
-  LOGOUT(state) {
-    state.token = null
-    state.user = null
-    state.permissions = null
-    state.roles = null
+    this.$axios.defaults.headers.common.Authorization = ''
 
     this.$storage.removeUniversal('token')
     this.$storage.removeUniversal('user')
@@ -55,13 +46,35 @@ export const actions = {
       this.$axios
         .post('auth/login', data)
         .then((resp) => {
-          commit('SUCCESS', resp.data.data)
+          commit('SET_USER', resp.data.data)
           resolve(resp.data.data)
         })
         .catch((err) => {
-          commit('ERROR')
+          commit('CLEAR_USER')
           reject(err)
         })
     })
+  },
+  logout({ commit }) {
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .post('auth/logout')
+        .then((resp) => {
+          commit('CLEAR_USER')
+          resolve(resp.data.data)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
+}
+
+export const getters = {
+  isAuthenticated(state) {
+    return !!state.user
+  },
+  loggedUser(state) {
+    return state.user
   }
 }
