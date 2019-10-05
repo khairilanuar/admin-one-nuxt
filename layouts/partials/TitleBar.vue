@@ -12,7 +12,7 @@
       </div>
       <div class="level-right">
         <div class="level-item">
-          <!--<div class="buttons is-right">
+          <div class="buttons is-right">
             <a
               href="https://admin-one-vue-cli.justboil.me/"
               target="_blank"
@@ -21,7 +21,7 @@
               <b-icon icon="credit-card" custom-size="default" />
               <span>Premium Demo</span>
             </a>
-          </div>-->
+          </div>
         </div>
       </div>
     </div>

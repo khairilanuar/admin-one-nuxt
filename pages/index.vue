@@ -28,7 +28,7 @@
           :number="256"
           suffix="%"
           label="Performance"
-        ></card-widget>
+        />
       </tiles>
 
       <card-component
@@ -66,12 +66,14 @@ import CardWidget from '~/components/CardWidget'
 import CardComponent from '~/components/CardComponent'
 import LineChart from '~/components/Charts/LineChart'
 import ClientsTableSample from '~/layouts/partials/ClientsTableSample'
+
 export default {
-  name: 'Homepage',
+  name: 'Home',
   components: {
     ClientsTableSample,
     LineChart,
     CardComponent,
+    // eslint-disable-next-line vue/no-unused-components
     CardWidget,
     Tiles,
     HeroBar,

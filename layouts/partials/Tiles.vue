@@ -1,5 +1,5 @@
 <script>
-import chunk from 'lodash/chunk'
+import { chunk, map, without } from 'lodash'
 
 export default {
   name: 'Tiles',
@@ -23,13 +23,17 @@ export default {
     }
   },
   render(createElement) {
-    if (this.$slots.default.length <= this.maxPerRow) {
-      return this.renderAncestor(createElement, this.$slots.default)
+    let slots = map(this.$slots.default, (o) => {
+      if (o.tag !== undefined) return o
+    })
+    slots = without(slots, undefined)
+    if (slots.length <= this.maxPerRow) {
+      return this.renderAncestor(createElement, slots)
     } else {
       return createElement(
         'div',
         { attrs: { class: 'is-tiles-wrapper' } },
-        chunk(this.$slots.default, this.maxPerRow).map((group) => {
+        chunk(slots, this.maxPerRow).map((group) => {
           return this.renderAncestor(createElement, group)
         })
       )

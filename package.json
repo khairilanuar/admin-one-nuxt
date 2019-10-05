@@ -16,6 +16,7 @@
     "test": "yarn test:unit & yarn test:e2e"
   },
   "dependencies": {
+    "@mdi/font": "^4.4.95",
     "@nuxtjs/auth": "^4.8.4",
     "@nuxtjs/axios": "^5.6.0",
     "@nuxtjs/universal-storage": "^0.4.0",
