@@ -2,6 +2,7 @@
   <div
     class="navbar-item has-dropdown has-dropdown-with-icons"
     :class="{ 'is-hoverable': isHoverable, 'is-active': isDropdownActive }"
+    :can-close="true"
     @click="toggle"
   >
     <a class="navbar-link is-arrowless">
@@ -32,7 +33,8 @@ export default {
     }
   },
   created() {
-    // window.addEventListener('click', this.forceClose)
+    // eslint-disable-next-line nuxt/no-globals-in-created
+    window.addEventListener('click', this.forceClose)
   },
   beforeDestroy() {
     window.removeEventListener('click', this.forceClose)

@@ -1,0 +1,250 @@
+<template>
+  <div>
+    <notification v-if="false" class="is-info">
+      <div>
+        <span><b>Demo only.</b> No data will be saved/updated</span>
+      </div>
+    </notification>
+    <tiles>
+      <card-component
+        :title="formTitle"
+        icon="account-edit"
+        class="tile is-child"
+      >
+        <validation-observer v-slot="{ invalid, passes }" slim>
+          <form @submit.prevent="passes(submitForm)">
+            <b-field label="Profile Image" horizontal>
+              <file-picker />
+            </b-field>
+            <hr />
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="First Name"
+              rules="required"
+              slim
+            >
+              <b-field
+                label="First Name"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-input v-model="data.first_name" placeholder=""></b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Last Name"
+              rules="required"
+              slim
+            >
+              <b-field
+                label="Last Name"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-input v-model="data.last_name" placeholder=""></b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Email"
+              rules="required|email"
+              slim
+            >
+              <b-field
+                label="Email"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-input v-model="data.email" placeholder=""></b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Password"
+              rules="required|verify_password"
+              vid="password"
+              slim
+            >
+              <b-field
+                label="Password"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-input
+                  v-model="data.password"
+                  type="password"
+                  placeholder=""
+                ></b-input>
+              </b-field>
+            </ValidationProvider>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Password Confirmation"
+              rules="required|confirmed:password"
+              slim
+            >
+              <b-field
+                label="Password Confirmation"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-input
+                  v-model="data.password_confirmation"
+                  type="password"
+                  placeholder=""
+                ></b-input>
+              </b-field>
+            </ValidationProvider>
+            <hr />
+            <b-field horizontal>
+              <div class="buttons">
+                <b-button
+                  type="is-primary"
+                  :loading="isLoading"
+                  :disabled="invalid"
+                  native-type="submit"
+                >
+                  Submit
+                </b-button>
+                <b-button tag="nuxt-link" :to="cancelUrl" type="is-secondary">
+                  Cancel
+                </b-button>
+              </div>
+            </b-field>
+          </form>
+        </validation-observer>
+      </card-component>
+      <card-component
+        v-if="isProfileExists"
+        title="Client Profile"
+        icon="account"
+        class="tile is-child"
+      >
+        <user-avatar
+          :avatar="data.file"
+          class="image has-max-width is-aligned-center"
+        />
+        <hr />
+        <b-field label="Name">
+          <b-input
+            :value="data.name"
+            custom-class="is-static"
+            readonly
+          ></b-input>
+        </b-field>
+        <b-field label="Company">
+          <b-input
+            :value="data.company"
+            custom-class="is-static"
+            readonly
+          ></b-input>
+        </b-field>
+        <b-field label="City">
+          <b-input
+            :value="data.city"
+            custom-class="is-static"
+            readonly
+          ></b-input>
+        </b-field>
+        <b-field label="Created">
+          <b-input value="" custom-class="is-static" readonly></b-input>
+        </b-field>
+        <hr />
+        <b-field label="Progress">
+          <progress
+            class="progress is-small is-primary"
+            :value="data.progress"
+            max="100"
+          >
+            {{ data.progress }}
+          </progress>
+        </b-field>
+      </card-component>
+    </tiles>
+  </div>
+</template>
+
+<script>
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+import Tiles from '~/layouts/partials/Tiles'
+import CardComponent from '~/components/CardComponent'
+import FilePicker from '~/components/FilePicker'
+import UserAvatar from '~/layouts/partials/UserAvatar'
+import Notification from '~/layouts/partials/Notification'
+
+export default {
+  name: 'UserForm',
+  components: {
+    Tiles,
+    CardComponent,
+    UserAvatar,
+    Notification,
+    FilePicker,
+    ValidationProvider,
+    ValidationObserver
+  },
+  props: {
+    redirectUrl: { type: String, default: '/access/users' },
+    cancelUrl: { type: String, default: '/access/users' },
+    userId: { type: Number, default: null }
+  },
+  data: () => {
+    return {
+      formTitle: 'User',
+      isLoading: false,
+      isProfileExists: false,
+      isEdit: false,
+
+      defaultData: {},
+      data: {}
+    }
+  },
+  mounted() {
+    this.resetForm()
+    this.formTitle = 'Add User'
+
+    if (this.userId) {
+      this.loadUser(this.userId)
+    }
+  },
+  methods: {
+    resetForm() {
+      this.data = this.$lodash.cloneDeep(this.defaultData)
+    },
+    loadUser(id) {
+      this.$axios.get('/user/' + this.userId)
+    },
+    submitForm() {
+      const data = {
+        email: this.data.email || '',
+        password: this.data.password || '',
+        password_confirmation: this.data.password_confirmation || '',
+        first_name: this.data.first_name || '',
+        last_name: this.data.last_name || ''
+      }
+      this.$axios
+        .post('user/register', data)
+        .then((response) => {
+          this.$buefy.snackbar.open({
+            message: response.data.message,
+            queue: false
+          })
+          this.$router.push(this.redirectUrl)
+        })
+        .catch(({ response }) => {
+          this.$buefy.snackbar.open({
+            message: response.data.message,
+            type: 'is-danger',
+            queue: false
+          })
+        })
+    }
+  }
+}
+</script>

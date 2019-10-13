@@ -238,7 +238,7 @@ export default {
     getData() {
       if (this.id) {
         axios
-          .get('/data-sources/clients.json')
+          .get('/data-sources/data.json')
           .then((r) => {
             const item = find(
               r.data.data,

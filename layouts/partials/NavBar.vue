@@ -73,7 +73,7 @@
               <span>Messages</span>
             </a>
             <hr class="navbar-divider" />
-            <a class="navbar-item">
+            <a class="navbar-item" @click="logout">
               <b-icon icon="logout" custom-size="default"></b-icon>
               <span>Log Out</span>
             </a>
@@ -137,10 +137,10 @@ export default {
       this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
     logout() {
-      this.$buefy.snackbar.open({
+      /* this.$buefy.snackbar.open({
         message: 'Log out clicked',
         queue: false
-      })
+      }) */
 
       this.$store
         .dispatch('auth/logout')

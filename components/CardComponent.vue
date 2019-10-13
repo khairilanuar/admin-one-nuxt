@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card is-card-widget">
     <header v-if="title" class="card-header">
       <p class="card-header-title">
         <b-icon v-if="icon" :icon="icon" custom-size="default" />

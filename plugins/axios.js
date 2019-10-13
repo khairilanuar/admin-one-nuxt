@@ -1,0 +1,21 @@
+export default function({ $axios, redirect }) {
+  /*
+  $axios.onRequest((config) => {
+    // eslint-disable-next-line no-console
+    console.log('Making request to ' + config.url)
+  })
+
+  $axios.onError((error) => {
+    const code = parseInt(error.response && error.response.status)
+    if (code === 401) {
+      redirect('/401')
+    }
+  })
+  */
+
+  $axios.interceptors.response.use(undefined, (error) => {
+    return Promise.reject(error)
+    // eslint-disable-next-line prefer-promise-reject-errors
+    // return Promise.reject({ ...error })
+  })
+}

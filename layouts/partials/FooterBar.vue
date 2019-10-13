@@ -3,13 +3,13 @@
     <div class="container-fluid">
       <div class="level">
         <div class="level-left">
-          <div class="level-item">&copy; {{ year }}, JustBoil.me</div>
+          <div class="level-item">&copy; {{ year }}, Infinitum Tech.</div>
         </div>
         <div class="level-right">
           <div class="level-item">
             <div class="logo">
-              <a href="https://justboil.me">
-                <img src="~assets/justboil-logo.svg" alt="JustBoil.me" />
+              <a href="https://infinitum.com.my">
+                <img src="~assets/logo-only-red.png" alt="logo" />
               </a>
             </div>
           </div>

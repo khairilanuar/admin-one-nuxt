@@ -1,5 +1,5 @@
 <template>
-  <card-component>
+  <card-component :title="title">
     <div class="level is-mobile">
       <div class="level-item">
         <div class="is-widget-label">
@@ -40,6 +40,10 @@ export default {
       default: null
     },
     suffix: {
+      type: String,
+      default: null
+    },
+    title: {
       type: String,
       default: null
     },

@@ -42,12 +42,11 @@ export const mutations = {
 export const actions = {
   login({ commit }, data) {
     return new Promise((resolve, reject) => {
-      // commit('auth_request')
       this.$axios
         .post('auth/login', data)
         .then((resp) => {
-          commit('SET_USER', resp.data.data)
-          resolve(resp.data.data)
+          commit('SET_USER', resp.data.payload)
+          resolve(resp.data.payload)
         })
         .catch((err) => {
           commit('CLEAR_USER')
@@ -61,7 +60,7 @@ export const actions = {
         .post('auth/logout')
         .then((resp) => {
           commit('CLEAR_USER')
-          resolve(resp.data.data)
+          resolve(resp.data.payload)
         })
         .catch((err) => {
           reject(err)

@@ -37,7 +37,12 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/global-components.js'],
+  plugins: [
+    '~/plugins/global-components.js',
+    '~/plugins/lodash.js',
+    '~/plugins/vee-validate.js',
+    '~/plugins/axios.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -110,6 +115,7 @@ export default {
    ** Build configuration
    */
   build: {
+    transpile: ['vee-validate/dist/rules'],
     /*
      ** You can extend webpack config here
      */

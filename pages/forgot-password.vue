@@ -3,17 +3,31 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
-          <div class="column is-two-fifths">
+          <div class="column is-7">
             <div class="card has-card-header-background">
               <header class="card-header">
                 <p class="card-header-title">
                   <span class="icon"><i class="mdi mdi-lock default"></i></span
-                  ><span>Login</span>
+                  ><span>Account recovery</span>
                 </p>
               </header>
               <div class="card-content">
                 <ValidationObserver v-slot="{ invalid, passes }" slim>
-                  <form method="POST" @submit.prevent="passes(login)">
+                  <form method="POST" @submit.prevent="passes(recoverPassword)">
+                    <div class="content">
+                      <p>
+                        Please enter your registered email to proceed with
+                        account recovery.
+                      </p>
+                      <p>
+                        We will send you an email with a link to start recover
+                        your account
+                      </p>
+                      <p>
+                        If you forgot your registerd email kindly contact system
+                        administrator to recover your account.
+                      </p>
+                    </div>
                     <ValidationProvider
                       v-slot="{ errors }"
                       name="Email"
@@ -33,38 +47,6 @@
                         ></b-input>
                       </b-field>
                     </ValidationProvider>
-                    <ValidationProvider
-                      v-slot="{ errors }"
-                      name="Password"
-                      rules="required"
-                      slim
-                    >
-                      <b-field
-                        label="Password"
-                        :message="errors.length ? errors[0] : ''"
-                        :type="errors.length ? 'is-danger' : ''"
-                      >
-                        <b-input
-                          v-model="password"
-                          type="password"
-                          autocomplete="off"
-                          name="password"
-                        ></b-input>
-                      </b-field>
-                    </ValidationProvider>
-                    <div class="field">
-                      <label class="b-checkbox checkbox is-thin"
-                        ><input
-                          type="checkbox"
-                          true-value="true"
-                          value="false"
-                        />
-                        <span class="check is-black"></span>
-                        <span class="control-label">
-                          Remember me
-                        </span></label
-                      >
-                    </div>
                     <hr />
                     <b-notification
                       v-if="error.length"
@@ -85,18 +67,14 @@
                           tag="input"
                           :disabled="invalid"
                           native-type="submit"
-                          type="is-primary"
-                          value="Login"
+                          type="is-black"
+                          value="Recover my password"
                         >
                         </b-button>
                       </div>
                       <div class="control">
-                        <b-button
-                          tag="nuxt-link"
-                          to="/forgot-password"
-                          type="is-text"
-                        >
-                          Forgot Password?
+                        <b-button tag="nuxt-link" to="/login" type="is-text">
+                          Back to login
                         </b-button>
                       </div>
                     </div>
@@ -117,7 +95,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 
 export default {
   layout: 'empty',
-  name: 'Login',
+  name: 'ForgotPassword',
   components: { ValidationProvider, ValidationObserver },
   middleware: 'anonymous',
   data() {
@@ -125,6 +103,10 @@ export default {
       email: '',
       password: '',
       error: '',
+      info: {
+        hasInfo: false,
+        messages: []
+      },
       isLoading: false
     }
   },
@@ -146,28 +128,22 @@ export default {
     }
   },
   computed: {},
-  mounted() {
-    /*
-    this.$buefy.snackbar.open({
-      message: 'Please login',
-      queue: false
-    })
-    */
-  },
+  mounted() {},
   methods: {
-    login() {
+    recoverPassword() {
       try {
         this.isLoading = true
         this.error = ''
-        const data = { email: this.email, password: this.password }
-        this.$store
-          .dispatch('auth/login', data)
-          .then(() => {
+        const data = { email: this.email }
+
+        this.$axios
+          .post('auth/forgot-password', data)
+          .then((response) => {
             this.isLoading = false
             this.$router.push('/')
           })
-          .catch((err) => {
-            this.error = err.response.data.message
+          .catch((error) => {
+            this.error = error.response.data.message
             this.isLoading = false
           })
 
