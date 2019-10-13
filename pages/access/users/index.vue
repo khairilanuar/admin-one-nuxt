@@ -55,7 +55,7 @@
                 <b-tag
                   v-for="(role, id) in props.row.roles"
                   :key="id"
-                  type="is-dark"
+                  type="is-grey"
                 >
                   {{ role.name }}
                 </b-tag>
@@ -80,7 +80,10 @@
             <b-table-column custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{ name: 'index', params: { id: props.row.id } }"
+                  :to="{
+                    name: 'access-users-user-edit',
+                    params: { user: props.row.uuid }
+                  }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small"></b-icon>

@@ -62,7 +62,22 @@
                 <b-input v-model="data.email" placeholder=""></b-input>
               </b-field>
             </ValidationProvider>
+            <b-field label="Role(s)" horizontal>
+              <b-taginput
+                v-model="data.roles"
+                :data="filteredRoles"
+                autocomplete
+                :allow-new="false"
+                :open-on-focus="true"
+                field="name"
+                icon="label"
+                placeholder="Select role"
+                @typing="getFilteredRoles"
+              >
+              </b-taginput>
+            </b-field>
             <ValidationProvider
+              v-if="!isEdit"
               v-slot="{ errors }"
               name="Password"
               rules="required|verify_password"
@@ -83,6 +98,7 @@
               </b-field>
             </ValidationProvider>
             <ValidationProvider
+              v-if="!isEdit"
               v-slot="{ errors }"
               name="Password Confirmation"
               rules="required|confirmed:password"
@@ -112,11 +128,16 @@
                 >
                   Submit
                 </b-button>
-                <b-button tag="nuxt-link" :to="cancelUrl" type="is-secondary">
+                <b-button tag="nuxt-link" :to="cancelUrl" type="is-text">
                   Cancel
                 </b-button>
               </div>
             </b-field>
+            <b-loading
+              :is-full-page="false"
+              :active.sync="isLoadingForm"
+              :can-cancel="false"
+            ></b-loading>
           </form>
         </validation-observer>
       </card-component>
@@ -192,44 +213,84 @@ export default {
   props: {
     redirectUrl: { type: String, default: '/access/users' },
     cancelUrl: { type: String, default: '/access/users' },
-    userId: { type: Number, default: null }
+    userUuid: { type: String, default: null }
   },
   data: () => {
     return {
       formTitle: 'User',
       isLoading: false,
+      isLoadingForm: false,
       isProfileExists: false,
-      isEdit: false,
+
+      roles: [],
+      filteredRoles: [],
 
       defaultData: {},
       data: {}
+    }
+  },
+  computed: {
+    isEdit() {
+      return !!this.userUuid
     }
   },
   mounted() {
     this.resetForm()
     this.formTitle = 'Add User'
 
-    if (this.userId) {
-      this.loadUser(this.userId)
+    this.loadRoles()
+
+    if (this.userUuid) {
+      this.loadUser(this.userUuid)
     }
   },
   methods: {
     resetForm() {
       this.data = this.$lodash.cloneDeep(this.defaultData)
     },
-    loadUser(id) {
-      this.$axios.get('/user/' + this.userId)
+    loadRoles() {
+      this.$axios
+        .get('role', { params: { per_page: 100 } })
+        .then((response) => {
+          this.roles = response.data.payload.data
+        })
+        .catch()
+    },
+    loadUser(uuid) {
+      this.isLoadingForm = true
+      this.$axios
+        .get('/user/' + uuid)
+        .then((response) => {
+          this.data = response.data.payload
+          this.isLoadingForm = false
+        })
+        .catch(({ response }) => {
+          this.$buefy.snackbar.open({
+            message: response.data.message,
+            type: 'is-danger',
+            queue: false
+          })
+          this.isLoadingForm = false
+        })
     },
     submitForm() {
       const data = {
         email: this.data.email || '',
-        password: this.data.password || '',
-        password_confirmation: this.data.password_confirmation || '',
         first_name: this.data.first_name || '',
         last_name: this.data.last_name || ''
       }
+
+      if (this.isEdit) {
+        data.roles = this.data.roles
+        data._method = 'PUT'
+      } else {
+        data.password = this.data.password || ''
+        data.password_confirmation = this.data.password_confirmation || ''
+      }
+
+      const endpoint = this.isEdit ? 'user/' + this.userUuid : 'user/register'
       this.$axios
-        .post('user/register', data)
+        .post(endpoint, data)
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
@@ -244,6 +305,14 @@ export default {
             queue: false
           })
         })
+    },
+    getFilteredRoles(text) {
+      this.filteredRoles = this.roles.filter((option) => {
+        return option.name
+          .toString()
+          .toLowerCase()
+          .includes(text.toLowerCase())
+      })
     }
   }
 }
