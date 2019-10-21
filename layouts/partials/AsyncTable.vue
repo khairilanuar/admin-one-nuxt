@@ -1,13 +1,7 @@
 <template>
   <div>
-    <modal-box
-      :is-active="isModalActive"
-      :trash-object-name="trashObjectName"
-      @confirm="trashConfirm"
-      @cancel="trashCancel"
-    />
     <b-table
-      :checked-rows.sync="checkedRows"
+      :checked-rows.sync="checked"
       :checkable="checkable"
       :loading="isLoading"
       :paginated="true"
@@ -29,6 +23,7 @@
       aria-current-label="Current page"
       @sort="goSort"
       @page-change="goPage"
+      @check="goCheck"
     >
       <template #default="props">
         <slot :row="props.row" name="table" />
@@ -37,12 +32,14 @@
       <section slot="empty" class="section">
         <div class="content has-text-grey has-text-centered">
           <template v-if="isLoading">
+            <!--
             <p>
               <b-icon icon="dots-horizontal" size="is-large"></b-icon>
             </p>
+            -->
             <p>Fetching data...</p>
           </template>
-          <template v-else>
+          <template v-if="!isLoading">
             <p>
               <b-icon icon="emoticon-sad" size="is-medium"></b-icon>
             </p>
@@ -51,18 +48,21 @@
         </div>
       </section>
       <template #bottom-left>
-        <small> <b>Total checked</b>: 0 </small>
+        <small v-if="checked.length > 0">
+          <b>Total checked</b>: {{ checked.length }}
+        </small>
+        <small v-else>
+          Showing records {{ from }} of {{ to }} of {{ total }} records
+        </small>
       </template>
     </b-table>
   </div>
 </template>
 
 <script>
-import ModalBox from '~/components/ModalBox'
-
 export default {
   name: 'AsyncTable',
-  components: { ModalBox },
+  components: {},
   props: {
     dataUrl: {
       type: String,
@@ -71,32 +71,29 @@ export default {
     checkable: {
       type: Boolean,
       default: false
+    },
+    checkedRows: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      isModalActive: false,
-      trashObject: null,
       data: [],
+      checked: this.checkedRows,
       isLoading: false,
       paginated: false,
       perPage: 10,
       page: 1,
+      lastPage: null,
       sortBy: 'id',
       sortDir: 'desc',
-      total: 0,
-      checkedRows: []
+      from: 0,
+      to: 0,
+      total: 0
     }
   },
-  computed: {
-    trashObjectName() {
-      if (this.trashObject) {
-        return this.trashObject.name
-      }
-
-      return null
-    }
-  },
+  computed: {},
   mounted() {
     if (this.dataUrl) {
       this.loadData()
@@ -114,10 +111,15 @@ export default {
         .get(this.dataUrl, { params })
         .then((r) => {
           if (r.data && r.data.success) {
+            this.from = r.data.payload.from
+            this.to = r.data.payload.to
             this.total = r.data.payload.total
             this.data = r.data.payload.data
+            this.lastPage = r.data.payload.last_page
             this.perPage = r.data.payload.per_page
+            this.page = r.data.payload.current_page
           }
+
           this.isLoading = false
         })
         .catch((e) => {
@@ -137,19 +139,8 @@ export default {
       this.sortDir = order
       this.loadData()
     },
-    trashModal(trashObject) {
-      this.trashObject = trashObject
-      this.isModalActive = true
-    },
-    trashConfirm() {
-      this.isModalActive = false
-      this.$buefy.snackbar.open({
-        message: 'Confirmed',
-        queue: false
-      })
-    },
-    trashCancel() {
-      this.isModalActive = false
+    goCheck(checkedList, row) {
+      this.$emit('check', checkedList, row)
     }
   }
 }

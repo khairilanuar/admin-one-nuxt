@@ -5,19 +5,19 @@
       <template #right> </template>
     </title-bar>
     <section class="section is-main-section">
-      <user-form></user-form>
+      <role-form></role-form>
     </section>
   </div>
 </template>
 
 <script>
-import UserForm from '~/components/User/UserForm'
+import RoleForm from '~/components/Role/RoleForm'
 import TitleBar from '~/layouts/partials/TitleBar'
 
 export default {
-  name: 'UserCreate',
+  name: 'RoleCreate',
   components: {
-    UserForm,
+    RoleForm,
     TitleBar
   },
   computed: {

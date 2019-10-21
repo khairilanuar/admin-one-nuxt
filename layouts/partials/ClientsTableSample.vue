@@ -153,6 +153,7 @@ export default {
   },
   methods: {
     trashModal(trashObject) {
+      this.$swal('hello')
       this.trashObject = trashObject
       this.isModalActive = true
     },

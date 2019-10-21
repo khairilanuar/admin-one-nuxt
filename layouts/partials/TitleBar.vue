@@ -6,10 +6,10 @@
           <ul>
             <!--<li><b-icon icon="home" custom-size="default"></b-icon></li>-->
             <li v-for="(title, index) in titleStack" :key="index">
-              {{ title }}
+              <a href="#">{{ title }}</a>
             </li>
           </ul>
-          <div style="padding-left: 10px">
+          <div style="padding-left: 15px">
             <slot name="left" />
           </div>
         </div>

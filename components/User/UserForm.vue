@@ -117,6 +117,11 @@
                 ></b-input>
               </b-field>
             </ValidationProvider>
+            <b-field label="User confirmed" horizontal>
+              <b-switch v-model="data.confirmed">
+                {{ data.confirmed ? 'Yes' : 'No' }}
+              </b-switch>
+            </b-field>
             <hr />
             <b-field horizontal>
               <div class="buttons">
@@ -225,7 +230,7 @@ export default {
       roles: [],
       filteredRoles: [],
 
-      defaultData: {},
+      defaultData: { confirmed: true },
       data: {}
     }
   },

@@ -55,7 +55,7 @@ export default {
             icon: 'credit-card'
           },
           {
-            to: '/access/users',
+            to: '/access/roles',
             label: 'Roles',
             icon: 'credit-card'
           }

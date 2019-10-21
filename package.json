@@ -16,7 +16,7 @@
     "test": "yarn test:unit & yarn test:e2e"
   },
   "dependencies": {
-    "@mdi/font": "^4.4.95",
+    "@mdi/font": "^4.5.95",
     "@nuxtjs/auth": "^4.8.4",
     "@nuxtjs/axios": "^5.6.0",
     "@nuxtjs/universal-storage": "^0.4.0",
@@ -27,7 +27,8 @@
     "nuxt-buefy": "^0.3.16",
     "register-service-worker": "^1.6.2",
     "vee-validate": "^3.0.11",
-    "vue-chartjs": "^3.4.2"
+    "vue-chartjs": "^3.4.2",
+    "vue-sweetalert2": "^2.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.1.2",

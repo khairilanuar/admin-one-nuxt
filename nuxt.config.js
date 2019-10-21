@@ -57,14 +57,17 @@ export default {
    */
   modules: [
     // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
+    // 'nuxt-buefy',
     // ['nuxt-buefy', { css: false, materialDesignIcons: false }],
+    ['nuxt-buefy', { materialDesignIcons: false }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://auth.nuxtjs.org/guide/setup.html
     // '@nuxtjs/auth'
     // Doc: https://github.com/nuxt-community/universal-storage-module
-    '@nuxtjs/universal-storage'
+    '@nuxtjs/universal-storage',
+    // Doc: https://www.npmjs.com/package/vue-sweetalert2
+    'vue-sweetalert2/nuxt'
   ],
   /*
    ** Axios module configuration

@@ -28,7 +28,7 @@
       <div class="navbar-end">
         <nav-bar-menu class="has-divider">
           <b-icon icon="menu" custom-size="default" />
-          <span>Sample Menu</span>
+          <span> </span>
           <div slot="dropdown" class="navbar-dropdown">
             <nuxt-link
               to="/profile"
@@ -79,13 +79,14 @@
             </a>
           </div>
         </nav-bar-menu>
+        <!--
         <a
           href="https://justboil.me/bulma-admin-template/one"
           class="navbar-item has-divider is-desktop-icon-only"
-          title="About"
+          title="Help"
         >
           <b-icon icon="help-circle-outline" custom-size="default" />
-          <span>About</span>
+          <span>Help</span>
         </a>
         <a
           class="navbar-item is-desktop-icon-only"
@@ -95,6 +96,7 @@
           <b-icon icon="logout" custom-size="default" />
           <span>Log out</span>
         </a>
+        -->
       </div>
     </div>
   </nav>

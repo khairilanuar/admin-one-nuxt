@@ -4,9 +4,9 @@
       <div class="level">
         <div class="level-left">
           <div class="level-item">
-            <h1 class="title">
+            <h4 class="title is-4">
               <slot />
-            </h1>
+            </h4>
           </div>
         </div>
         <div v-show="hasRightVisible" class="level-right">
