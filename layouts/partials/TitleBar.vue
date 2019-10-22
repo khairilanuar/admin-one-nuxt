@@ -6,7 +6,7 @@
           <ul>
             <!--<li><b-icon icon="home" custom-size="default"></b-icon></li>-->
             <li v-for="(title, index) in titleStack" :key="index">
-              <a href="#">{{ title }}</a>
+              {{ title }}
             </li>
           </ul>
           <div style="padding-left: 15px">

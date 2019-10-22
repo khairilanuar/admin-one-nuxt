@@ -1,6 +1,6 @@
 export default {
   items: [
-    'Main',
+    // 'Main',
     [
       {
         to: '/',
@@ -25,7 +25,8 @@ export default {
         to: '/profile',
         label: 'Profile',
         icon: 'account-circle'
-      },
+      }
+      /*
       {
         label: 'Submenus',
         subLabel: 'Submenus Example',
@@ -41,6 +42,7 @@ export default {
           }
         ]
       }
+      */
     ],
     'System',
     [
@@ -60,7 +62,8 @@ export default {
             icon: 'credit-card'
           }
         ]
-      },
+      }
+      /*
       {
         href: 'https://admin-one-vue-cli.justboil.me',
         label: 'Premium Demo',
@@ -71,6 +74,7 @@ export default {
         label: 'About',
         icon: 'help-circle'
       }
+      */
     ]
   ]
 }

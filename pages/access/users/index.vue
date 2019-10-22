@@ -218,7 +218,14 @@ export default {
     },
     bulkDeleteUsers() {
       // TODO:
-      this.$swal('TODO: API for bulk delete')
+      this.$buefy.dialog.alert({
+        title: 'TODO:',
+        message: 'API for bulk delete',
+        type: 'is-danger',
+        hasIcon: true,
+        icon: 'times-circle',
+        iconPack: 'fa'
+      })
     },
     check(checkedList, row) {
       this.checkedRows = checkedList

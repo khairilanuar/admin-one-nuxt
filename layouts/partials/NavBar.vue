@@ -5,12 +5,14 @@
         class="navbar-item is-hidden-desktop"
         @click.prevent="menuToggleMobile"
       >
-        <b-icon :icon="menuToggleMobileIcon" />
+        <b-icon :icon="menuToggleMobileIcon"></b-icon>
       </a>
       <div class="navbar-item">
+        <!--
         <div class="control">
           <input class="input" placeholder="Search everywhere..." />
         </div>
+        -->
       </div>
     </div>
     <div class="navbar-brand is-right">
@@ -18,7 +20,7 @@
         class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
         @click.prevent="menuNavBarToggle"
       >
-        <b-icon :icon="menuNavBarToggleIcon" custom-size="default" />
+        <b-icon :icon="menuNavBarToggleIcon" custom-size="default"></b-icon>
       </a>
     </div>
     <div
@@ -27,7 +29,7 @@
     >
       <div class="navbar-end">
         <nav-bar-menu class="has-divider">
-          <b-icon icon="menu" custom-size="default" />
+          <b-icon icon="menu" custom-size="default"></b-icon>
           <span> </span>
           <div slot="dropdown" class="navbar-dropdown">
             <nuxt-link
@@ -35,20 +37,20 @@
               class="navbar-item"
               exact-active-class="is-active"
             >
-              <b-icon icon="account" custom-size="default" />
+              <b-icon icon="account" custom-size="default"></b-icon>
               <span>My Profile</span>
             </nuxt-link>
             <a class="navbar-item">
-              <b-icon icon="settings" custom-size="default" />
+              <b-icon icon="settings" custom-size="default"></b-icon>
               <span>Settings</span>
             </a>
             <a class="navbar-item">
-              <b-icon icon="email" custom-size="default" />
+              <b-icon icon="email" custom-size="default"></b-icon>
               <span>Messages</span>
             </a>
             <hr class="navbar-divider" />
             <a class="navbar-item">
-              <b-icon icon="logout" custom-size="default" />
+              <b-icon icon="logout" custom-size="default"></b-icon>
               <span>Log Out</span>
             </a>
           </div>

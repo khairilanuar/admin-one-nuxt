@@ -3,7 +3,9 @@
     <div class="container-fluid">
       <div class="level">
         <div class="level-left">
-          <div class="level-item">&copy; {{ year }}, Infinitum Tech.</div>
+          <div class="level-item">
+            <small>&copy; {{ year }}, Infinitum Tech.</small>
+          </div>
         </div>
         <div class="level-right">
           <div class="level-item">
