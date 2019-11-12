@@ -21,9 +21,9 @@
                       slim
                     >
                       <b-field
-                        label="E-mail Address"
                         :message="errors.length ? errors[0] : ''"
                         :type="errors.length ? 'is-danger' : ''"
+                        label="E-mail Address"
                       >
                         <b-input
                           v-model="email"
@@ -40,9 +40,9 @@
                       slim
                     >
                       <b-field
-                        label="Password"
                         :message="errors.length ? errors[0] : ''"
                         :type="errors.length ? 'is-danger' : ''"
+                        label="Password"
                       >
                         <b-input
                           v-model="password"
@@ -82,8 +82,8 @@
                       <div class="control">
                         <b-button
                           :loading="isLoading"
-                          tag="input"
                           :disabled="invalid"
+                          tag="input"
                           native-type="submit"
                           type="is-primary"
                           value="Login"
@@ -128,23 +128,6 @@ export default {
       isLoading: false
     }
   },
-  head() {
-    return {
-      title: 'Login',
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description'
-        }
-      ],
-      htmlAttrs: {
-        lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded'
-      }
-    }
-  },
   computed: {},
   mounted() {
     /*
@@ -173,6 +156,23 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
+    }
+  },
+  head() {
+    return {
+      title: 'Login',
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description'
+        }
+      ],
+      htmlAttrs: {
+        lang: 'en',
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
   }
 }

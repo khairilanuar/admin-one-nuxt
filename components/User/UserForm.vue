@@ -24,9 +24,9 @@
               slim
             >
               <b-field
-                label="First Name"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="First Name"
                 horizontal
               >
                 <b-input v-model="data.first_name" placeholder=""></b-input>
@@ -39,9 +39,9 @@
               slim
             >
               <b-field
-                label="Last Name"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="Last Name"
                 horizontal
               >
                 <b-input v-model="data.last_name" placeholder=""></b-input>
@@ -54,9 +54,9 @@
               slim
             >
               <b-field
-                label="Email"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="Email"
                 horizontal
               >
                 <b-input v-model="data.email" placeholder=""></b-input>
@@ -66,9 +66,9 @@
               <b-taginput
                 v-model="data.roles"
                 :data="filteredRoles"
-                autocomplete
                 :allow-new="false"
                 :open-on-focus="true"
+                autocomplete
                 field="name"
                 icon="label"
                 placeholder="Select role"
@@ -85,9 +85,9 @@
               slim
             >
               <b-field
-                label="Password"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="Password"
                 horizontal
               >
                 <b-input
@@ -105,9 +105,9 @@
               slim
             >
               <b-field
-                label="Password Confirmation"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="Password Confirmation"
                 horizontal
               >
                 <b-input
@@ -126,14 +126,14 @@
             <b-field horizontal>
               <div class="buttons">
                 <b-button
-                  type="is-primary"
                   :loading="isLoading"
                   :disabled="invalid"
+                  type="is-primary"
                   native-type="submit"
                 >
                   Submit
                 </b-button>
-                <b-button tag="nuxt-link" :to="cancelUrl" type="is-text">
+                <b-button :to="cancelUrl" tag="nuxt-link" type="is-text">
                   Cancel
                 </b-button>
               </div>
@@ -184,8 +184,8 @@
         <hr />
         <b-field label="Progress">
           <progress
-            class="progress is-small is-primary"
             :value="data.progress"
+            class="progress is-small is-primary"
             max="100"
           >
             {{ data.progress }}
@@ -285,17 +285,19 @@ export default {
         last_name: this.data.last_name || ''
       }
 
+      let promise = null
+
       if (this.isEdit) {
         data.roles = this.data.roles
         data._method = 'PUT'
+        promise = this.$axios.put('user/' + this.userUuid, data)
       } else {
         data.password = this.data.password || ''
         data.password_confirmation = this.data.password_confirmation || ''
+        promise = this.$axios.post('user/register', data)
       }
 
-      const endpoint = this.isEdit ? 'user/' + this.userUuid : 'user/register'
-      this.$axios
-        .post(endpoint, data)
+      promise
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
@@ -303,9 +305,10 @@ export default {
           })
           this.$router.push(this.redirectUrl)
         })
-        .catch(({ response }) => {
+        .catch((error) => {
+          // window.console.log(error)
           this.$buefy.snackbar.open({
-            message: response.data.message,
+            message: error.response.data.message,
             type: 'is-danger',
             queue: false
           })

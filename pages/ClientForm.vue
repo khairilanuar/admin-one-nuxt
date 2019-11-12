@@ -69,8 +69,8 @@
             <hr />
             <b-field horizontal>
               <b-button
-                type="is-primary"
                 :loading="isLoading"
+                type="is-primary"
                 native-type="submit"
                 >Submit</b-button
               >
@@ -119,8 +119,8 @@
           <hr />
           <b-field label="Progress">
             <progress
-              class="progress is-small is-primary"
               :value="form.progress"
+              class="progress is-small is-primary"
               max="100"
               >{{ form.progress }}</progress
             >

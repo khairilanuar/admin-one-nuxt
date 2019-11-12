@@ -43,6 +43,9 @@ export default {
   data() {
     return {}
   },
+  computed: {},
+  mounted() {},
+  methods: {},
   head() {
     return {
       title: 'Login',
@@ -59,9 +62,6 @@ export default {
         class: 'has-aside-mobile-transition has-aside-expanded'
       }
     }
-  },
-  computed: {},
-  mounted() {},
-  methods: {}
+  }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="notification is-card-toolbar">
-    <div class="level" :class="{ 'is-mobile': isMobile }">
+    <div :class="{ 'is-mobile': isMobile }" class="level">
       <div class="level-left">
         <div class="level-item">
           <slot name="left" />

@@ -24,8 +24,8 @@
       </a>
     </div>
     <div
-      class="navbar-menu fadeIn animated faster"
       :class="{ 'is-active': isMenuNavBarActive }"
+      class="navbar-menu fadeIn animated faster"
     >
       <div class="navbar-end">
         <nav-bar-menu class="has-divider">

@@ -35,9 +35,9 @@
                       slim
                     >
                       <b-field
-                        label="E-mail Address"
                         :message="errors.length ? errors[0] : ''"
                         :type="errors.length ? 'is-danger' : ''"
+                        label="E-mail Address"
                       >
                         <b-input
                           v-model="email"
@@ -64,8 +64,8 @@
                       <div class="control">
                         <b-button
                           :loading="isLoading"
-                          tag="input"
                           :disabled="invalid"
+                          tag="input"
                           native-type="submit"
                           type="is-black"
                           value="Recover my password"
@@ -110,23 +110,6 @@ export default {
       isLoading: false
     }
   },
-  head() {
-    return {
-      title: 'Login',
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description'
-        }
-      ],
-      htmlAttrs: {
-        lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded'
-      }
-    }
-  },
   computed: {},
   mounted() {},
   methods: {
@@ -149,6 +132,23 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
+    }
+  },
+  head() {
+    return {
+      title: 'Login',
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My custom description'
+        }
+      ],
+      htmlAttrs: {
+        lang: 'en',
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
   }
 }

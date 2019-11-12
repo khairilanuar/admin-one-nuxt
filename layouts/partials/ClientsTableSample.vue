@@ -14,8 +14,8 @@
       :per-page="perPage"
       :striped="true"
       :hoverable="true"
-      default-sort="name"
       :data="clients"
+      default-sort="name"
     >
       <template slot-scope="props">
         <b-table-column class="has-no-head-mobile is-image-cell">
@@ -39,16 +39,16 @@
           sortable
         >
           <progress
-            class="progress is-small is-primary"
             :value="props.row.progress"
+            class="progress is-small is-primary"
             max="100"
             >{{ props.row.progress }}</progress
           >
         </b-table-column>
         <b-table-column label="Created">
           <small
-            class="has-text-grey is-abbr-like"
             :title="props.row.created"
+            class="has-text-grey is-abbr-like"
             >{{ props.row.created }}</small
           >
         </b-table-column>

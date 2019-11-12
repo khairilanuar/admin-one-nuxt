@@ -14,9 +14,9 @@
             <span>Add User</span>
           </b-button>
           <b-button
+            :disabled="!checkedRows.length"
             type="is-danger"
             size=""
-            :disabled="!checkedRows.length"
             @click="bulkDeleteUsers"
           >
             <b-icon icon="delete-alert" custom-size="default"></b-icon>
@@ -44,9 +44,9 @@
       <card-component class="has-table has-mobile-sort-spaced">
         <async-table
           ref="userTable"
-          data-url="/user"
           :checkable="true"
           :checked-rows="checkedRows"
+          data-url="/user"
           @check="check"
         >
           <template v-slot:table="props">
@@ -94,8 +94,8 @@
             </b-table-column>
             <b-table-column label="Created" field="created_at" sortable>
               <small
-                class="has-text-grey is-abbr-like"
                 :title="props.row.created_at"
+                class="has-text-grey is-abbr-like"
                 >{{ props.row.created_at }}</small
               >
             </b-table-column>
@@ -111,9 +111,9 @@
                   <b-icon icon="account-edit" size="is-small"></b-icon>
                 </nuxt-link>
                 <b-button
+                  :disabled="props.row.is_core"
                   size="is-small"
                   type="is-danger"
-                  :disabled="props.row.is_core"
                   @click.prevent="deleteUser(props.row)"
                 >
                   <b-icon icon="delete" size="is-small"></b-icon>

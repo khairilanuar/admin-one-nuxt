@@ -7,25 +7,25 @@
     <section class="section is-main-section">
       <tiles>
         <card-widget
+          :number="512"
           class="tile is-child"
           type="is-primary"
           icon="account-multiple"
-          :number="512"
           label="Clients"
         ></card-widget>
         <card-widget
+          :number="7770"
           class="tile is-child"
           type="is-info"
           icon="cart-outline"
-          :number="7770"
           prefix="$"
           label="Sales"
         ></card-widget>
         <card-widget
+          :number="256"
           class="tile is-child"
           type="is-success"
           icon="chart-timeline-variant"
-          :number="256"
           suffix="%"
           label="Performance"
         />
@@ -40,10 +40,10 @@
         <div v-if="defaultChart.chartData" class="chart-area">
           <line-chart
             ref="bigChart"
-            style="height: 100%"
-            chart-id="big-line-chart"
             :chart-data="defaultChart.chartData"
             :extra-options="defaultChart.extraOptions"
+            style="height: 100%"
+            chart-id="big-line-chart"
           >
           </line-chart>
         </div>

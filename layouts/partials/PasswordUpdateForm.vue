@@ -41,9 +41,9 @@
       <b-field horizontal>
         <div class="control">
           <button
+            :class="{ 'is-loading': isLoading }"
             type="submit"
             class="button is-primary"
-            :class="{ 'is-loading': isLoading }"
           >
             Submit
           </button>

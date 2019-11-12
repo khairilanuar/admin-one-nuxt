@@ -20,9 +20,9 @@
               slim
             >
               <b-field
-                label="Name"
                 :message="errors.length ? errors[0] : ''"
                 :type="errors.length ? 'is-danger' : ''"
+                label="Name"
                 horizontal
               >
                 <b-input v-model="data.name" placeholder=""></b-input>
@@ -76,14 +76,14 @@
             <b-field horizontal>
               <div class="buttons">
                 <b-button
-                  type="is-primary"
                   :loading="isLoading"
                   :disabled="invalid"
+                  type="is-primary"
                   native-type="submit"
                 >
                   Submit
                 </b-button>
-                <b-button tag="nuxt-link" :to="cancelUrl" type="is-text">
+                <b-button :to="cancelUrl" tag="nuxt-link" type="is-text">
                   Cancel
                 </b-button>
               </div>

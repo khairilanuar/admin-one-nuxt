@@ -1,11 +1,12 @@
 <template>
   <li :class="{ 'is-active': isDropdownActive }">
+    <!-- eslint-disable-next-line vue/require-component-is -->
     <component
       :is="componentIs"
       :to="itemTo"
       :href="itemHref"
-      exact-active-class="is-active"
       :class="{ 'has-icon': !!item.icon, 'has-dropdown-icon': hasDropdown }"
+      exact-active-class="is-active"
       @click="menuClick"
     >
       <b-icon
@@ -13,7 +14,7 @@
         :icon="item.icon"
         :class="{ 'has-update-mark': item.updateMark }"
         custom-size="default"
-      ></b-icon>
+      />
       <span v-if="item.label" :class="{ 'menu-item-label': !!item.icon }">{{
         item.label
       }}</span>
@@ -25,7 +26,7 @@
       v-if="hasDropdown"
       :menu="item.menu"
       :is-submenu-list="true"
-    ></aside-menu-list>
+    />
   </li>
 </template>
 

@@ -21,8 +21,8 @@
         icon="account-multiple"
       >
         <clients-table-sample
-          data-url="/data-sources/clients.json"
           :checkable="true"
+          data-url="/data-sources/clients.json"
         />
       </card-component>
 
@@ -37,8 +37,8 @@
 
       <card-component class="has-table has-mobile-sort-spaced">
         <clients-table-sample
-          data-url="/data-sources/clients.json"
           :checkable="true"
+          data-url="/data-sources/clients.json"
         />
       </card-component>
 

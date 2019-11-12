@@ -5,16 +5,16 @@
       :checkable="checkable"
       :loading="isLoading"
       :paginated="true"
-      pagination-size="is-small"
       :per-page="perPage"
       :striped="true"
       :narrowed="false"
       :hoverable="true"
+      :data="data"
+      :total="total"
+      pagination-size="is-small"
       default-sort="id"
       default-sort-direction="desc"
       sort-icon-size="is-small"
-      :data="data"
-      :total="total"
       backend-pagination
       backend-sorting
       aria-next-label="Next page"
@@ -97,8 +97,9 @@ export default {
       checked: this.checkedRows,
       isLoading: false,
       paginated: false,
-      page: 1,
+      page: this.currentPage,
       pages: 0,
+      pageLength: this.perPage,
       lastPage: null,
       sortBy: 'id',
       sortDir: 'desc',
@@ -122,7 +123,7 @@ export default {
         sortBy: this.sortBy,
         sortDir: this.sortDir,
         page: this.page,
-        perPage: this.perPage
+        perPage: this.pageLength
       }
       this.$axios
         .get(this.dataUrl, { params })
@@ -133,7 +134,7 @@ export default {
             this.total = response.data.payload.total
             this.data = response.data.payload.data
             this.lastPage = response.data.payload.last_page
-            this.perPage = response.data.payload.per_page
+            this.pageLength = response.data.payload.per_page
             this.page = response.data.payload.current_page
             this.pages = Array.from(
               { length: response.data.payload.last_page },

@@ -49,17 +49,17 @@ export default {
       {
         label: 'Access',
         subLabel: 'Access Management',
-        icon: 'view-list',
+        icon: 'shield-key',
         menu: [
           {
             to: '/access/users',
             label: 'Users',
-            icon: 'credit-card'
+            icon: 'account-multiple'
           },
           {
             to: '/access/roles',
             label: 'Roles',
-            icon: 'credit-card'
+            icon: 'shield-account'
           }
         ]
       }

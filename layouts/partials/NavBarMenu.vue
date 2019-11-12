@@ -1,8 +1,8 @@
 <template>
   <div
-    class="navbar-item has-dropdown has-dropdown-with-icons"
     :class="{ 'is-hoverable': isHoverable, 'is-active': isDropdownActive }"
     :can-close="true"
+    class="navbar-item has-dropdown has-dropdown-with-icons"
     @click="toggle"
   >
     <a class="navbar-link is-arrowless">

@@ -67,7 +67,8 @@ export default {
     // Doc: https://github.com/nuxt-community/universal-storage-module
     '@nuxtjs/universal-storage',
     // Doc: https://www.npmjs.com/package/vue-sweetalert2
-    'vue-sweetalert2/nuxt'
+    'vue-sweetalert2/nuxt',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
