@@ -13,7 +13,7 @@
               </header>
               <div class="card-content">
                 <ValidationObserver v-slot="{ invalid, passes }" slim>
-                  <form method="POST" @submit.prevent="passes(recoverPassword)">
+                  <form @submit.prevent="passes(recoverPassword)" method="POST">
                     <div class="content">
                       <p>
                         Please enter your registered email to proceed with

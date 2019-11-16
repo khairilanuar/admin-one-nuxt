@@ -1,11 +1,11 @@
 <template>
-  <nav v-show="isNavBarVisible" id="navbar-main" class="navbar is-fixed-top">
+  <nav id="navbar-main" v-show="isNavBarVisible" class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a
-        class="navbar-item is-hidden-desktop"
         @click.prevent="menuToggleMobile"
+        class="navbar-item is-hidden-desktop"
       >
-        <b-icon :icon="menuToggleMobileIcon"></b-icon>
+        <b-icon :icon="menuToggleMobileIcon" />
       </a>
       <div class="navbar-item">
         <!--
@@ -17,10 +17,10 @@
     </div>
     <div class="navbar-brand is-right">
       <a
-        class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
         @click.prevent="menuNavBarToggle"
+        class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
       >
-        <b-icon :icon="menuNavBarToggleIcon" custom-size="default"></b-icon>
+        <b-icon :icon="menuNavBarToggleIcon" custom-size="default" />
       </a>
     </div>
     <div
@@ -29,7 +29,7 @@
     >
       <div class="navbar-end">
         <nav-bar-menu class="has-divider">
-          <b-icon icon="menu" custom-size="default"></b-icon>
+          <b-icon icon="menu" custom-size="default" />
           <span> </span>
           <div slot="dropdown" class="navbar-dropdown">
             <nuxt-link
@@ -37,20 +37,20 @@
               class="navbar-item"
               exact-active-class="is-active"
             >
-              <b-icon icon="account" custom-size="default"></b-icon>
+              <b-icon icon="account" custom-size="default" />
               <span>My Profile</span>
             </nuxt-link>
             <a class="navbar-item">
-              <b-icon icon="settings" custom-size="default"></b-icon>
+              <b-icon icon="settings" custom-size="default" />
               <span>Settings</span>
             </a>
             <a class="navbar-item">
-              <b-icon icon="email" custom-size="default"></b-icon>
+              <b-icon icon="email" custom-size="default" />
               <span>Messages</span>
             </a>
             <hr class="navbar-divider" />
             <a class="navbar-item">
-              <b-icon icon="logout" custom-size="default"></b-icon>
+              <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
             </a>
           </div>
@@ -63,20 +63,20 @@
 
           <div slot="dropdown" class="navbar-dropdown">
             <a class="navbar-item">
-              <b-icon icon="account" custom-size="default"></b-icon>
+              <b-icon icon="account" custom-size="default" />
               <span>My Profile</span>
             </a>
             <a class="navbar-item">
-              <b-icon icon="settings" custom-size="default"></b-icon>
+              <b-icon icon="settings" custom-size="default" />
               <span>Settings</span>
             </a>
             <a class="navbar-item">
-              <b-icon icon="email" custom-size="default"></b-icon>
+              <b-icon icon="email" custom-size="default" />
               <span>Messages</span>
             </a>
             <hr class="navbar-divider" />
-            <a class="navbar-item" @click="logout">
-              <b-icon icon="logout" custom-size="default"></b-icon>
+            <a @click="logout" class="navbar-item">
+              <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
             </a>
           </div>
@@ -141,16 +141,15 @@ export default {
       this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
     logout() {
-      /* this.$buefy.snackbar.open({
-        message: 'Log out clicked',
-        queue: false
-      }) */
-
       this.$store
         .dispatch('auth/logout')
         .then(() => this.$router.push('/?logout'))
         .catch((err) => {
           this.error = { message: err.message, error: err.error }
+          this.$buefy.snackbar.open({
+            message: 'Log out error!',
+            queue: false
+          })
         })
     }
   }

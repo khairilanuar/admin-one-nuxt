@@ -86,7 +86,7 @@
                 >
               </div>
               <div class="control">
-                <b-button type="is-primary is-outlined" @click="reset"
+                <b-button @click="reset" type="is-primary is-outlined"
                   >Reset</b-button
                 >
               </div>

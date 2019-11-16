@@ -10,16 +10,16 @@
             type="is-primary"
             size=""
           >
-            <b-icon icon="plus" custom-size="default"></b-icon>
+            <b-icon icon="plus" custom-size="default" />
             <span>Add User</span>
           </b-button>
           <b-button
             :disabled="!checkedRows.length"
+            @click="bulkDeleteUsers"
             type="is-danger"
             size=""
-            @click="bulkDeleteUsers"
           >
-            <b-icon icon="delete-alert" custom-size="default"></b-icon>
+            <b-icon icon="delete-alert" custom-size="default" />
             <span>Delete</span>
           </b-button>
         </div>
@@ -36,7 +36,7 @@
     <section class="section is-main-section">
       <notification v-if="false" class="is-success">
         <div>
-          <b-icon icon="buffer" custom-size="default"></b-icon>
+          <b-icon icon="buffer" custom-size="default" />
           <b>Tightly wrapped</b> &mdash; table header becomes card header
         </div>
       </notification>
@@ -46,8 +46,8 @@
           ref="userTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          data-url="/user"
           @check="check"
+          data-url="/user"
         >
           <template v-slot:table="props">
             <!--
@@ -69,7 +69,7 @@
                   icon="shield-lock-outline"
                   size="is-small"
                   type="is-danger"
-                ></b-icon>
+                />
               </b-tooltip>
             </b-table-column>
             <b-table-column label="Roles" field="roles.name">
@@ -89,8 +89,8 @@
               sortable
               centered
             >
-              <b-icon v-if="props.row.confirmed" icon="shield-check"></b-icon>
-              <b-icon v-else icon="shield-outline" class=""></b-icon>
+              <b-icon v-if="props.row.confirmed" icon="shield-check" />
+              <b-icon v-else icon="shield-outline" class="" />
             </b-table-column>
             <b-table-column label="Created" field="created_at" sortable>
               <small
@@ -108,15 +108,18 @@
                   }"
                   class="button is-small is-primary"
                 >
-                  <b-icon icon="account-edit" size="is-small"></b-icon>
+                  <b-icon icon="account-edit" size="is-small" />
                 </nuxt-link>
                 <b-button
-                  :disabled="props.row.is_core"
+                  :disabled="
+                    props.row.is_core ||
+                      !$store.getters['auth/hasPermission']('delete-user')
+                  "
+                  @click.prevent="deleteUser(props.row)"
                   size="is-small"
                   type="is-danger"
-                  @click.prevent="deleteUser(props.row)"
                 >
-                  <b-icon icon="delete" size="is-small"></b-icon>
+                  <b-icon icon="delete" size="is-small" />
                 </b-button>
               </div>
             </b-table-column>
@@ -136,6 +139,9 @@ import HeroBar from '~/layouts/partials/HeroBar'
 
 export default {
   name: 'Users',
+  meta: {
+    permission: 'read-user'
+  },
   components: {
     // eslint-disable-next-line vue/no-unused-components
     HeroBar,

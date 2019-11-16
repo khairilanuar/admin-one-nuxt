@@ -7,10 +7,10 @@
       </p>
       <a
         v-if="headerIcon"
+        @click.prevent="headerIconClick"
         href="#"
         class="card-header-icon"
         aria-label="more options"
-        @click.prevent="headerIconClick"
       >
         <b-icon :icon="headerIcon" custom-size="default"></b-icon>
       </a>

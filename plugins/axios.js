@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { Crypton } from 'laravel-crypton'
 
 export default function({ $axios, redirect }) {
@@ -15,13 +16,20 @@ export default function({ $axios, redirect }) {
   })
   */
 
-  // const key = 'E7ZbLlW4NnkUec2lc8Uo27UTUpaHmV8AuJETVrEQcEU='
+  // read crypton key from .env
   const key = process.env.CRYPTON_KEY
 
-  $axios.interceptors.response.use(undefined, (error) => {
+  // intercept error response
+  $axios.onError((error) => {
+    /*
+    const code = parseInt(error.response && error.response.status)
+    if (code === 400) {
+      redirect('/400')
+    }
+    */
+    // console.log('Axios Error!')
+    // console.log({ ...error })
     return Promise.reject(error)
-    // eslint-disable-next-line prefer-promise-reject-errors
-    // return Promise.reject({ ...error })
   })
 
   // encrypt both request and response data

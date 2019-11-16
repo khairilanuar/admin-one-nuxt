@@ -11,8 +11,11 @@
       :hoverable="true"
       :data="data"
       :total="total"
+      @sort="goSort"
       pagination-size="is-small"
+      @page-change="goPage"
       default-sort="id"
+      @check="goCheck"
       default-sort-direction="desc"
       sort-icon-size="is-small"
       backend-pagination
@@ -21,9 +24,6 @@
       aria-previous-label="Previous page"
       aria-page-label="Page"
       aria-current-label="Current page"
-      @sort="goSort"
-      @page-change="goPage"
-      @check="goCheck"
     >
       <template #default="props">
         <slot :row="props.row" name="table" />
@@ -41,7 +41,7 @@
           </template>
           <template v-if="!isLoading">
             <p>
-              <b-icon icon="emoticon-sad" size="is-medium"></b-icon>
+              <b-icon icon="emoticon-sad" size="is-medium" />
             </p>
             <p><small>No data&hellip;</small></p>
           </template>
@@ -55,7 +55,7 @@
           Showing {{ from }} to {{ to }} of {{ total }} records.
         </small>
         <small>&nbsp;Go to page:&nbsp;</small>
-        <b-select v-model="page" size="is-small" @change.native="goPage(page)">
+        <b-select v-model="page" @change.native="goPage(page)" size="is-small">
           <option v-for="(pg, idx) in pages" :key="idx" :value="pg">
             {{ pg }}
           </option>

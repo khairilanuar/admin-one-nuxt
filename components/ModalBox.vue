@@ -11,8 +11,8 @@
         <p>Action can not be undone.</p>
       </section>
       <footer class="modal-card-foot">
-        <button class="button" type="button" @click="cancel">Cancel</button>
-        <button class="button is-danger" @click="confirm">Delete</button>
+        <button @click="cancel" class="button" type="button">Cancel</button>
+        <button @click="confirm" class="button is-danger">Delete</button>
       </footer>
     </div>
   </b-modal>

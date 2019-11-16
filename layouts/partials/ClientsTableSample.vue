@@ -61,9 +61,9 @@
               <b-icon icon="account-edit" size="is-small" />
             </nuxt-link>
             <button
+              @click.prevent="trashModal(props.row)"
               class="button is-small is-danger"
               type="button"
-              @click.prevent="trashModal(props.row)"
             >
               <b-icon icon="trash-can" size="is-small" />
             </button>

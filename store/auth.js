@@ -15,8 +15,8 @@ export const mutations = {
     this.$storage.setUniversal('token', payload.token || null)
 
     if (payload.token) {
-      this.$axios.defaults.headers.common.Authorization =
-        'Bearer ' + payload.token
+      // set bearer token
+      this.$axios.setToken(payload.token, 'Bearer')
     }
 
     state.user = payload.user || null
@@ -30,7 +30,8 @@ export const mutations = {
     state.permissions = null
     state.roles = null
 
-    this.$axios.defaults.headers.common.Authorization = ''
+    // unset authorization token
+    this.$axios.setToken(false)
 
     this.$storage.removeUniversal('token')
     this.$storage.removeUniversal('user')
@@ -63,7 +64,7 @@ export const actions = {
           resolve(resp.data.payload)
         })
         .catch((err) => {
-          reject(err)
+          reject(err.response)
         })
     })
   }
@@ -75,5 +76,8 @@ export const getters = {
   },
   loggedUser(state) {
     return state.user
+  },
+  hasPermission: (state) => (permission) => {
+    return !!state.permissions.find((p) => p.name === permission)
   }
 }

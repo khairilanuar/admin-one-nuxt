@@ -56,9 +56,9 @@
             <b-field label="Created" horizontal>
               <b-datepicker
                 v-model="form.created_date"
+                @input="input"
                 placeholder="Click to select..."
                 icon="calendar-today"
-                @input="input"
               >
               </b-datepicker>
             </b-field>
