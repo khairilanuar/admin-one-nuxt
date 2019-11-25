@@ -17,6 +17,7 @@ export default function({ $axios, redirect }) {
   */
 
   // read crypton key from .env
+  // eslint-disable-next-line no-unused-vars
   const key = process.env.CRYPTON_KEY
 
   // intercept error response
@@ -29,6 +30,13 @@ export default function({ $axios, redirect }) {
     */
     // console.log('Axios Error!')
     // console.log({ ...error })
+
+    // decrypt error.response payload
+    if (error.response.data.payload !== undefined) {
+      error.response.data = Crypton(key).encrypter.decrypt(
+        error.response.data.payload
+      )
+    }
     return Promise.reject(error)
   })
 

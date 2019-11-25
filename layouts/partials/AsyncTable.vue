@@ -12,10 +12,11 @@
       :data="data"
       :total="total"
       @sort="goSort"
-      pagination-size="is-small"
       @page-change="goPage"
-      default-sort="id"
       @check="goCheck"
+      @click="goClick"
+      pagination-size="is-small"
+      default-sort="id"
       default-sort-direction="desc"
       sort-icon-size="is-small"
       backend-pagination
@@ -165,6 +166,11 @@ export default {
     },
     goCheck(checkedList, row) {
       this.$emit('check', checkedList, row)
+    },
+    goClick(row) {
+      // eslint-disable-next-line no-console
+      console.log(row)
+      this.$emit('click', row)
     }
   }
 }

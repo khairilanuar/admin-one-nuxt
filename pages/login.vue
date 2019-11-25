@@ -150,6 +150,8 @@ export default {
             this.$router.push('/')
           })
           .catch((err) => {
+            // eslint-disable-next-line no-console
+            console.log(err.response.data)
             this.error = err.response.data.message
             this.isLoading = false
           })
