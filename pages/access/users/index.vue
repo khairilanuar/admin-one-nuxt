@@ -15,9 +15,9 @@
           </b-button>
           <b-button
             :disabled="!checkedRows.length"
-            @click="bulkDeleteUsers"
             type="is-danger"
             size=""
+            @click="bulkDeleteUsers"
           >
             <b-icon icon="delete-alert" custom-size="default" />
             <span>Delete</span>
@@ -46,8 +46,8 @@
           ref="userTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          @check="check"
           data-url="/user"
+          @check="check"
         >
           <template v-slot:table="props">
             <!--
@@ -115,9 +115,9 @@
                     props.row.is_core ||
                       !$store.getters['auth/hasPermission']('delete-user')
                   "
-                  @click.prevent="deleteUser(props.row)"
                   size="is-small"
                   type="is-danger"
+                  @click.prevent="deleteUser(props.row)"
                 >
                   <b-icon icon="delete" size="is-small" />
                 </b-button>

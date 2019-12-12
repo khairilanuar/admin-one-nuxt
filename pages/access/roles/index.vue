@@ -15,9 +15,9 @@
           </b-button>
           <b-button
             :disabled="!checkedRows.length"
-            @click="bulkDeleteRoles"
             type="is-danger"
             size=""
+            @click="bulkDeleteRoles"
           >
             <b-icon icon="delete-alert" custom-size="default" />
             <span>Delete</span>
@@ -46,8 +46,8 @@
           ref="roleTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          @check="check"
           data-url="/role"
+          @check="check"
         >
           <template v-slot:table="props">
             <b-table-column label="Name" field="name" sortable>
@@ -109,10 +109,10 @@
                     props.row.is_core ||
                       !$store.getters['auth/hasPermission']('delete-role')
                   "
-                  @click.prevent="deleteRole(props.row)"
                   size="is-small"
                   type="is-danger"
                   title="Delete"
+                  @click.prevent="deleteRole(props.row)"
                 >
                   <b-icon icon="delete" size="is-small" />
                 </b-button>

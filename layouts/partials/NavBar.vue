@@ -1,9 +1,9 @@
 <template>
-  <nav id="navbar-main" v-show="isNavBarVisible" class="navbar is-fixed-top">
+  <nav v-show="isNavBarVisible" id="navbar-main" class="navbar is-fixed-top">
     <div class="navbar-brand">
       <a
-        @click.prevent="menuToggleMobile"
         class="navbar-item is-hidden-desktop"
+        @click.prevent="menuToggleMobile"
       >
         <b-icon :icon="menuToggleMobileIcon" />
       </a>
@@ -17,8 +17,8 @@
     </div>
     <div class="navbar-brand is-right">
       <a
-        @click.prevent="menuNavBarToggle"
         class="navbar-item navbar-item-menu-toggle is-hidden-desktop"
+        @click.prevent="menuNavBarToggle"
       >
         <b-icon :icon="menuNavBarToggleIcon" custom-size="default" />
       </a>
@@ -75,7 +75,7 @@
               <span>Messages</span>
             </a>
             <hr class="navbar-divider" />
-            <a @click="logout" class="navbar-item">
+            <a class="navbar-item" @click="logout">
               <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
             </a>

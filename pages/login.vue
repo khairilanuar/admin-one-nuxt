@@ -13,7 +13,7 @@
               </header>
               <div class="card-content">
                 <ValidationObserver v-slot="{ invalid, passes }" slim>
-                  <form @submit.prevent="passes(login)" method="POST">
+                  <form method="POST" @submit.prevent="passes(login)">
                     <ValidationProvider
                       v-slot="{ errors }"
                       name="Email"

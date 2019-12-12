@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="level-right">
-        <button @click="dismiss" type="button" class="button is-small is-white">
+        <button type="button" class="button is-small is-white" @click="dismiss">
           Dismiss
         </button>
       </div>

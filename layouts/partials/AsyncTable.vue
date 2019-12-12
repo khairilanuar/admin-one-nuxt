@@ -11,10 +11,6 @@
       :hoverable="true"
       :data="data"
       :total="total"
-      @sort="goSort"
-      @page-change="goPage"
-      @check="goCheck"
-      @click="goClick"
       pagination-size="is-small"
       default-sort="id"
       default-sort-direction="desc"
@@ -25,6 +21,10 @@
       aria-previous-label="Previous page"
       aria-page-label="Page"
       aria-current-label="Current page"
+      @sort="goSort"
+      @page-change="goPage"
+      @check="goCheck"
+      @click="goClick"
     >
       <template #default="props">
         <slot :row="props.row" name="table" />
@@ -56,7 +56,7 @@
           Showing {{ from }} to {{ to }} of {{ total }} records.
         </small>
         <small>&nbsp;Go to page:&nbsp;</small>
-        <b-select v-model="page" @change.native="goPage(page)" size="is-small">
+        <b-select v-model="page" size="is-small" @change.native="goPage(page)">
           <option v-for="(pg, idx) in pages" :key="idx" :value="pg">
             {{ pg }}
           </option>

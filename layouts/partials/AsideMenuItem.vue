@@ -6,8 +6,8 @@
       :to="itemTo"
       :href="itemHref"
       :class="{ 'has-icon': !!item.icon, 'has-dropdown-icon': hasDropdown }"
-      @click="menuClick"
       exact-active-class="is-active"
+      @click="menuClick"
     >
       <b-icon
         v-if="item.icon"

@@ -68,11 +68,11 @@
                 :data="filteredRoles"
                 :allow-new="false"
                 :open-on-focus="true"
-                @typing="getFilteredRoles"
-                autocomplete
                 field="name"
+                autocomplete
                 icon="label"
                 placeholder="Select role"
+                @typing="getFilteredRoles"
               >
               </b-taginput>
             </b-field>

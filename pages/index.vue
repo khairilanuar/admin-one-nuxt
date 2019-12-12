@@ -32,10 +32,10 @@
       </tiles>
 
       <card-component
-        @header-icon-click="fillChartData"
         title="Performance"
         icon="finance"
         header-icon="reload"
+        @header-icon-click="fillChartData"
       >
         <div v-if="defaultChart.chartData" class="chart-area">
           <line-chart

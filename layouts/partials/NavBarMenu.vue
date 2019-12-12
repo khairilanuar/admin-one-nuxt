@@ -2,8 +2,8 @@
   <div
     :class="{ 'is-hoverable': isHoverable, 'is-active': isDropdownActive }"
     :can-close="true"
-    @click="toggle"
     class="navbar-item has-dropdown has-dropdown-with-icons"
+    @click="toggle"
   >
     <a class="navbar-link is-arrowless">
       <slot />
