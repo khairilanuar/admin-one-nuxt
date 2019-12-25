@@ -41,5 +41,6 @@ export default function({ $axios, redirect }) {
   })
 
   // encrypt both request and response data
-  Crypton(key).encrypt($axios)
+  // TODO: fix method=_PUT in axios post for PUT
+  // Crypton(key).encrypt($axios)
 }

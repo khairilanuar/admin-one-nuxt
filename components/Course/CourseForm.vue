@@ -25,49 +25,63 @@
                 label="Name"
                 horizontal
               >
-                <b-input v-model="data.name" placeholder=""></b-input>
+                <b-input v-model="data.name" placeholder="" />
               </b-field>
             </ValidationProvider>
+            <b-field label="Code" horizontal>
+              <b-input v-model="data.code" placeholder="" />
+            </b-field>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="Department"
+              rules="required"
+              slim
+            >
+              <b-field
+                label="Department"
+                :message="errors.length ? errors[0] : ''"
+                :type="errors.length ? 'is-danger' : ''"
+                horizontal
+              >
+                <b-select
+                  v-model="data.department_id"
+                  placeholder="Select a department"
+                >
+                  <option
+                    v-for="(department, idx) in departments"
+                    :key="idx"
+                    :value="department.id"
+                  >
+                    {{ department.name }}
+                  </option>
+                </b-select>
+              </b-field>
+            </ValidationProvider>
+            <b-field label="Total Semesters" horizontal>
+              <b-numberinput
+                v-model="data.total_semesters"
+                min="1"
+                max="12"
+                controls-position="compact"
+              />
+            </b-field>
+            <b-field label="Industrial Training Semester" horizontal>
+              <b-numberinput
+                v-model="data.industrial_training_semester"
+                min="1"
+                :max="data.total_semesters"
+                controls-position="compact"
+              />
+            </b-field>
             <b-field label="Description" horizontal>
-              <b-input v-model="data.description" placeholder=""></b-input>
+              <b-input
+                v-model="data.description"
+                maxlength="250"
+                type="textarea"
+                placeholder=""
+              />
             </b-field>
-            <b-field label="Permissions" horizontal>
-              <div class="field-body">
-                <div class="field">
-                  <tiles :max-per-row="3">
-                    <div
-                      v-for="(permission, idx) in permissions"
-                      :key="idx"
-                      class="box"
-                      style="width: 100%; padding: 10px;"
-                    >
-                      <b-checkbox
-                        v-model="data.permissions"
-                        :native-value="permission.id"
-                        size="is-small"
-                      >
-                        <strong>{{ permission.label }}</strong>
-                      </b-checkbox>
-                      <tiles :max-per-row="2">
-                        <div
-                          v-for="(subPermission, idx2) in permission.children"
-                          :key="idx2"
-                        >
-                          <b-checkbox
-                            v-model="data.permissions"
-                            :native-value="subPermission.id"
-                            size="is-small"
-                          >
-                            {{ subPermission.label }}
-                          </b-checkbox>
-                        </div>
-                      </tiles>
-                    </div>
-                  </tiles>
-                </div>
-              </div>
-            </b-field>
-            <b-field label="Role enabled" horizontal>
+            <b-field label="Enabled" horizontal>
               <b-switch v-model="data.enable">
                 {{ data.enable ? 'Yes' : 'No' }}
               </b-switch>
@@ -107,7 +121,7 @@ import CardComponent from '~/components/CardComponent'
 import Notification from '~/layouts/partials/Notification'
 
 export default {
-  name: 'RoleForm',
+  name: 'CourseForm',
   components: {
     Tiles,
     CardComponent,
@@ -116,61 +130,48 @@ export default {
     ValidationObserver
   },
   props: {
-    redirectUrl: { type: String, default: '/access/roles' },
-    cancelUrl: { type: String, default: '/access/roles' },
-    roleId: { type: String, default: null }
+    redirectUrl: { type: String, default: '/setting/courses' },
+    cancelUrl: { type: String, default: '/setting/courses' },
+    courseId: { type: String, default: null }
   },
   data: () => {
     return {
-      formTitle: 'Role',
+      formTitle: 'Course',
       isLoading: false,
       isLoadingForm: false,
 
-      permissions: [],
-      filteredPermissions: [],
-
-      defaultData: { confirmed: true, permissions: [] },
+      defaultData: { enable: true },
       data: {}
     }
   },
   computed: {
     isEdit() {
-      return !!this.roleId
+      return !!this.courseId
+    },
+    departments() {
+      return this.$store.getters['references/get']('departments')
     }
   },
   mounted() {
     this.resetForm()
-    this.formTitle = this.isEdit ? 'Edit Role' : 'Add Role'
+    this.formTitle = this.isEdit ? 'Edit Course' : 'Add Course'
 
-    this.loadPermissions()
+    this.$store.dispatch('references/refData', 'departments')
 
-    if (this.roleId) {
-      this.loadRole(this.roleId)
+    if (this.courseId) {
+      this.loadCourse(this.courseId)
     }
   },
   methods: {
     resetForm() {
       this.data = this.$lodash.cloneDeep(this.defaultData)
     },
-    loadPermissions() {
-      this.$axios
-        .get('permission', { params: { getRef: 1 } })
-        .then((response) => {
-          this.permissions = response.data.payload
-        })
-        .catch()
-    },
-    loadRole(id) {
+    loadCourse(id) {
       this.isLoadingForm = true
       this.$axios
-        .get('/role/' + id)
+        .get('/course/' + id)
         .then((response) => {
           this.data = response.data.payload
-          const permissions = []
-          response.data.payload.permissions.forEach((v, i) => {
-            permissions.push(v.id)
-          })
-          this.data.permissions = permissions
           this.isLoadingForm = false
         })
         .catch(({ response }) => {
@@ -185,16 +186,19 @@ export default {
     submitForm() {
       const data = {
         name: this.data.name || '',
+        code: this.data.code || '',
+        total_semesters: this.data.total_semesters || '',
+        industrial_training_semester:
+          this.data.industrial_training_semester || '',
         description: this.data.description || '',
-        enable: this.data.enable || '0',
-        permissions: this.data.permissions
+        enable: this.data.enable || '0'
       }
 
       if (this.isEdit) {
         data._method = 'PUT'
       }
 
-      const endpoint = this.isEdit ? 'role/' + this.data.id : 'role'
+      const endpoint = this.isEdit ? 'course/' + this.data.uuid : 'course'
       this.$axios
         .post(endpoint, data)
         .then((response) => {
@@ -212,7 +216,7 @@ export default {
           })
         })
     },
-    getFilteredRoles(text) {
+    getFilteredCourses(text) {
       this.filteredPermissions = this.permissions.filter((option) => {
         return option.label
           .toString()

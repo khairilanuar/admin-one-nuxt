@@ -76,7 +76,7 @@ export default {
    */
   axios: {
     // Doc: https://github.com/nuxt-community/axios-module#options
-    baseURL: 'https://laravel-restful.valet/api'
+    baseURL: 'https://ilp-api.valet/api'
   },
   /*
   auth: {

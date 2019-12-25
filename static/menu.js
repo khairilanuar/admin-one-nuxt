@@ -40,22 +40,22 @@ export default {
       }
       */
     ],
-    'Examples',
+    'Settings',
     [
       {
-        to: '/sample/tables',
-        label: 'Tables',
+        to: '/setting/units',
+        label: 'Units',
         icon: 'table',
         updateMark: true
       },
       {
-        to: '/sample/forms',
-        label: 'Forms',
+        to: '/setting/departments',
+        label: 'Departments',
         icon: 'square-edit-outline'
       },
       {
-        to: '/sample/profile',
-        label: 'Profile',
+        to: '/setting/courses',
+        label: 'Courses',
         icon: 'account-circle'
       }
     ]
