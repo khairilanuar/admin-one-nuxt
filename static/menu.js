@@ -43,6 +43,12 @@ export default {
     'Settings',
     [
       {
+        to: '/setting/batches',
+        label: 'Batches',
+        icon: 'table',
+        updateMark: true
+      },
+      {
         to: '/setting/units',
         label: 'Units',
         icon: 'table',
