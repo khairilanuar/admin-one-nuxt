@@ -13,7 +13,7 @@
           :key="index"
           :menu="menuGroup"
           @menu-click="menuClick"
-        ></aside-menu-list>
+        />
       </template>
     </div>
   </aside>

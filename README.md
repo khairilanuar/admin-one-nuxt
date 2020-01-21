@@ -42,4 +42,8 @@ $ yarn test:e2e
 $ yarn test
 ```
 
+##### TODOs:
+* table ~~searching~~ / filter
+* 
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

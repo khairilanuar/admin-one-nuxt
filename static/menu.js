@@ -41,29 +41,6 @@ export default {
       */
     ],
     'Settings',
-    [
-      {
-        to: '/setting/batches',
-        label: 'Batches',
-        icon: 'table',
-        updateMark: true
-      },
-      {
-        to: '/setting/units',
-        label: 'Units',
-        icon: 'table',
-        updateMark: true
-      },
-      {
-        to: '/setting/departments',
-        label: 'Departments',
-        icon: 'square-edit-outline'
-      },
-      {
-        to: '/setting/courses',
-        label: 'Courses',
-        icon: 'account-circle'
-      }
-    ]
+    []
   ]
 }

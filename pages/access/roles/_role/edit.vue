@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import RoleForm from '~/components/Role/RoleForm'
+import RoleForm from '~/components/Forms/RoleForm'
 
 export default {
   name: 'RoleEdit',

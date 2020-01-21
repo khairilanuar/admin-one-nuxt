@@ -46,7 +46,7 @@
           ref="userTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          data-url="/user"
+          data-url="/api/user"
           @check="check"
         >
           <template v-slot:table="props">
@@ -181,7 +181,7 @@ export default {
         focusOn: 'cancel',
         onConfirm: () => {
           this.$axios
-            .delete(`/user/${user.uuid}`)
+            .delete(`/api/user/${user.uuid}`)
             .then(({ data }) => {
               if (data.success) {
                 this.$buefy.snackbar.open({

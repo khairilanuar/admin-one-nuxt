@@ -46,7 +46,7 @@
           ref="roleTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          data-url="/role"
+          data-url="/api/role"
           @check="check"
         >
           <template v-slot:table="props">
@@ -176,7 +176,7 @@ export default {
         focusOn: 'cancel',
         onConfirm: () => {
           this.$axios
-            .delete(`/role/${role.id}`)
+            .delete(`/api/role/${role.id}`)
             .then(({ data }) => {
               if (data.success) {
                 this.$buefy.snackbar.open({

@@ -44,7 +44,7 @@ export const actions = {
   login({ commit }, data) {
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('auth/login', data)
+        .post('/api/auth/login', data)
         .then((resp) => {
           commit('SET_USER', resp.data.payload)
           resolve(resp.data.payload)
@@ -58,7 +58,7 @@ export const actions = {
   logout({ commit }) {
     return new Promise((resolve, reject) => {
       this.$axios
-        .post('auth/logout')
+        .post('/api/auth/logout')
         .then((resp) => {
           commit('CLEAR_USER')
           resolve(resp.data.payload)

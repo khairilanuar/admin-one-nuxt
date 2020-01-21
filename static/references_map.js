@@ -1,3 +1,3 @@
 export default {
-  departments: 'department'
+  // departments: 'department'
 }

@@ -75,6 +75,10 @@ export default {
       type: String,
       default: null
     },
+    search: {
+      type: String,
+      default: null
+    },
     checkable: {
       type: Boolean,
       default: false
@@ -110,12 +114,19 @@ export default {
     }
   },
   computed: {},
+  watch: {
+    search(newSearch, oldSearch) {
+      this.debouncedLoadData()
+    }
+  },
   mounted() {
     if (this.dataUrl) {
       this.loadData()
     }
 
     this.page = this.currentPage
+
+    this.debouncedLoadData = this.$lodash.debounce(this.loadData, 300)
   },
   methods: {
     loadData() {
@@ -124,7 +135,8 @@ export default {
         sortBy: this.sortBy,
         sortDir: this.sortDir,
         page: this.page,
-        perPage: this.pageLength
+        perPage: this.pageLength,
+        search: this.search ? this.search : null
       }
       this.$axios
         .get(this.dataUrl, { params })

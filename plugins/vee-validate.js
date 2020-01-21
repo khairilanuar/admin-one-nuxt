@@ -1,13 +1,13 @@
 import { extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules'
-import en from 'vee-validate/dist/locale/en'
+import { messages } from 'vee-validate/dist/locale/en.json'
 
 // loop over all rules
 for (const rule in rules) {
   extend(rule, {
     // eslint-disable-next-line import/namespace
     ...rules[rule], // add the rule
-    message: en.messages[rule] // add its message
+    message: messages[rule] // add its message
   })
 }
 
