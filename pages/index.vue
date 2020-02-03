@@ -1,9 +1,11 @@
 <template>
   <div>
+    <!--
     <title-bar :title-stack="titleStack" />
     <hero-bar :has-right-visible="false">
       Dashboard
     </hero-bar>
+    -->
     <section class="section is-main-section">
       <tiles>
         <card-widget
@@ -79,7 +81,9 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     CardWidget,
     Tiles,
+    // eslint-disable-next-line vue/no-unused-components
     HeroBar,
+    // eslint-disable-next-line vue/no-unused-components
     TitleBar
   },
   data() {
@@ -109,10 +113,10 @@ export default {
   mounted() {
     this.fillChartData()
 
-    this.$buefy.snackbar.open({
-      message: 'Welcome back',
-      queue: false
-    })
+    // this.$buefy.snackbar.open({
+    //   message: 'Welcome back',
+    //   queue: false
+    // })
   },
   methods: {
     randomChartData(n) {

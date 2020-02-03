@@ -40,24 +40,7 @@ export default {
       }
       */
     ],
-    'Examples',
-    [
-      {
-        to: '/sample/tables',
-        label: 'Tables',
-        icon: 'table',
-        updateMark: true
-      },
-      {
-        to: '/sample/forms',
-        label: 'Forms',
-        icon: 'square-edit-outline'
-      },
-      {
-        to: '/sample/profile',
-        label: 'Profile',
-        icon: 'account-circle'
-      }
-    ]
+    'Settings',
+    []
   ]
 }
