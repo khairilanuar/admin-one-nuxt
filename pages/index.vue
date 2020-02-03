@@ -38,6 +38,7 @@
         @header-icon-click="fillChartData"
       >
         <div v-if="defaultChart.chartData" class="chart-area">
+          <zingchart :data="chartData"></zingchart>
           <line-chart
             ref="bigChart"
             :chart-data="defaultChart.chartData"
@@ -58,6 +59,7 @@
 
 <script>
 // @ is an alias to /src
+import zingchartVue from 'zingchart-vue'
 import * as chartConfig from '~/components/Charts/chart.config'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
@@ -71,6 +73,7 @@ export default {
   name: 'Home',
   components: {
     ClientsTableSample,
+    zingchart: zingchartVue,
     LineChart,
     CardComponent,
     // eslint-disable-next-line vue/no-unused-components
@@ -84,6 +87,17 @@ export default {
       defaultChart: {
         chartData: null,
         extraOptions: chartConfig.chartOptionsMain
+      },
+      chartData: {
+        type: 'bar3d',
+        series: [
+          {
+            values: [4, 5, 3, 3, 4, 4, 5, 3, 8, 6, 7, 6, 11]
+          },
+          {
+            values: [7, 8, 8, 6, 5, 7, 9, 5, 9, 8, 6, 9, 10]
+          }
+        ]
       }
     }
   },

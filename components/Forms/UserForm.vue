@@ -255,7 +255,7 @@ export default {
     },
     loadRoles() {
       this.$axios
-        .get('role', { params: { per_page: 100 } })
+        .get('/api/role', { params: { per_page: 100 } })
         .then((response) => {
           this.roles = response.data.payload.data
         })
@@ -264,7 +264,7 @@ export default {
     loadUser(uuid) {
       this.isLoadingForm = true
       this.$axios
-        .get('/user/' + uuid)
+        .get('/api/user/' + uuid)
         .then((response) => {
           this.data = response.data.payload
           this.isLoadingForm = false
@@ -290,11 +290,11 @@ export default {
       if (this.isEdit) {
         data.roles = this.data.roles
         data._method = 'PUT'
-        promise = this.$axios.put('user/' + this.userUuid, data)
+        promise = this.$axios.put('/api/user/' + this.userUuid, data)
       } else {
         data.password = this.data.password || ''
         data.password_confirmation = this.data.password_confirmation || ''
-        promise = this.$axios.post('user/register', data)
+        promise = this.$axios.post('/api/user/register', data)
       }
 
       promise

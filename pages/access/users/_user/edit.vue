@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import UserForm from '~/components/User/UserForm'
+import UserForm from '~/components/Forms/UserForm'
 
 export default {
   name: 'UserEdit',

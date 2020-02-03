@@ -92,7 +92,7 @@
               :is-full-page="false"
               :active.sync="isLoadingForm"
               :can-cancel="false"
-            ></b-loading>
+            />
           </form>
         </validation-observer>
       </card-component>
@@ -154,7 +154,7 @@ export default {
     },
     loadPermissions() {
       this.$axios
-        .get('permission', { params: { getRef: 1 } })
+        .get('/api/permission', { params: { getRef: 1 } })
         .then((response) => {
           this.permissions = response.data.payload
         })
@@ -163,7 +163,7 @@ export default {
     loadRole(id) {
       this.isLoadingForm = true
       this.$axios
-        .get('/role/' + id)
+        .get('/api/role/' + id)
         .then((response) => {
           this.data = response.data.payload
           const permissions = []
@@ -194,7 +194,7 @@ export default {
         data._method = 'PUT'
       }
 
-      const endpoint = this.isEdit ? 'role/' + this.data.id : 'role'
+      const endpoint = this.isEdit ? '/api/role/' + this.data.id : '/api/role'
       this.$axios
         .post(endpoint, data)
         .then((response) => {

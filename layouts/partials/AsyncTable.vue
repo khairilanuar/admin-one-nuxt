@@ -75,6 +75,10 @@ export default {
       type: String,
       default: null
     },
+    search: {
+      type: String,
+      default: null
+    },
     checkable: {
       type: Boolean,
       default: false
@@ -110,12 +114,19 @@ export default {
     }
   },
   computed: {},
+  watch: {
+    search(newSearch, oldSearch) {
+      this.debouncedLoadData()
+    }
+  },
   mounted() {
     if (this.dataUrl) {
       this.loadData()
     }
 
     this.page = this.currentPage
+
+    this.debouncedLoadData = this.$lodash.debounce(this.loadData, 300)
   },
   methods: {
     loadData() {
@@ -124,23 +135,42 @@ export default {
         sortBy: this.sortBy,
         sortDir: this.sortDir,
         page: this.page,
-        perPage: this.pageLength
+        perPage: this.pageLength,
+        search: this.search ? this.search : null
       }
       this.$axios
         .get(this.dataUrl, { params })
         .then((response) => {
           if (response.data && response.data.success) {
-            this.from = response.data.payload.from
-            this.to = response.data.payload.to
-            this.total = response.data.payload.total
             this.data = response.data.payload.data
-            this.lastPage = response.data.payload.last_page
-            this.pageLength = response.data.payload.per_page
-            this.page = response.data.payload.current_page
-            this.pages = Array.from(
-              { length: response.data.payload.last_page },
-              (v, k) => k + 1
-            )
+            if (response.data.payload.meta) {
+              // using presenter
+              this.total = response.data.payload.meta.pagination.total
+              this.lastPage = Math.ceil(this.total / this.perPage)
+              this.pageLength = response.data.payload.meta.pagination.per_page
+              this.page = response.data.payload.meta.pagination.current_page
+              this.from = this.page * this.pageLength - (this.pageLength - 1)
+              this.to =
+                this.page * this.pageLength -
+                this.pageLength +
+                response.data.payload.meta.pagination.count
+              this.pages = Array.from(
+                { length: this.lastPage },
+                (v, k) => k + 1
+              )
+            } else {
+              // no presenter
+              this.from = response.data.payload.from
+              this.to = response.data.payload.to
+              this.total = response.data.payload.total
+              this.lastPage = response.data.payload.last_page
+              this.pageLength = response.data.payload.per_page
+              this.page = response.data.payload.current_page
+              this.pages = Array.from(
+                { length: response.data.payload.last_page },
+                (v, k) => k + 1
+              )
+            }
           }
 
           this.isLoading = false

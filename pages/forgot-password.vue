@@ -120,7 +120,7 @@ export default {
         const data = { email: this.email }
 
         this.$axios
-          .post('auth/forgot-password', data)
+          .post('/api/auth/forgot-password', data)
           .then((response) => {
             this.isLoading = false
             this.$router.push('/')

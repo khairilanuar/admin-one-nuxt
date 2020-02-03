@@ -62,6 +62,8 @@ export default {
     ['nuxt-buefy', { materialDesignIcons: false }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://github.com/nuxt-community/proxy-module
+    // '@nuxtjs/proxy',
     // Doc: https://auth.nuxtjs.org/guide/setup.html
     // '@nuxtjs/auth'
     // Doc: https://github.com/nuxt-community/universal-storage-module
@@ -76,8 +78,20 @@ export default {
    */
   axios: {
     // Doc: https://github.com/nuxt-community/axios-module#options
-    baseURL: 'https://laravel-restful.valet/api'
+    baseURL: 'https://laravel-restful.valet/'
+    // baseURL: 'https://ilp-api.infinitum.com.my/'
+    // baseUrl: process.env.API_URL   // Naa! doesn't work
+    // enable only if proxy can work
+    // prefix: '/',
+    // proxy: true
   },
+  /*
+  // proxy does not work on production on spa mode (failed to setup nginx reverse proxy)
+  proxy: {
+    // '/api/': 'http://ilp-api.valet'
+    '/api/': 'https://ilp-api.infinitum.com.my'
+  },
+  */
   /*
   auth: {
     // Doc: https://www.stephanedoiron.com/posts/user-authentication-with-nuxtjs-and-laravel/

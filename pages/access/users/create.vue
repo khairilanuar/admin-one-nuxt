@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import UserForm from '~/components/User/UserForm'
+import UserForm from '~/components/Forms/UserForm'
 import TitleBar from '~/layouts/partials/TitleBar'
 
 export default {
