@@ -9,10 +9,10 @@ export const state = () => {
 
 export const mutations = {
   SET_USER(state, payload) {
-    this.$storage.setUniversal('user', payload.user || null)
-    this.$storage.setUniversal('permissions', payload.permissions || null)
-    this.$storage.setUniversal('roles', payload.roles || null)
-    this.$storage.setUniversal('token', payload.token || null)
+    this.$storage.setLocalStorage('user', payload.user || null)
+    this.$storage.setLocalStorage('permissions', payload.permissions || null)
+    this.$storage.setLocalStorage('roles', payload.roles || null)
+    this.$storage.setLocalStorage('token', payload.token || null)
 
     if (payload.token) {
       // set bearer token
@@ -33,10 +33,10 @@ export const mutations = {
     // unset authorization token
     this.$axios.setToken(false)
 
-    this.$storage.removeUniversal('token')
-    this.$storage.removeUniversal('user')
-    this.$storage.removeUniversal('permissions')
-    this.$storage.removeUniversal('roles')
+    this.$storage.removeLocalStorage('token')
+    this.$storage.removeLocalStorage('user')
+    this.$storage.removeLocalStorage('permissions')
+    this.$storage.removeLocalStorage('roles')
   }
 }
 
@@ -64,6 +64,7 @@ export const actions = {
           resolve(resp.data.payload)
         })
         .catch((err) => {
+          commit('CLEAR_USER')
           reject(err.response)
         })
     })

@@ -11,6 +11,9 @@ import UserForm from '~/components/Forms/UserForm'
 
 export default {
   name: 'UserEdit',
+  meta: {
+    permission: 'update-user'
+  },
   components: {
     UserForm
   },

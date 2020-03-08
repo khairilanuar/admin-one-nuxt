@@ -29,7 +29,7 @@
                 label="First Name"
                 horizontal
               >
-                <b-input v-model="data.first_name" placeholder=""></b-input>
+                <b-input v-model="data.first_name" placeholder="" />
               </b-field>
             </ValidationProvider>
             <ValidationProvider
@@ -44,7 +44,7 @@
                 label="Last Name"
                 horizontal
               >
-                <b-input v-model="data.last_name" placeholder=""></b-input>
+                <b-input v-model="data.last_name" placeholder="" />
               </b-field>
             </ValidationProvider>
             <ValidationProvider
@@ -59,7 +59,7 @@
                 label="Email"
                 horizontal
               >
-                <b-input v-model="data.email" placeholder=""></b-input>
+                <b-input v-model="data.email" placeholder="" />
               </b-field>
             </ValidationProvider>
             <b-field label="Role(s)" horizontal>
@@ -94,7 +94,7 @@
                   v-model="data.password"
                   type="password"
                   placeholder=""
-                ></b-input>
+                />
               </b-field>
             </ValidationProvider>
             <ValidationProvider
@@ -114,7 +114,7 @@
                   v-model="data.password_confirmation"
                   type="password"
                   placeholder=""
-                ></b-input>
+                />
               </b-field>
             </ValidationProvider>
             <b-field label="User confirmed" horizontal>
@@ -142,7 +142,7 @@
               :is-full-page="false"
               :active.sync="isLoadingForm"
               :can-cancel="false"
-            ></b-loading>
+            />
           </form>
         </validation-observer>
       </card-component>
@@ -158,28 +158,16 @@
         />
         <hr />
         <b-field label="Name">
-          <b-input
-            :value="data.name"
-            custom-class="is-static"
-            readonly
-          ></b-input>
+          <b-input :value="data.name" custom-class="is-static" readonly />
         </b-field>
         <b-field label="Company">
-          <b-input
-            :value="data.company"
-            custom-class="is-static"
-            readonly
-          ></b-input>
+          <b-input :value="data.company" custom-class="is-static" readonly />
         </b-field>
         <b-field label="City">
-          <b-input
-            :value="data.city"
-            custom-class="is-static"
-            readonly
-          ></b-input>
+          <b-input :value="data.city" custom-class="is-static" readonly />
         </b-field>
         <b-field label="Created">
-          <b-input value="" custom-class="is-static" readonly></b-input>
+          <b-input value="" custom-class="is-static" readonly />
         </b-field>
         <hr />
         <b-field label="Progress">

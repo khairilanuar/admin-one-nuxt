@@ -25,16 +25,16 @@
                 label="Name"
                 horizontal
               >
-                <b-input v-model="data.name" placeholder=""></b-input>
+                <b-input v-model="data.name" placeholder="" />
               </b-field>
             </ValidationProvider>
             <b-field label="Description" horizontal>
-              <b-input v-model="data.description" placeholder=""></b-input>
+              <b-input v-model="data.description" placeholder="" />
             </b-field>
             <b-field label="Permissions" horizontal>
               <div class="field-body">
                 <div class="field">
-                  <tiles :max-per-row="3">
+                  <tiles :max-per-row="1">
                     <div
                       v-for="(permission, idx) in permissions"
                       :key="idx"
@@ -44,24 +44,42 @@
                       <b-checkbox
                         v-model="data.permissions"
                         :native-value="permission.id"
-                        size="is-small"
+                        size=""
                       >
                         <strong>{{ permission.label }}</strong>
                       </b-checkbox>
-                      <tiles :max-per-row="2">
+                      <tiles :max-per-row="3">
                         <div
                           v-for="(subPermission, idx2) in permission.children"
                           :key="idx2"
+                          style="margin-left:20px;"
                         >
                           <b-checkbox
                             v-model="data.permissions"
                             :native-value="subPermission.id"
                             size="is-small"
                           >
-                            {{ subPermission.label }}
+                            <strong style="font-size:115%;">{{
+                              subPermission.label
+                            }}</strong>
                           </b-checkbox>
+                          <div
+                            v-for="(subPermission2,
+                            idx3) in subPermission.children"
+                            :key="idx3"
+                            style="margin-left:20px;"
+                          >
+                            <b-checkbox
+                              v-model="data.permissions"
+                              :native-value="subPermission2.id"
+                              size="is-small"
+                            >
+                              {{ subPermission2.label }}
+                            </b-checkbox>
+                          </div>
                         </div>
                       </tiles>
+                      <span style="clear:both;" />
                     </div>
                   </tiles>
                 </div>
@@ -185,6 +203,7 @@ export default {
     submitForm() {
       const data = {
         name: this.data.name || '',
+        guard_name: 'web',
         description: this.data.description || '',
         enable: this.data.enable || '0',
         permissions: this.data.permissions

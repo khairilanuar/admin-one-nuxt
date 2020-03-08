@@ -11,6 +11,7 @@
       :hoverable="true"
       :data="data"
       :total="total"
+      style="font-size:85%;"
       pagination-size="is-small"
       default-sort="id"
       default-sort-direction="desc"

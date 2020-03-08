@@ -30,9 +30,12 @@ export default {
         name = this.userName.replace(/[^a-z0-9]+/i, '')
       }
 
-      return `https://avatars.dicebear.com/v2/human/${name}.svg?options[mood][]=happy`
+      return `https://avatars.dicebear.com/v2/initials/${name}.svg?options[mood][]=happy`
     },
-    ...mapState(['userAvatar', 'userName'])
+    ...mapState({
+      userName: (state) => state.auth.user.full_name,
+      userAvatar: (state) => state.auth.user.avatar_location
+    })
   }
 }
 </script>

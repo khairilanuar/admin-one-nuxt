@@ -5,7 +5,7 @@
       <template #right> </template>
     </title-bar>
     <section class="section is-main-section">
-      <user-form></user-form>
+      <user-form />
     </section>
   </div>
 </template>

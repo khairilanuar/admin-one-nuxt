@@ -3,11 +3,12 @@ export default function({ isServer, store, req, app }) {
   // eslint-disable-next-line no-useless-return
   // if (isServer && !req) return
   store.commit('auth/SET_USER', {
-    roles: app.$storage.getUniversal('roles'),
-    permissions: app.$storage.getUniversal('permissions'),
-    token: app.$storage.getUniversal('token'),
-    user: app.$storage.getUniversal('user')
+    roles: app.$storage.getLocalStorage('roles'),
+    permissions: app.$storage.getLocalStorage('permissions'),
+    token: app.$storage.getLocalStorage('token'),
+    user: app.$storage.getLocalStorage('user')
   })
+  app.$storage.setLocalStorage('lastActive', +new Date())
 }
 
 /*

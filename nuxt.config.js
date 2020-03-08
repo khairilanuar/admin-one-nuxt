@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   // mode: 'universal',
   mode: 'spa',
@@ -41,7 +43,8 @@ export default {
     '~/plugins/global-components.js',
     '~/plugins/lodash.js',
     '~/plugins/vee-validate.js',
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    '~/plugins/idle-vue.js'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -78,9 +81,8 @@ export default {
    */
   axios: {
     // Doc: https://github.com/nuxt-community/axios-module#options
-    baseURL: 'https://laravel-restful.valet/'
-    // baseURL: 'https://ilp-api.infinitum.com.my/'
-    // baseUrl: process.env.API_URL   // Naa! doesn't work
+    // baseURL: 'https://laravel-restful.valet/'
+    baseUrl: process.env.API_URL
     // enable only if proxy can work
     // prefix: '/',
     // proxy: true

@@ -93,7 +93,7 @@ export default {
         extraOptions: chartConfig.chartOptionsMain
       },
       chartData: {
-        type: 'bar3d',
+        type: 'bar',
         series: [
           {
             values: [4, 5, 3, 3, 4, 4, 5, 3, 8, 6, 7, 6, 11]

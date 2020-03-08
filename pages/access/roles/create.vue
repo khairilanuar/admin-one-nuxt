@@ -5,7 +5,7 @@
       <template #right> </template>
     </title-bar>
     <section class="section is-main-section">
-      <role-form></role-form>
+      <role-form />
     </section>
   </div>
 </template>
@@ -16,6 +16,9 @@ import TitleBar from '~/layouts/partials/TitleBar'
 
 export default {
   name: 'RoleCreate',
+  meta: {
+    permission: 'create-role'
+  },
   components: {
     RoleForm,
     TitleBar

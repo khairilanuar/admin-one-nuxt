@@ -7,7 +7,7 @@
             <div class="card has-card-header-background">
               <header class="card-header">
                 <p class="card-header-title">
-                  <span class="icon"><i class="mdi mdi-lock default"></i></span
+                  <span class="icon"><i class="mdi mdi-lock default"/></span
                   ><span>Login</span>
                 </p>
               </header>
@@ -30,7 +30,7 @@
                           autocomplete="off"
                           name="email"
                           autofocus="autofocus"
-                        ></b-input>
+                        />
                       </b-field>
                     </ValidationProvider>
                     <ValidationProvider
@@ -49,7 +49,7 @@
                           type="password"
                           autocomplete="off"
                           name="password"
-                        ></b-input>
+                        />
                       </b-field>
                     </ValidationProvider>
                     <div class="field">
@@ -59,7 +59,7 @@
                           true-value="true"
                           value="false"
                         />
-                        <span class="check is-black"></span>
+                        <span class="check is-black" />
                         <span class="control-label">
                           Remember me
                         </span></label
@@ -82,7 +82,6 @@
                       <div class="control">
                         <b-button
                           :loading="isLoading"
-                          :disabled="invalid"
                           tag="input"
                           native-type="submit"
                           type="is-primary"

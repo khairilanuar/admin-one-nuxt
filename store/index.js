@@ -1,3 +1,11 @@
+import createMultiTabState from 'vuex-multi-tab-state'
+
+export const plugins = [
+  createMultiTabState({
+    statesPaths: ['idleVue', 'shared']
+  })
+]
+
 export const state = () => ({
   /* User */
   userName: null,

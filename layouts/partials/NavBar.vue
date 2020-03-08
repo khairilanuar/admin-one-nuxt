@@ -130,7 +130,7 @@ export default {
     ...mapState({
       isNavBarVisible: (state) => state.isNavBarVisible,
       isAsideMobileExpanded: (state) => state.isAsideMobileExpanded,
-      userName: (state) => state.auth.user.first_name
+      userName: (state) => state.auth.user.full_name
     })
   },
   methods: {
@@ -143,13 +143,17 @@ export default {
     logout() {
       this.$store
         .dispatch('auth/logout')
-        .then(() => this.$router.push('/?logout'))
-        .catch((err) => {
-          this.error = { message: err.message, error: err.error }
-          this.$buefy.snackbar.open({
-            message: 'Log out error!',
-            queue: false
-          })
+        .then(() => {
+          this.$router.push('/?logout')
+        })
+        .catch(() => {
+          // this.error = { message: err.message, error: err.error }
+          // this.$buefy.snackbar.open({
+          //   message: 'Log out error!',
+          //   queue: false
+          // })
+          this.$store.commit('auth/CLEAR_USER')
+          this.$router.push('/?logout')
         })
     }
   }
