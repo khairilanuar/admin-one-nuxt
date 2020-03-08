@@ -32,7 +32,10 @@ export default function({ $axios, redirect }) {
     // console.log({ ...error })
 
     // decrypt error.response payload
-    if (error.response.data.payload !== undefined) {
+    if (
+      error.response.data.payload !== undefined &&
+      error.response.data.payload.length > 0
+    ) {
       error.response.data = Crypton(key).encrypter.decrypt(
         error.response.data.payload
       )
