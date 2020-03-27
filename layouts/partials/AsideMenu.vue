@@ -29,16 +29,16 @@ export default {
   props: {
     menu: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   computed: {
-    ...mapState(['isAsideVisible'])
+    ...mapState(['isAsideVisible']),
   },
   methods: {
     menuClick(item) {
       //
-    }
-  }
+    },
+  },
 }
 </script>

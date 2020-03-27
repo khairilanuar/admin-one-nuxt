@@ -7,9 +7,5 @@ if (process.env.TEST === 'unit') {
   env()
 }
 
-hooks('vue')
-  .plugin('vue')
-  .push()
-hooks(['vue', 'js'])
-  .plugin('babel')
-  .push()
+hooks('vue').plugin('vue').push()
+hooks(['vue', 'js']).plugin('babel').push()

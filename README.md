@@ -46,4 +46,8 @@ $ yarn test
 * table ~~searching~~ / filter
 * 
 
+##### Links:
+* https://code.luasoftware.com/tutorials/vuejs/nuxt-dotenv-configuraton-for-development-and-production/
+
+
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

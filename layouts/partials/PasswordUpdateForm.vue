@@ -58,7 +58,7 @@ import CardComponent from '~/components/CardComponent'
 export default {
   name: 'PasswordUpdateForm',
   components: {
-    CardComponent
+    CardComponent,
   },
   data() {
     return {
@@ -66,8 +66,8 @@ export default {
       form: {
         password_current: null,
         password: null,
-        password_confirmation: null
-      }
+        password_confirmation: null,
+      },
     }
   },
   methods: {
@@ -78,12 +78,12 @@ export default {
         this.$buefy.snackbar.open(
           {
             message: 'Updated',
-            queue: false
+            queue: false,
           },
           500
         )
       })
-    }
-  }
+    },
+  },
 }
 </script>

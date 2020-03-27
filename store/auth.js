@@ -3,7 +3,7 @@ export const state = () => {
     user: null,
     permissions: null,
     roles: null,
-    token: null
+    token: null,
   }
 }
 
@@ -37,7 +37,7 @@ export const mutations = {
     this.$storage.removeLocalStorage('user')
     this.$storage.removeLocalStorage('permissions')
     this.$storage.removeLocalStorage('roles')
-  }
+  },
 }
 
 export const actions = {
@@ -68,7 +68,7 @@ export const actions = {
           reject(err.response)
         })
     })
-  }
+  },
 }
 
 export const getters = {
@@ -80,5 +80,5 @@ export const getters = {
   },
   hasPermission: (state) => (permission) => {
     return !!state.permissions.find((p) => p.name === permission)
-  }
+  },
 }

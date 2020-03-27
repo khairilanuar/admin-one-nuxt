@@ -19,11 +19,11 @@ export default {
   components: {
     FooterBar,
     AsideMenu,
-    NavBar
+    NavBar,
   },
   data: () => {
     return {
-      menu: menu.items
+      menu: menu.items,
     }
   },
   computed: {},
@@ -50,7 +50,7 @@ export default {
       // logout this window/tab
       this.$buefy.snackbar.open({
         message: 'Idle session detected, logging out!',
-        queue: false
+        queue: false,
       })
       this.$store
         .dispatch('auth/logout')
@@ -70,6 +70,6 @@ export default {
   },
   onActive() {
     window.console.log('not idle')
-  }
+  },
 }
 </script>

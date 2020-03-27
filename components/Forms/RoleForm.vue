@@ -52,14 +52,14 @@
                         <div
                           v-for="(subPermission, idx2) in permission.children"
                           :key="idx2"
-                          style="margin-left:20px;"
+                          style="margin-left: 20px;"
                         >
                           <b-checkbox
                             v-model="data.permissions"
                             :native-value="subPermission.id"
                             size="is-small"
                           >
-                            <strong style="font-size:115%;">{{
+                            <strong style="font-size: 115%;">{{
                               subPermission.label
                             }}</strong>
                           </b-checkbox>
@@ -67,7 +67,7 @@
                             v-for="(subPermission2,
                             idx3) in subPermission.children"
                             :key="idx3"
-                            style="margin-left:20px;"
+                            style="margin-left: 20px;"
                           >
                             <b-checkbox
                               v-model="data.permissions"
@@ -79,7 +79,7 @@
                           </div>
                         </div>
                       </tiles>
-                      <span style="clear:both;" />
+                      <span style="clear: both;" />
                     </div>
                   </tiles>
                 </div>
@@ -131,12 +131,12 @@ export default {
     CardComponent,
     Notification,
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
   props: {
     redirectUrl: { type: String, default: '/access/roles' },
     cancelUrl: { type: String, default: '/access/roles' },
-    roleId: { type: String, default: null }
+    roleId: { type: String, default: null },
   },
   data: () => {
     return {
@@ -148,13 +148,13 @@ export default {
       filteredPermissions: [],
 
       defaultData: { confirmed: true, permissions: [] },
-      data: {}
+      data: {},
     }
   },
   computed: {
     isEdit() {
       return !!this.roleId
-    }
+    },
   },
   mounted() {
     this.resetForm()
@@ -195,7 +195,7 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false
+            queue: false,
           })
           this.isLoadingForm = false
         })
@@ -206,7 +206,7 @@ export default {
         guard_name: 'web',
         description: this.data.description || '',
         enable: this.data.enable || '0',
-        permissions: this.data.permissions
+        permissions: this.data.permissions,
       }
 
       if (this.isEdit) {
@@ -219,7 +219,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false
+            queue: false,
           })
           this.$router.push(this.redirectUrl)
         })
@@ -227,7 +227,7 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false
+            queue: false,
           })
         })
     },
@@ -238,7 +238,7 @@ export default {
           .toLowerCase()
           .includes(text.toLowerCase())
       })
-    }
-  }
+    },
+  },
 }
 </script>

@@ -16,19 +16,19 @@ export default {
   props: {
     accept: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       file: null,
-      uploadPercent: 0
+      uploadPercent: 0,
     }
   },
   computed: {
     buttonLabel() {
       return !this.file ? 'Pick a file' : 'Pick another file'
-    }
+    },
   },
   methods: {
     upload(file) {
@@ -58,7 +58,7 @@ export default {
       this.uploadPercent = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
       )
-    }
-  }
+    },
+  },
 }
 </script>

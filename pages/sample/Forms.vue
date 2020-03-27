@@ -140,7 +140,7 @@ export default {
     RadioPicker,
     CheckboxPicker,
     CardComponent,
-    TitleBar
+    TitleBar,
   },
   data() {
     return {
@@ -151,21 +151,21 @@ export default {
         phone: null,
         department: null,
         subject: null,
-        question: null
+        question: null,
       },
       customElementsForm: {
         checkbox: [],
         radio: null,
         switch: true,
-        file: null
+        file: null,
       },
-      departments: ['Business Development', 'Marketing', 'Sales']
+      departments: ['Business Development', 'Marketing', 'Sales'],
     }
   },
   computed: {
     titleStack() {
       return ['Admin', 'Forms']
-    }
+    },
   },
   methods: {
     submit() {},
@@ -179,9 +179,9 @@ export default {
 
       this.$buefy.snackbar.open({
         message: 'Reset successfully',
-        queue: false
+        queue: false,
       })
-    }
-  }
+    },
+  },
 }
 </script>

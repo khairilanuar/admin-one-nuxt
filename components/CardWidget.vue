@@ -29,32 +29,32 @@ export default {
   props: {
     icon: {
       type: String,
-      default: null
+      default: null,
     },
     number: {
       type: Number,
-      default: 0
+      default: 0,
     },
     prefix: {
       type: String,
-      default: null
+      default: null,
     },
     suffix: {
       type: String,
-      default: null
+      default: null,
     },
     title: {
       type: String,
-      default: null
+      default: null,
     },
     label: {
       type: String,
-      default: null
+      default: null,
     },
     type: {
       type: String,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>

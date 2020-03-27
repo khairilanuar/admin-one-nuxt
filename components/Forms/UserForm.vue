@@ -201,12 +201,12 @@ export default {
     Notification,
     FilePicker,
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
   props: {
     redirectUrl: { type: String, default: '/access/users' },
     cancelUrl: { type: String, default: '/access/users' },
-    userUuid: { type: String, default: null }
+    userUuid: { type: String, default: null },
   },
   data: () => {
     return {
@@ -219,13 +219,13 @@ export default {
       filteredRoles: [],
 
       defaultData: { confirmed: true },
-      data: {}
+      data: {},
     }
   },
   computed: {
     isEdit() {
       return !!this.userUuid
-    }
+    },
   },
   mounted() {
     this.resetForm()
@@ -261,7 +261,7 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false
+            queue: false,
           })
           this.isLoadingForm = false
         })
@@ -270,7 +270,7 @@ export default {
       const data = {
         email: this.data.email || '',
         first_name: this.data.first_name || '',
-        last_name: this.data.last_name || ''
+        last_name: this.data.last_name || '',
       }
 
       let promise = null
@@ -289,7 +289,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false
+            queue: false,
           })
           this.$router.push(this.redirectUrl)
         })
@@ -298,18 +298,15 @@ export default {
           this.$buefy.snackbar.open({
             message: error.response.data.message,
             type: 'is-danger',
-            queue: false
+            queue: false,
           })
         })
     },
     getFilteredRoles(text) {
       this.filteredRoles = this.roles.filter((option) => {
-        return option.name
-          .toString()
-          .toLowerCase()
-          .includes(text.toLowerCase())
+        return option.name.toString().toLowerCase().includes(text.toLowerCase())
       })
-    }
-  }
+    },
+  },
 }
 </script>

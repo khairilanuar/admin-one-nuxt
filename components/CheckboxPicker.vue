@@ -19,28 +19,28 @@ export default {
   props: {
     options: {
       type: Object,
-      default: null
+      default: null,
     },
     type: {
       type: String,
-      default: null
+      default: null,
     },
     value: {
       type: Array,
       default: () => {
         return []
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      newValue: []
+      newValue: [],
     }
   },
   watch: {
     value(newValue) {
       this.newValue = newValue
-    }
+    },
   },
   created() {
     this.newValue = this.value
@@ -48,7 +48,7 @@ export default {
   methods: {
     input() {
       this.$emit('input', this.newValue)
-    }
-  }
+    },
+  },
 }
 </script>

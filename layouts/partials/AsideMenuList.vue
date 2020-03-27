@@ -15,17 +15,17 @@ import AsideMenuItem from '~/layouts/partials/AsideMenuItem'
 export default {
   name: 'AsideMenuList',
   components: {
-    AsideMenuItem
+    AsideMenuItem,
   },
   props: {
     isSubmenuList: {
       type: Boolean,
-      default: false
+      default: false,
     },
     menu: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   computed: {
     userMenu() {
@@ -36,7 +36,7 @@ export default {
         }
       })
       return menu
-    }
+    },
   },
   methods: {
     menuClick(item) {
@@ -48,7 +48,7 @@ export default {
         return true
       }
       return this.$store.getters['auth/hasPermission'](permission)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -17,16 +17,16 @@ import TitleBar from '~/layouts/partials/TitleBar'
 export default {
   name: 'RoleCreate',
   meta: {
-    permission: 'create-role'
+    permission: 'create-role',
   },
   components: {
     RoleForm,
-    TitleBar
+    TitleBar,
   },
   computed: {
     titleStack() {
       return ['Access', 'Users', 'Create']
-    }
-  }
+    },
+  },
 }
 </script>

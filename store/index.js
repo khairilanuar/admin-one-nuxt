@@ -2,8 +2,8 @@ import createMultiTabState from 'vuex-multi-tab-state'
 
 export const plugins = [
   createMultiTabState({
-    statesPaths: ['idleVue', 'shared']
-  })
+    statesPaths: ['idleVue', 'shared'],
+  }),
 ]
 
 export const state = () => ({
@@ -20,7 +20,7 @@ export const state = () => ({
 
   /* Aside */
   isAsideVisible: true,
-  isAsideMobileExpanded: false
+  isAsideMobileExpanded: false,
 })
 
 export const mutations = {
@@ -61,5 +61,5 @@ export const mutations = {
     }
 
     state.isAsideMobileExpanded = isShow
-  }
+  },
 }

@@ -24,16 +24,16 @@ export default {
   props: {
     isActive: {
       type: Boolean,
-      default: false
+      default: false,
     },
     trashObjectName: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      isModalActive: false
+      isModalActive: false,
     }
   },
   watch: {
@@ -44,7 +44,7 @@ export default {
       if (!newValue) {
         this.cancel()
       }
-    }
+    },
   },
   methods: {
     cancel() {
@@ -52,7 +52,7 @@ export default {
     },
     confirm() {
       this.$emit('confirm')
-    }
-  }
+    },
+  },
 }
 </script>

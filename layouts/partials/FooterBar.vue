@@ -31,7 +31,7 @@ export default {
     year() {
       return moment().year()
     },
-    ...mapState(['isFooterBarVisible'])
-  }
+    ...mapState(['isFooterBarVisible']),
+  },
 }
 </script>

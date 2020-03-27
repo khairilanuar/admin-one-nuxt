@@ -71,12 +71,12 @@ export default {
     TitleBar,
     CardComponent,
     ClientsTableSample,
-    Notification
+    Notification,
   },
   computed: {
     titleStack() {
       return ['Admin', 'Tables']
-    }
-  }
+    },
+  },
 }
 </script>

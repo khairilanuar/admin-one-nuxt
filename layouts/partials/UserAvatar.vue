@@ -11,8 +11,8 @@ export default {
   props: {
     avatar: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     newUserAvatar() {
@@ -34,8 +34,8 @@ export default {
     },
     ...mapState({
       userName: (state) => state.auth.user.full_name,
-      userAvatar: (state) => state.auth.user.avatar_location
-    })
-  }
+      userAvatar: (state) => state.auth.user.avatar_location,
+    }),
+  },
 }
 </script>

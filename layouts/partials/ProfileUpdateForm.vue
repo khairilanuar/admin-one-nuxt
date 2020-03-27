@@ -36,7 +36,7 @@ export default {
   name: 'ProfileUpdateForm',
   components: {
     CardComponent,
-    FilePicker
+    FilePicker,
   },
   data() {
     return {
@@ -44,12 +44,12 @@ export default {
       isLoading: false,
       form: {
         name: null,
-        email: null
-      }
+        email: null,
+      },
     }
   },
   computed: {
-    ...mapState(['userName', 'userEmail'])
+    ...mapState(['userName', 'userEmail']),
   },
   watch: {
     userName(newValue) {
@@ -57,7 +57,7 @@ export default {
     },
     userEmail(newValue) {
       this.form.email = newValue
-    }
+    },
   },
   mounted() {
     this.form.name = this.userName
@@ -71,10 +71,10 @@ export default {
         this.$store.commit('user', this.form)
         this.$buefy.snackbar.open({
           message: 'Updated',
-          queue: false
+          queue: false,
         })
       }, 500)
-    }
-  }
+    },
+  },
 }
 </script>

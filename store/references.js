@@ -7,15 +7,15 @@ export const state = () => {
       batches: null,
       courses: null,
       student_statuses: null,
-      student_course_statuses: null
-    }
+      student_course_statuses: null,
+    },
   }
 }
 
 export const mutations = {
   set_data(state, params) {
     state.data[params.ref] = params.data
-  }
+  },
 }
 
 export const actions = {
@@ -52,7 +52,7 @@ export const actions = {
           reject(err)
         })
     })
-  }
+  },
 }
 
 export const getters = {
@@ -62,5 +62,5 @@ export const getters = {
     // eslint-disable-next-line
     // console.log(state.data.departments)
     return state.data[reference]
-  }
+  },
 }

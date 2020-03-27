@@ -5,11 +5,11 @@ export default {
   extends: Line,
   mixins: [mixins.reactiveProp],
   props: {
-    extraOptions: Object
+    extraOptions: Object,
   },
   data() {
     return {
-      ctx: null
+      ctx: null,
     }
   },
   mounted() {
@@ -22,5 +22,5 @@ export default {
       },
       { immediate: true }
     )
-  }
+  },
 }

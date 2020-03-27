@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  node:
+    image: "node:12"
+    container_name: if-node
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=dev
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    command: "yarn dev"
+    #command: "tail -f /dev/null"

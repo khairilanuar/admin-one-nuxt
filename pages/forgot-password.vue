@@ -105,9 +105,9 @@ export default {
       error: '',
       info: {
         hasInfo: false,
-        messages: []
+        messages: [],
       },
-      isLoading: false
+      isLoading: false,
     }
   },
   computed: {},
@@ -132,7 +132,7 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
-    }
+    },
   },
   head() {
     return {
@@ -142,14 +142,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description'
-        }
+          content: 'My custom description',
+        },
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded'
-      }
+        class: 'has-aside-mobile-transition has-aside-expanded',
+      },
     }
-  }
+  },
 }
 </script>

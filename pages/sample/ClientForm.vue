@@ -152,20 +152,20 @@ export default {
     Tiles,
     HeroBar,
     TitleBar,
-    Notification
+    Notification,
   },
   props: {
     // eslint-disable-next-line vue/require-prop-types
     id: {
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
       isLoading: false,
       form: this.getClearFormObject(),
       createdReadable: null,
-      isProfileExists: false
+      isProfileExists: false,
     }
   },
   computed: {
@@ -207,7 +207,7 @@ export default {
       } else {
         return 'New Client'
       }
-    }
+    },
   },
   watch: {
     id(newValue) {
@@ -218,7 +218,7 @@ export default {
       } else {
         this.getData()
       }
-    }
+    },
   },
   created() {
     this.getData()
@@ -232,7 +232,7 @@ export default {
         city: null,
         created_date: new Date(),
         created_mm_dd_yyyy: null,
-        progress: 0
+        progress: 0,
       }
     },
     getData() {
@@ -260,15 +260,13 @@ export default {
             this.$buefy.toast.open({
               message: `Error: ${e.message}`,
               type: 'is-danger',
-              queue: false
+              queue: false,
             })
           })
       }
     },
     input(v) {
-      this.createdReadable = moment(v)
-        .format('MMM D, Y')
-        .toString()
+      this.createdReadable = moment(v).format('MMM D, Y').toString()
     },
     submit() {
       this.isLoading = true
@@ -278,10 +276,10 @@ export default {
 
         this.$buefy.snackbar.open({
           message: 'Demo only',
-          queue: false
+          queue: false,
         })
       }, 500)
-    }
-  }
+    },
+  },
 }
 </script>

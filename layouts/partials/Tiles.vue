@@ -6,8 +6,8 @@ export default {
   props: {
     maxPerRow: {
       type: Number,
-      default: 5
-    }
+      default: 5,
+    },
   },
   methods: {
     renderAncestor(createElement, elements) {
@@ -16,11 +16,11 @@ export default {
         { attrs: { class: 'tile is-ancestor' } },
         elements.map((element) => {
           return createElement('div', { attrs: { class: 'tile is-parent' } }, [
-            element
+            element,
           ])
         })
       )
-    }
+    },
   },
   render(createElement) {
     let slots = map(this.$slots.default, (o) => {
@@ -38,6 +38,6 @@ export default {
         })
       )
     }
-  }
+  },
 }
 </script>

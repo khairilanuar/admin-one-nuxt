@@ -113,11 +113,11 @@ export default {
   name: 'NavBar',
   components: {
     UserAvatar,
-    NavBarMenu
+    NavBarMenu,
   },
   data() {
     return {
-      isMenuNavBarActive: false
+      isMenuNavBarActive: false,
     }
   },
   computed: {
@@ -130,8 +130,8 @@ export default {
     ...mapState({
       isNavBarVisible: (state) => state.isNavBarVisible,
       isAsideMobileExpanded: (state) => state.isAsideMobileExpanded,
-      userName: (state) => state.auth.user.full_name
-    })
+      userName: (state) => state.auth.user.full_name,
+    }),
   },
   methods: {
     menuToggleMobile() {
@@ -155,7 +155,7 @@ export default {
           this.$store.commit('auth/CLEAR_USER')
           this.$router.push('/?logout')
         })
-    }
-  }
+    },
+  },
 }
 </script>

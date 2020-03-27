@@ -9,6 +9,6 @@ export default {
   name: 'Empty',
   components: {},
   computed: {},
-  created() {}
+  created() {},
 }
 </script>

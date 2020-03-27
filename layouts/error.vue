@@ -37,7 +37,7 @@ export default {
   layout: 'empty',
   name: 'Error',
   props: {
-    error: { type: Object, default: null }
+    error: { type: Object, default: null },
   },
   auth: false,
   data() {
@@ -54,14 +54,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description'
-        }
+          content: 'My custom description',
+        },
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded'
-      }
+        class: 'has-aside-mobile-transition has-aside-expanded',
+      },
     }
-  }
+  },
 }
 </script>

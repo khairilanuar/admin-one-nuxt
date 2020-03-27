@@ -37,12 +37,12 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      isDropdownActive: false
+      isDropdownActive: false,
     }
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
     },
     itemHref() {
       return this.item.href ? this.item.href : null
-    }
+    },
   },
   methods: {
     menuClick() {
@@ -69,7 +69,7 @@ export default {
       if (this.hasDropdown) {
         this.isDropdownActive = !this.isDropdownActive
       }
-    }
-  }
+    },
+  },
 }
 </script>

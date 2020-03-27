@@ -10,25 +10,25 @@ export default {
   props: {
     prefix: {
       type: String,
-      default: null
+      default: null,
     },
     suffix: {
       type: String,
-      default: null
+      default: null,
     },
     value: {
       type: Number,
-      default: 0
+      default: 0,
     },
     duration: {
       type: Number,
-      default: 500
-    }
+      default: 500,
+    },
   },
   data() {
     return {
       newValue: 0,
-      step: 0
+      step: 0,
     }
   },
   computed: {
@@ -36,12 +36,12 @@ export default {
       return this.newValue < 1000
         ? this.newValue
         : numeral(this.newValue).format('0,0')
-    }
+    },
   },
   watch: {
     value() {
       this.growInit()
-    }
+    },
   },
   mounted() {
     this.growInit()
@@ -63,7 +63,7 @@ export default {
       setTimeout(() => {
         this.grow(m)
       }, 25)
-    }
-  }
+    },
+  },
 }
 </script>

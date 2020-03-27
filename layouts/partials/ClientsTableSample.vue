@@ -101,12 +101,12 @@ export default {
   props: {
     dataUrl: {
       type: String,
-      default: null
+      default: null,
     },
     checkable: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -116,7 +116,7 @@ export default {
       isLoading: false,
       paginated: false,
       perPage: 10,
-      checkedRows: []
+      checkedRows: [],
     }
   },
   computed: {
@@ -126,7 +126,7 @@ export default {
       }
 
       return null
-    }
+    },
   },
   mounted() {
     if (this.dataUrl) {
@@ -146,7 +146,7 @@ export default {
           this.isLoading = false
           this.$buefy.toast.open({
             message: `Error: ${e.message}`,
-            type: 'is-danger'
+            type: 'is-danger',
           })
         })
     }
@@ -161,12 +161,12 @@ export default {
       this.isModalActive = false
       this.$buefy.snackbar.open({
         message: 'Confirmed',
-        queue: false
+        queue: false,
       })
     },
     trashCancel() {
       this.isModalActive = false
-    }
-  }
+    },
+  },
 }
 </script>

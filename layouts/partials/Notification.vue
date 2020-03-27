@@ -20,7 +20,7 @@ export default {
   name: 'Notification',
   data() {
     return {
-      isDismissed: false
+      isDismissed: false,
     }
   },
   methods: {
@@ -28,9 +28,9 @@ export default {
       this.isDismissed = true
       this.$buefy.snackbar.open({
         message: 'Dismissed',
-        queue: false
+        queue: false,
       })
-    }
-  }
+    },
+  },
 }
 </script>

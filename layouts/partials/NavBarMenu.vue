@@ -19,18 +19,18 @@ export default {
   props: {
     isHoverable: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
-      isDropdownActive: false
+      isDropdownActive: false,
     }
   },
   computed: {
     toggleDropdownIcon() {
       return this.isDropdownActive ? 'chevron-up' : 'chevron-down'
-    }
+    },
   },
   created() {
     // eslint-disable-next-line nuxt/no-globals-in-created
@@ -49,7 +49,7 @@ export default {
       if (!this.$el.contains(e.target)) {
         this.isDropdownActive = false
       }
-    }
-  }
+    },
+  },
 }
 </script>

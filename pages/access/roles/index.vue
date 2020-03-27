@@ -97,7 +97,7 @@
                 <nuxt-link
                   :to="{
                     name: 'access-roles-role-edit',
-                    params: { role: props.row.id }
+                    params: { role: props.row.id },
                   }"
                   class="button is-small is-primary"
                   title="Edit"
@@ -107,7 +107,7 @@
                 <b-button
                   :disabled="
                     props.row.is_core ||
-                      !$store.getters['auth/hasPermission']('delete-role')
+                    !$store.getters['auth/hasPermission']('delete-role')
                   "
                   size="is-small"
                   type="is-danger"
@@ -135,7 +135,7 @@ import HeroBar from '~/layouts/partials/HeroBar'
 export default {
   name: 'Roles',
   meta: {
-    permission: 'read-role'
+    permission: 'read-role',
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
@@ -143,20 +143,20 @@ export default {
     TitleBar,
     CardComponent,
     AsyncTable,
-    Notification
+    Notification,
   },
   data: () => {
     return {
       showForm: false,
       formDefault: {},
       form: {},
-      checkedRows: []
+      checkedRows: [],
     }
   },
   computed: {
     titleStack() {
       return ['Access', 'Roles']
-    }
+    },
   },
   mounted() {},
   methods: {
@@ -181,14 +181,14 @@ export default {
               if (data.success) {
                 this.$buefy.snackbar.open({
                   message: 'Role ' + role.name + ' has been deleted.',
-                  queue: false
+                  queue: false,
                 })
                 this.$refs.roleTable.loadData()
               } else {
                 this.$buefy.snackbar.open({
                   message: data.message,
                   type: 'is-danger',
-                  queue: false
+                  queue: false,
                 })
               }
             })
@@ -196,10 +196,10 @@ export default {
               this.$buefy.snackbar.open({
                 message: error.response.data.message,
                 type: 'is-danger',
-                queue: false
+                queue: false,
               })
             })
-        }
+        },
       })
       // latest swal has some issue
       /*
@@ -224,12 +224,12 @@ export default {
         type: 'is-danger',
         hasIcon: true,
         icon: 'times-circle',
-        iconPack: 'fa'
+        iconPack: 'fa',
       })
     },
     check(checkedList, row) {
       this.checkedRows = checkedList
-    }
-  }
+    },
+  },
 }
 </script>

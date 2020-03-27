@@ -45,13 +45,13 @@ export default {
     ProfileUpdateForm,
     HeroBar,
     TitleBar,
-    CardComponent
+    CardComponent,
   },
   computed: {
     titleStack() {
       return ['Admin', 'Profile']
     },
-    ...mapState(['userName', 'userEmail'])
-  }
+    ...mapState(['userName', 'userEmail']),
+  },
 }
 </script>

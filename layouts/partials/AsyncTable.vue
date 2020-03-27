@@ -11,7 +11,7 @@
       :hoverable="true"
       :data="data"
       :total="total"
-      style="font-size:85%;"
+      style="font-size: 85%;"
       pagination-size="is-small"
       default-sort="id"
       default-sort-direction="desc"
@@ -74,28 +74,28 @@ export default {
   props: {
     dataUrl: {
       type: String,
-      default: null
+      default: null,
     },
     search: {
       type: String,
-      default: null
+      default: null,
     },
     checkable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     checkedRows: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     perPage: {
       type: Number,
-      default: 10
+      default: 10,
     },
     currentPage: {
       type: Number,
-      default: 1
-    }
+      default: 1,
+    },
   },
   data() {
     return {
@@ -111,14 +111,14 @@ export default {
       sortDir: 'desc',
       from: 0,
       to: 0,
-      total: 0
+      total: 0,
     }
   },
   computed: {},
   watch: {
     search(newSearch, oldSearch) {
       this.debouncedLoadData()
-    }
+    },
   },
   mounted() {
     if (this.dataUrl) {
@@ -137,7 +137,7 @@ export default {
         sortDir: this.sortDir,
         page: this.page,
         perPage: this.pageLength,
-        search: this.search ? this.search : null
+        search: this.search ? this.search : null,
       }
       this.$axios
         .get(this.dataUrl, { params })
@@ -180,7 +180,7 @@ export default {
           this.isLoading = false
           this.$buefy.toast.open({
             message: `Error: ${error.message}`,
-            type: 'is-danger'
+            type: 'is-danger',
           })
         })
     },
@@ -202,7 +202,7 @@ export default {
       // eslint-disable-next-line no-console
       console.log(row)
       this.$emit('click', row)
-    }
-  }
+    },
+  },
 }
 </script>

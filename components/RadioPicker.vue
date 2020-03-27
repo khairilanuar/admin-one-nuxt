@@ -14,26 +14,26 @@ export default {
   props: {
     options: {
       type: Object,
-      default: null
+      default: null,
     },
     type: {
       type: String,
-      default: null
+      default: null,
     },
     // eslint-disable-next-line vue/require-prop-types
     value: {
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      newValue: null
+      newValue: null,
     }
   },
   watch: {
     value(newValue) {
       this.newValue = newValue
-    }
+    },
   },
   created() {
     this.newValue = this.value
@@ -41,7 +41,7 @@ export default {
   methods: {
     input() {
       this.$emit('input', this.newValue)
-    }
-  }
+    },
+  },
 }
 </script>
