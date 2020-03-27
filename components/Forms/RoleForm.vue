@@ -134,8 +134,8 @@ export default {
     ValidationObserver,
   },
   props: {
-    redirectUrl: { type: String, default: '/access/roles' },
-    cancelUrl: { type: String, default: '/access/roles' },
+    redirectUrl: { type: String, default: '/admin/access/roles' },
+    cancelUrl: { type: String, default: '/admin/access/roles' },
     roleId: { type: String, default: null },
   },
   data: () => {

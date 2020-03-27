@@ -75,6 +75,34 @@ export default {
     // Doc: https://www.npmjs.com/package/vue-sweetalert2
     'vue-sweetalert2/nuxt',
     // '@nuxtjs/dotenv'
+    [
+      '@nuxtjs/recaptcha',
+      {
+        hideBadge: false, // Hide badge element (v3 & v2 via size=invisible)
+        // language: String, // Recaptcha language (v2)
+        siteKey: process.env.RECAPTCHA_KEY, // Site key for requests
+        version: 3, // Version
+        size: 'normal', // Size: 'compact', 'normal', 'invisible' (v2)
+      },
+    ],
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            code: 'ms',
+            file: 'ms_MY.js',
+          },
+          {
+            code: 'en',
+            file: 'en_US.js',
+          },
+        ],
+        defaultLocale: 'ms',
+        lazy: true,
+        langDir: 'lang/',
+      },
+    ],
   ],
   /*
    ** Axios module configuration

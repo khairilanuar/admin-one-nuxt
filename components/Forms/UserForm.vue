@@ -204,8 +204,8 @@ export default {
     ValidationObserver,
   },
   props: {
-    redirectUrl: { type: String, default: '/access/users' },
-    cancelUrl: { type: String, default: '/access/users' },
+    redirectUrl: { type: String, default: '/admin/access/users' },
+    cancelUrl: { type: String, default: '/admin/access/users' },
     userUuid: { type: String, default: null },
   },
   data: () => {

@@ -166,7 +166,7 @@ export default {
   mounted() {},
   methods: {
     showAdd() {
-      this.$router.redirect('/access/users/create')
+      this.$router.redirect('/admin/access/users/create')
     },
     resetForm() {
       this.form = this.$lodash.clone(this.formDefault)

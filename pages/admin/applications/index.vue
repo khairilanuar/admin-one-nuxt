@@ -6,18 +6,18 @@
         <div class="buttons is-right">
           <b-button
             tag="nuxt-link"
-            to="/access/roles/create"
+            to="/access/users/create"
             type="is-primary"
             size=""
           >
             <b-icon icon="plus" custom-size="default" />
-            <span>Add Role</span>
+            <span>Add User</span>
           </b-button>
           <b-button
             :disabled="!checkedRows.length"
             type="is-danger"
             size=""
-            @click="bulkDeleteRoles"
+            @click="bulkDeleteUsers"
           >
             <b-icon icon="delete-alert" custom-size="default" />
             <span>Delete</span>
@@ -43,15 +43,26 @@
 
       <card-component class="has-table has-mobile-sort-spaced">
         <async-table
-          ref="roleTable"
+          ref="userTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          data-url="/api/role"
+          data-url="/api/user"
           @check="check"
         >
           <template v-slot:table="props">
-            <b-table-column label="Name" field="name" sortable>
-              {{ props.row.name }}
+            <!--
+            <b-table-column label="ID" field="id" sortable>
+              {{ props.row.id }}
+            </b-table-column>
+            -->
+            <b-table-column label="First Name" field="first_name" sortable>
+              {{ props.row.first_name }}
+            </b-table-column>
+            <b-table-column label="Last Name" field="last_name" sortable>
+              {{ props.row.last_name }}
+            </b-table-column>
+            <b-table-column label="Email" field="email" sortable>
+              {{ props.row.email }}
               <b-tooltip label="core">
                 <b-icon
                   v-if="props.row.is_core"
@@ -61,23 +72,24 @@
                 />
               </b-tooltip>
             </b-table-column>
-            <b-table-column label="Description" field="description" sortable>
-              {{ props.row.description }}
-            </b-table-column>
-            <b-table-column label="Permissions" field="permissions">
-              <b-taglist>
+            <b-table-column label="Roles" field="roles.name">
+              <small>
                 <b-tag
-                  v-for="(permission, id) in props.row.permissions"
+                  v-for="(role, id) in props.row.roles"
                   :key="id"
-                  type="is-light"
-                  size="is-small"
+                  type="is-grey"
                 >
-                  {{ permission.label }}
+                  {{ role.name }}
                 </b-tag>
-              </b-taglist>
+              </small>
             </b-table-column>
-            <b-table-column label="Enabled" field="Enabled" sortable centered>
-              <b-icon v-if="props.row.enable" icon="shield-check" />
+            <b-table-column
+              label="Confirmed"
+              field="confirmed"
+              sortable
+              centered
+            >
+              <b-icon v-if="props.row.confirmed" icon="shield-check" />
               <b-icon v-else icon="shield-outline" class="" />
             </b-table-column>
             <b-table-column label="Created" field="created_at" sortable>
@@ -87,32 +99,25 @@
                 >{{ props.row.created_at }}</small
               >
             </b-table-column>
-            <b-table-column
-              label="Actions"
-              custom-key="actions"
-              class="is-actions-cell"
-              centered
-            >
+            <b-table-column custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
                   :to="{
-                    name: 'access-roles-role-edit',
-                    params: { role: props.row.id },
+                    name: 'access-users-user-edit',
+                    params: { user: props.row.uuid },
                   }"
                   class="button is-small is-primary"
-                  title="Edit"
                 >
                   <b-icon icon="account-edit" size="is-small" />
                 </nuxt-link>
                 <b-button
                   :disabled="
                     props.row.is_core ||
-                    !$store.getters['auth/hasPermission']('delete-role')
+                    !$store.getters['auth/hasPermission']('delete-user')
                   "
                   size="is-small"
                   type="is-danger"
-                  title="Delete"
-                  @click.prevent="deleteRole(props.row)"
+                  @click.prevent="deleteUser(props.row)"
                 >
                   <b-icon icon="delete" size="is-small" />
                 </b-button>
@@ -133,9 +138,9 @@ import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 
 export default {
-  name: 'Roles',
+  name: 'Users',
   meta: {
-    permission: 'read-role',
+    permission: 'read-user',
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
@@ -155,35 +160,35 @@ export default {
   },
   computed: {
     titleStack() {
-      return ['Access', 'Roles']
+      return ['Access', 'Users']
     },
   },
   mounted() {},
   methods: {
     showAdd() {
-      this.$router.redirect('/access/roles/create')
+      this.$router.redirect('/admin/access/users/create')
     },
     resetForm() {
       this.form = this.$lodash.clone(this.formDefault)
     },
-    deleteRole(role) {
+    deleteUser(user) {
       this.$buefy.dialog.confirm({
-        title: 'Deleting role',
-        message: `Are you sure you want to delete role <b>${role.name}</b> ?<br/>This action cannot be undone.`,
-        confirmText: 'Delete Role',
+        title: 'Deleting user',
+        message: `Are you sure you want to delete user <b>${user.full_name}</b> ?<br/>This action cannot be undone.`,
+        confirmText: 'Delete User',
         type: 'is-danger',
         hasIcon: true,
         focusOn: 'cancel',
         onConfirm: () => {
           this.$axios
-            .delete(`/api/role/${role.id}`)
+            .delete(`/api/user/${user.uuid}`)
             .then(({ data }) => {
               if (data.success) {
                 this.$buefy.snackbar.open({
-                  message: 'Role ' + role.name + ' has been deleted.',
+                  message: 'User ' + user.full_name + ' has been deleted.',
                   queue: false,
                 })
-                this.$refs.roleTable.loadData()
+                this.$refs.userTable.loadData()
               } else {
                 this.$buefy.snackbar.open({
                   message: data.message,
@@ -201,14 +206,15 @@ export default {
             })
         },
       })
-      // latest swal has some issue
+      // latest swal has some css issue
       /*
       this.$swal({
         title: 'Confirmation',
-        text: 'Are you sure to delete role: ' + role.name,
+        text: 'Are you sure to delete user: ' + user.first_name,
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes'
+        confirmButtonText: 'Yes',
+        showLoaderOnConfirm: true
       }).then((result) => {
         if (result.value) {
 
@@ -216,7 +222,7 @@ export default {
       })
       */
     },
-    bulkDeleteRoles() {
+    bulkDeleteUsers() {
       // TODO:
       this.$buefy.dialog.alert({
         title: 'TODO:',

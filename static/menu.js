@@ -3,7 +3,7 @@ export default {
     // 'Main',
     [
       {
-        to: '/',
+        to: '/admin',
         icon: 'desktop-mac',
         label: 'Dashboard',
       },
@@ -16,12 +16,12 @@ export default {
         icon: 'shield-key',
         menu: [
           {
-            to: '/access/users',
+            to: '/admin/access/users',
             label: 'Users',
             icon: 'account-multiple',
           },
           {
-            to: '/access/roles',
+            to: '/admin/access/roles',
             label: 'Roles',
             icon: 'shield-account',
           },
