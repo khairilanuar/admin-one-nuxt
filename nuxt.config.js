@@ -75,6 +75,7 @@ export default {
     // Doc: https://www.npmjs.com/package/vue-sweetalert2
     'vue-sweetalert2/nuxt',
     // '@nuxtjs/dotenv'
+    /*
     [
       '@nuxtjs/recaptcha',
       {
@@ -85,6 +86,7 @@ export default {
         size: 'normal', // Size: 'compact', 'normal', 'invisible' (v2)
       },
     ],
+    */
     [
       'nuxt-i18n',
       {
