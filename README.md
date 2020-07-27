@@ -48,6 +48,7 @@ $ yarn test
 
 ##### Links:
 * https://code.luasoftware.com/tutorials/vuejs/nuxt-dotenv-configuraton-for-development-and-production/
+* https://scotch.io/tutorials/build-a-progressive-web-application-with-nuxtjs
 
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

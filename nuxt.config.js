@@ -55,6 +55,8 @@ export default {
     // Doc: https://github.com/nuxt-community/moment-module
     '@nuxtjs/moment',
     ['@nuxtjs/dotenv', { filename: `.env.${process.env.NODE_ENV}` }],
+    // Doc: https://pwa.nuxtjs.org/setup.html
+    ['@nuxtjs/pwa', { icon: false }],
   ],
   /*
    ** Nuxt.js modules
