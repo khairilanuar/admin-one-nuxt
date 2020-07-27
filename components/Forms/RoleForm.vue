@@ -65,7 +65,7 @@
                           </b-checkbox>
                           <div
                             v-for="(subPermission2,
-                            idx3) in subPermission.children"
+                                    idx3) in subPermission.children"
                             :key="idx3"
                             style="margin-left: 20px;"
                           >
@@ -90,7 +90,7 @@
                 {{ data.enable ? 'Yes' : 'No' }}
               </b-switch>
             </b-field>
-            <hr />
+            <hr>
             <b-field horizontal>
               <div class="buttons">
                 <b-button
@@ -131,12 +131,12 @@ export default {
     CardComponent,
     Notification,
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver
   },
   props: {
     redirectUrl: { type: String, default: '/admin/access/roles' },
     cancelUrl: { type: String, default: '/admin/access/roles' },
-    roleId: { type: String, default: null },
+    roleId: { type: String, default: null }
   },
   data: () => {
     return {
@@ -148,15 +148,15 @@ export default {
       filteredPermissions: [],
 
       defaultData: { confirmed: true, permissions: [] },
-      data: {},
+      data: {}
     }
   },
   computed: {
-    isEdit() {
+    isEdit () {
       return !!this.roleId
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.resetForm()
     this.formTitle = this.isEdit ? 'Edit Role' : 'Add Role'
 
@@ -167,10 +167,10 @@ export default {
     }
   },
   methods: {
-    resetForm() {
+    resetForm () {
       this.data = this.$lodash.cloneDeep(this.defaultData)
     },
-    loadPermissions() {
+    loadPermissions () {
       this.$axios
         .get('/api/permission', { params: { getRef: 1 } })
         .then((response) => {
@@ -178,14 +178,14 @@ export default {
         })
         .catch()
     },
-    loadRole(id) {
+    loadRole (id) {
       this.isLoadingForm = true
       this.$axios
         .get('/api/role/' + id)
         .then((response) => {
           this.data = response.data.payload
           const permissions = []
-          response.data.payload.permissions.forEach((v, i) => {
+          response.data.payload.permissions.forEach((v, _) => {
             permissions.push(v.id)
           })
           this.data.permissions = permissions
@@ -195,18 +195,18 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
           this.isLoadingForm = false
         })
     },
-    submitForm() {
+    submitForm () {
       const data = {
         name: this.data.name || '',
         guard_name: 'web',
         description: this.data.description || '',
         enable: this.data.enable || '0',
-        permissions: this.data.permissions,
+        permissions: this.data.permissions
       }
 
       if (this.isEdit) {
@@ -219,7 +219,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false,
+            queue: false
           })
           this.$router.push(this.redirectUrl)
         })
@@ -227,18 +227,18 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
         })
     },
-    getFilteredRoles(text) {
+    getFilteredRoles (text) {
       this.filteredPermissions = this.permissions.filter((option) => {
         return option.label
           .toString()
           .toLowerCase()
           .includes(text.toLowerCase())
       })
-    },
-  },
+    }
+  }
 }
 </script>

@@ -7,7 +7,7 @@ for (const rule in rules) {
   extend(rule, {
     // eslint-disable-next-line import/namespace
     ...rules[rule], // add the rule
-    message: messages[rule], // add its message
+    message: messages[rule] // add its message
   })
 }
 
@@ -21,5 +21,5 @@ extend('verify_password', {
       '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
     )
     return strongRegex.test(value)
-  },
+  }
 })

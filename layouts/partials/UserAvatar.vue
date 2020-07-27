@@ -1,6 +1,6 @@
 <template>
   <div class="is-user-avatar">
-    <img :src="newUserAvatar" :alt="userName" />
+    <img :src="newUserAvatar" :alt="userName">
   </div>
 </template>
 
@@ -11,11 +11,11 @@ export default {
   props: {
     avatar: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
-    newUserAvatar() {
+    newUserAvatar () {
       if (this.avatar) {
         return this.avatar
       }
@@ -33,9 +33,9 @@ export default {
       return `https://avatars.dicebear.com/v2/initials/${name}.svg?options[mood][]=happy`
     },
     ...mapState({
-      userName: (state) => state.auth.user.full_name,
-      userAvatar: (state) => state.auth.user.avatar_location,
-    }),
-  },
+      userName: state => state.auth.user.full_name,
+      userAvatar: state => state.auth.user.avatar_location
+    })
+  }
 }
 </script>

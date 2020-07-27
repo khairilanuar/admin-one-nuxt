@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { Crypton } from 'laravel-crypton'
 
-export default function ({ $axios, redirect }) {
+export default function ({ $axios, _ }) {
   /*
   $axios.onRequest((config) => {
     // eslint-disable-next-line no-console

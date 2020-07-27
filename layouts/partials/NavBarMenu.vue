@@ -19,37 +19,36 @@ export default {
   props: {
     isHoverable: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
-      isDropdownActive: false,
+      isDropdownActive: false
     }
   },
   computed: {
-    toggleDropdownIcon() {
+    toggleDropdownIcon () {
       return this.isDropdownActive ? 'chevron-up' : 'chevron-down'
-    },
+    }
   },
-  created() {
-    // eslint-disable-next-line nuxt/no-globals-in-created
+  created () {
     window.addEventListener('click', this.forceClose)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('click', this.forceClose)
   },
   methods: {
-    toggle() {
+    toggle () {
       if (!this.isHoverable) {
         this.isDropdownActive = !this.isDropdownActive
       }
     },
-    forceClose(e) {
+    forceClose (e) {
       if (!this.$el.contains(e.target)) {
         this.isDropdownActive = false
       }
-    },
-  },
+    }
+  }
 }
 </script>

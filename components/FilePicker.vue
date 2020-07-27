@@ -2,7 +2,7 @@
   <b-field class="file">
     <b-upload v-model="file" :accept="accept" @input="upload">
       <a class="button is-primary">
-        <b-icon icon="upload" custom-size="default"></b-icon>
+        <b-icon icon="upload" custom-size="default" />
         <span>{{ buttonLabel }}</span>
       </a>
     </b-upload>
@@ -16,22 +16,22 @@ export default {
   props: {
     accept: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
-  data() {
+  data () {
     return {
       file: null,
-      uploadPercent: 0,
+      uploadPercent: 0
     }
   },
   computed: {
-    buttonLabel() {
+    buttonLabel () {
       return !this.file ? 'Pick a file' : 'Pick another file'
-    },
+    }
   },
   methods: {
-    upload(file) {
+    upload (file) {
       this.$emit('input', file)
       // Use this as an example for handling file uploads
       // let formData = new FormData()
@@ -54,11 +54,11 @@ export default {
       //     })
       //   })
     },
-    progressEvent(progressEvent) {
+    progressEvent (progressEvent) {
       this.uploadPercent = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
       )
-    },
-  },
+    }
+  }
 }
 </script>

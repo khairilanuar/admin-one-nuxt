@@ -26,7 +26,7 @@
         />
       </card-component>
 
-      <hr />
+      <hr>
 
       <notification class="is-info">
         <div>
@@ -42,7 +42,7 @@
         />
       </card-component>
 
-      <hr />
+      <hr>
 
       <notification class="is-info">
         <div>
@@ -71,12 +71,12 @@ export default {
     TitleBar,
     CardComponent,
     ClientsTableSample,
-    Notification,
+    Notification
   },
   computed: {
-    titleStack() {
+    titleStack () {
       return ['Admin', 'Tables']
-    },
-  },
+    }
+  }
 }
 </script>

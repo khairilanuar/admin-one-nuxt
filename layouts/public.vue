@@ -6,7 +6,7 @@
         <b-navbar type="is-dark" wrapper-class="container" spaced>
           <template slot="brand">
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
-              <img src="~assets/logo-only-red.png" alt="logo" />
+              <img src="~assets/logo-only-red.png" alt="logo">
             </b-navbar-item>
           </template>
           <template slot="start">
@@ -87,7 +87,7 @@
             <div class="level-item">
               <div class="logo">
                 <a href="https://infinitum.com.my">
-                  <img src="~assets/logo-only-red.png" alt="logo" />
+                  <img src="~assets/logo-only-red.png" alt="logo">
                 </a>
               </div>
             </div>
@@ -105,10 +105,10 @@ export default {
   name: 'Empty',
   components: {},
   computed: {
-    year() {
+    year () {
       return moment().year()
-    },
+    }
   },
-  created() {},
+  created () {}
 }
 </script>

@@ -19,36 +19,36 @@ export default {
   props: {
     options: {
       type: Object,
-      default: null,
+      default: null
     },
     type: {
       type: String,
-      default: null,
+      default: null
     },
     value: {
       type: Array,
       default: () => {
         return []
-      },
-    },
+      }
+    }
   },
-  data() {
+  data () {
     return {
-      newValue: [],
+      newValue: []
     }
   },
   watch: {
-    value(newValue) {
+    value (newValue) {
       this.newValue = newValue
-    },
+    }
   },
-  created() {
+  created () {
     this.newValue = this.value
   },
   methods: {
-    input() {
+    input () {
       this.$emit('input', this.newValue)
-    },
-  },
+    }
+  }
 }
 </script>

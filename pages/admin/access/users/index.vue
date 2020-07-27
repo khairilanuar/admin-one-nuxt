@@ -1,7 +1,7 @@
 <template>
   <div>
     <title-bar :title-stack="titleStack">
-      <template #left> </template>
+      <template #left />
       <template #right>
         <div class="buttons is-right">
           <b-button
@@ -96,8 +96,7 @@
               <small
                 :title="props.row.created_at"
                 class="has-text-grey is-abbr-like"
-                >{{ props.row.created_at }}</small
-              >
+              >{{ props.row.created_at }}</small>
             </b-table-column>
             <b-table-column custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
@@ -113,7 +112,7 @@
                 <b-button
                   :disabled="
                     props.row.is_core ||
-                    !$store.getters['auth/hasPermission']('delete-user')
+                      !$store.getters['auth/hasPermission']('delete-user')
                   "
                   size="is-small"
                   type="is-danger"
@@ -140,7 +139,7 @@ import HeroBar from '~/layouts/partials/HeroBar'
 export default {
   name: 'Users',
   meta: {
-    permission: 'read-user',
+    permission: 'read-user'
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
@@ -148,30 +147,30 @@ export default {
     TitleBar,
     CardComponent,
     AsyncTable,
-    Notification,
+    Notification
   },
   data: () => {
     return {
       showForm: false,
       formDefault: {},
       form: {},
-      checkedRows: [],
+      checkedRows: []
     }
   },
   computed: {
-    titleStack() {
+    titleStack () {
       return ['Access', 'Users']
-    },
+    }
   },
-  mounted() {},
+  mounted () {},
   methods: {
-    showAdd() {
+    showAdd () {
       this.$router.redirect('/admin/access/users/create')
     },
-    resetForm() {
+    resetForm () {
       this.form = this.$lodash.clone(this.formDefault)
     },
-    deleteUser(user) {
+    deleteUser (user) {
       this.$buefy.dialog.confirm({
         title: 'Deleting user',
         message: `Are you sure you want to delete user <b>${user.full_name}</b> ?<br/>This action cannot be undone.`,
@@ -186,14 +185,14 @@ export default {
               if (data.success) {
                 this.$buefy.snackbar.open({
                   message: 'User ' + user.full_name + ' has been deleted.',
-                  queue: false,
+                  queue: false
                 })
                 this.$refs.userTable.loadData()
               } else {
                 this.$buefy.snackbar.open({
                   message: data.message,
                   type: 'is-danger',
-                  queue: false,
+                  queue: false
                 })
               }
             })
@@ -201,10 +200,10 @@ export default {
               this.$buefy.snackbar.open({
                 message: error.response.data.message,
                 type: 'is-danger',
-                queue: false,
+                queue: false
               })
             })
-        },
+        }
       })
       // latest swal has some css issue
       /*
@@ -222,7 +221,7 @@ export default {
       })
       */
     },
-    bulkDeleteUsers() {
+    bulkDeleteUsers () {
       // TODO:
       this.$buefy.dialog.alert({
         title: 'TODO:',
@@ -230,12 +229,12 @@ export default {
         type: 'is-danger',
         hasIcon: true,
         icon: 'times-circle',
-        iconPack: 'fa',
+        iconPack: 'fa'
       })
     },
-    check(checkedList, row) {
+    check (checkedList, _) {
       this.checkedRows = checkedList
-    },
-  },
+    }
+  }
 }
 </script>

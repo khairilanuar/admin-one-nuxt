@@ -7,8 +7,7 @@
             <div class="card has-card-header-background">
               <header class="card-header">
                 <p class="card-header-title">
-                  <span class="icon"><i class="mdi mdi-lock default"></i></span
-                  ><span>Account recovery</span>
+                  <span class="icon"><i class="mdi mdi-lock default" /></span><span>Account recovery</span>
                 </p>
               </header>
               <div class="card-content">
@@ -44,10 +43,10 @@
                           autocomplete="off"
                           name="email"
                           autofocus="autofocus"
-                        ></b-input>
+                        />
                       </b-field>
                     </ValidationProvider>
-                    <hr />
+                    <hr>
                     <b-notification
                       v-if="error.length"
                       type="is-danger"
@@ -69,8 +68,7 @@
                           native-type="submit"
                           type="is-black"
                           value="Recover my password"
-                        >
-                        </b-button>
+                        />
                       </div>
                       <div class="control">
                         <b-button tag="nuxt-link" to="/login" type="is-text">
@@ -86,7 +84,9 @@
         </div>
       </div>
     </div>
-    <div class="hero-foot has-text-centered"><div class="logo"></div></div>
+    <div class="hero-foot has-text-centered">
+      <div class="logo" />
+    </div>
   </section>
 </template>
 
@@ -98,22 +98,22 @@ export default {
   name: 'ForgotPassword',
   components: { ValidationProvider, ValidationObserver },
   middleware: 'anonymous',
-  data() {
+  data () {
     return {
       email: '',
       password: '',
       error: '',
       info: {
         hasInfo: false,
-        messages: [],
+        messages: []
       },
-      isLoading: false,
+      isLoading: false
     }
   },
   computed: {},
-  mounted() {},
+  mounted () {},
   methods: {
-    recoverPassword() {
+    recoverPassword () {
       try {
         this.isLoading = true
         this.error = ''
@@ -121,7 +121,7 @@ export default {
 
         this.$axios
           .post('/api/auth/forgot-password', data)
-          .then((response) => {
+          .then((_) => {
             this.isLoading = false
             this.$router.push('/')
           })
@@ -132,9 +132,9 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
-    },
+    }
   },
-  head() {
+  head () {
     return {
       title: 'Login',
       meta: [
@@ -142,14 +142,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
-        },
+          content: 'My custom description'
+        }
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
-      },
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
-  },
+  }
 }
 </script>

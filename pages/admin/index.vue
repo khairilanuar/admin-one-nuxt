@@ -47,8 +47,7 @@
             :extra-options="defaultChart.extraOptions"
             style="height: 100%;"
             chart-id="big-line-chart"
-          >
-          </line-chart>
+          />
         </div>
       </card-component>
 
@@ -84,33 +83,33 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     HeroBar,
     // eslint-disable-next-line vue/no-unused-components
-    TitleBar,
+    TitleBar
   },
-  data() {
+  data () {
     return {
       defaultChart: {
         chartData: null,
-        extraOptions: chartConfig.chartOptionsMain,
+        extraOptions: chartConfig.chartOptionsMain
       },
       chartData: {
         type: 'bar',
         series: [
           {
-            values: [4, 5, 3, 3, 4, 4, 5, 3, 8, 6, 7, 6, 11],
+            values: [4, 5, 3, 3, 4, 4, 5, 3, 8, 6, 7, 6, 11]
           },
           {
-            values: [7, 8, 8, 6, 5, 7, 9, 5, 9, 8, 6, 9, 10],
-          },
-        ],
-      },
+            values: [7, 8, 8, 6, 5, 7, 9, 5, 9, 8, 6, 9, 10]
+          }
+        ]
+      }
     }
   },
   computed: {
-    titleStack() {
+    titleStack () {
       return ['Admin', 'Dashboard']
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.fillChartData()
 
     // this.$buefy.snackbar.open({
@@ -119,7 +118,7 @@ export default {
     // })
   },
   methods: {
-    randomChartData(n) {
+    randomChartData (n) {
       const data = []
 
       for (let i = 0; i < n; i++) {
@@ -128,7 +127,7 @@ export default {
 
       return data
     },
-    fillChartData() {
+    fillChartData () {
       this.defaultChart.chartData = {
         datasets: [
           {
@@ -144,7 +143,7 @@ export default {
             pointHoverRadius: 4,
             pointHoverBorderWidth: 15,
             pointRadius: 4,
-            data: this.randomChartData(9),
+            data: this.randomChartData(9)
           },
           {
             fill: false,
@@ -159,7 +158,7 @@ export default {
             pointHoverRadius: 4,
             pointHoverBorderWidth: 15,
             pointRadius: 4,
-            data: this.randomChartData(9),
+            data: this.randomChartData(9)
           },
           {
             fill: false,
@@ -174,12 +173,12 @@ export default {
             pointHoverRadius: 4,
             pointHoverBorderWidth: 15,
             pointRadius: 4,
-            data: this.randomChartData(9),
-          },
+            data: this.randomChartData(9)
+          }
         ],
-        labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09'],
+        labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09']
       }
-    },
-  },
+    }
+  }
 }
 </script>

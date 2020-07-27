@@ -10,7 +10,7 @@ export default {
     htmlAttrs: {
       lang: 'en',
       class:
-        'has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded',
+        'has-aside-left has-aside-mobile-transition has-navbar-fixed-top has-aside-expanded'
     },
     title: process.env.npm_package_name || '',
     meta: [
@@ -20,13 +20,13 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
-      },
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   router: {
-    middleware: ['check-auth'],
+    middleware: ['check-auth']
   },
   /*
    ** Customize the progress-bar color
@@ -44,7 +44,7 @@ export default {
     '~/plugins/lodash.js',
     '~/plugins/vee-validate.js',
     '~/plugins/axios.js',
-    '~/plugins/idle-vue.js',
+    '~/plugins/idle-vue.js'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -57,6 +57,8 @@ export default {
     ['@nuxtjs/dotenv', { filename: `.env.${process.env.NODE_ENV}` }],
     // Doc: https://pwa.nuxtjs.org/setup.html
     ['@nuxtjs/pwa', { icon: false }],
+    // Doc: https://typescript.nuxtjs.org/guide/setup.html
+    '@nuxt/typescript-build'
   ],
   /*
    ** Nuxt.js modules
@@ -95,18 +97,18 @@ export default {
         locales: [
           {
             code: 'ms',
-            file: 'ms_MY.js',
+            file: 'ms_MY.js'
           },
           {
             code: 'en',
-            file: 'en_US.js',
-          },
+            file: 'en_US.js'
+          }
         ],
         defaultLocale: 'ms',
         lazy: true,
-        langDir: 'lang/',
-      },
-    ],
+        langDir: 'lang/'
+      }
+    ]
   ],
   /*
    ** Axios module configuration
@@ -115,7 +117,7 @@ export default {
   axios: {
     // Doc: https://github.com/nuxt-community/axios-module#options
     // baseURL: 'https://laravel-restful.valet/'
-    baseUrl: process.env.API_URL,
+    baseUrl: process.env.API_URL
     // enable only if proxy can work
     // prefix: '/',
     // proxy: true
@@ -159,10 +161,10 @@ export default {
     vuex: { namespace: 'storage' },
     cookie: {
       prefix: '',
-      options: { path: '/' },
+      options: { path: '/' }
     },
     localStorage: { prefix: 'app.' },
-    ignoreExceptions: false,
+    ignoreExceptions: false
   },
   /*
    ** Build configuration
@@ -172,16 +174,20 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/,
-        })
+    extend (config, ctx) {
+      if (config) {
+
       }
-    },
+      if (ctx) {
+
+      }
+    }
   },
+  typescript: {
+    typeCheck: {
+      eslint: {
+        files: './**/*.{ts,js,vue}'
+      }
+    }
+  }
 }

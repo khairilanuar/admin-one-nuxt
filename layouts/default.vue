@@ -19,22 +19,22 @@ export default {
   components: {
     FooterBar,
     AsideMenu,
-    NavBar,
+    NavBar
   },
   data: () => {
     return {
-      menu: menu.items,
+      menu: menu.items
     }
   },
   computed: {},
-  created() {
+  created () {
     // this.$store.commit('user', {
     //   name: '',
     //   email: '',
     //   avatar: '/data-sources/avatars/annie-spratt-121576-unsplash.jpg'
     // })
   },
-  onIdle() {
+  onIdle () {
     const idleDuration = (process.env.IDLE_TIMEOUT || 20) * 60 * 1000
     const timeDiff =
       Math.round(new Date().getTime()) -
@@ -50,7 +50,7 @@ export default {
       // logout this window/tab
       this.$buefy.snackbar.open({
         message: 'Idle session detected, logging out!',
-        queue: false,
+        queue: false
       })
       this.$store
         .dispatch('auth/logout')
@@ -68,8 +68,8 @@ export default {
       this.$store.commit('idleVue/IDLE_CHANGED', 'false')
     }
   },
-  onActive() {
+  onActive () {
     window.console.log('not idle')
-  },
+  }
 }
 </script>

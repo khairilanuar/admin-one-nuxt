@@ -1,8 +1,8 @@
 <template>
   <div>
     <title-bar :title-stack="titleStack">
-      <template #left> </template>
-      <template #right> </template>
+      <template #left />
+      <template #right />
     </title-bar>
     <section class="section is-main-section">
       <user-form />
@@ -17,16 +17,16 @@ import TitleBar from '~/layouts/partials/TitleBar'
 export default {
   name: 'UserCreate',
   meta: {
-    permission: 'create-user',
+    permission: 'create-user'
   },
   components: {
     UserForm,
-    TitleBar,
+    TitleBar
   },
   computed: {
-    titleStack() {
+    titleStack () {
       return ['Access', 'Users', 'Create']
-    },
-  },
+    }
+  }
 }
 </script>

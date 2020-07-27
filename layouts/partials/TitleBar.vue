@@ -39,8 +39,8 @@ export default {
   props: {
     titleStack: {
       type: Array,
-      default: () => [],
-    },
-  },
+      default: () => []
+    }
+  }
 }
 </script>

@@ -15,20 +15,20 @@ import AsideMenuItem from '~/layouts/partials/AsideMenuItem'
 export default {
   name: 'AsideMenuList',
   components: {
-    AsideMenuItem,
+    AsideMenuItem
   },
   props: {
     isSubmenuList: {
       type: Boolean,
-      default: false,
+      default: false
     },
     menu: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   computed: {
-    userMenu() {
+    userMenu () {
       const menu = []
       this.menu.forEach((item) => {
         if (this.checkPermission(item)) {
@@ -36,19 +36,19 @@ export default {
         }
       })
       return menu
-    },
+    }
   },
   methods: {
-    menuClick(item) {
+    menuClick (item) {
       this.$emit('menu-click', item)
     },
-    checkPermission(item) {
+    checkPermission (item) {
       const permission = item.permission
       if (permission === undefined) {
         return true
       }
       return this.$store.getters['auth/hasPermission'](permission)
-    },
-  },
+    }
+  }
 }
 </script>

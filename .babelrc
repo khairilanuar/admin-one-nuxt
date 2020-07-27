@@ -3,7 +3,7 @@
     "test": {
       "presets": [
         [
-          "@babel/preset-env",
+          "ES2018",
           {
             "targets": {
               "node": "current"

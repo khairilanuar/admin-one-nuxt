@@ -5,8 +5,8 @@ export default {
       {
         to: '/admin',
         icon: 'desktop-mac',
-        label: 'Dashboard',
-      },
+        label: 'Dashboard'
+      }
     ],
     'System',
     [
@@ -18,15 +18,15 @@ export default {
           {
             to: '/admin/access/users',
             label: 'Users',
-            icon: 'account-multiple',
+            icon: 'account-multiple'
           },
           {
             to: '/admin/access/roles',
             label: 'Roles',
-            icon: 'shield-account',
-          },
-        ],
-      },
+            icon: 'shield-account'
+          }
+        ]
+      }
       /*
       {
         href: 'https://admin-one-vue-cli.justboil.me',
@@ -41,6 +41,6 @@ export default {
       */
     ],
     'Settings',
-    [],
-  ],
+    []
+  ]
 }

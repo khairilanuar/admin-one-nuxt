@@ -25,33 +25,33 @@
                 v-model="form.id"
                 custom-class="is-static"
                 readonly
-              ></b-input>
+              />
             </b-field>
-            <hr />
+            <hr>
             <b-field label="Avatar" horizontal>
               <file-picker />
             </b-field>
-            <hr />
+            <hr>
             <b-field label="Name" message="Client name" horizontal>
               <b-input
                 v-model="form.name"
                 placeholder="e.g. John Doe"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="Company" message="Client's company name" horizontal>
               <b-input
                 v-model="form.company"
                 placeholder="e.g. Berton & Steinway"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="City" message="Client's city" horizontal>
               <b-input
                 v-model="form.city"
                 placeholder="e.g. Geoffreyton"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="Created" horizontal>
               <b-datepicker
@@ -59,21 +59,21 @@
                 placeholder="Click to select..."
                 icon="calendar-today"
                 @input="input"
-              >
-              </b-datepicker>
+              />
             </b-field>
-            <hr />
+            <hr>
             <b-field label="Progress" horizontal>
-              <b-slider v-model="form.progress"></b-slider>
+              <b-slider v-model="form.progress" />
             </b-field>
-            <hr />
+            <hr>
             <b-field horizontal>
               <b-button
                 :loading="isLoading"
                 type="is-primary"
                 native-type="submit"
-                >Submit</b-button
               >
+                Submit
+              </b-button>
             </b-field>
           </form>
         </card-component>
@@ -87,43 +87,44 @@
             :avatar="form.file"
             class="image has-max-width is-aligned-center"
           />
-          <hr />
+          <hr>
           <b-field label="Name">
             <b-input
               :value="form.name"
               custom-class="is-static"
               readonly
-            ></b-input>
+            />
           </b-field>
           <b-field label="Company">
             <b-input
               :value="form.company"
               custom-class="is-static"
               readonly
-            ></b-input>
+            />
           </b-field>
           <b-field label="City">
             <b-input
               :value="form.city"
               custom-class="is-static"
               readonly
-            ></b-input>
+            />
           </b-field>
           <b-field label="Created">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
               readonly
-            ></b-input>
+            />
           </b-field>
-          <hr />
+          <hr>
           <b-field label="Progress">
             <progress
               :value="form.progress"
               class="progress is-small is-primary"
               max="100"
-              >{{ form.progress }}</progress
             >
+              {{ form.progress }}
+            </progress>
           </b-field>
         </card-component>
       </tiles>
@@ -152,24 +153,24 @@ export default {
     Tiles,
     HeroBar,
     TitleBar,
-    Notification,
+    Notification
   },
   props: {
     // eslint-disable-next-line vue/require-prop-types
     id: {
-      default: null,
-    },
+      default: null
+    }
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       form: this.getClearFormObject(),
       createdReadable: null,
-      isProfileExists: false,
+      isProfileExists: false
     }
   },
   computed: {
-    titleStack() {
+    titleStack () {
       let lastCrumb
 
       if (this.isProfileExists) {
@@ -180,37 +181,37 @@ export default {
 
       return ['Admin', 'Clients', lastCrumb]
     },
-    heroTitle() {
+    heroTitle () {
       if (this.isProfileExists) {
         return this.form.name
       } else {
         return 'Create Client'
       }
     },
-    heroRouterLinkTo() {
+    heroRouterLinkTo () {
       if (this.isProfileExists) {
         return { name: 'client.new' }
       } else {
         return '/'
       }
     },
-    heroRouterLinkLabel() {
+    heroRouterLinkLabel () {
       if (this.isProfileExists) {
         return 'New client'
       } else {
         return 'Dashboard'
       }
     },
-    formCardTitle() {
+    formCardTitle () {
       if (this.isProfileExists) {
         return 'Edit Client'
       } else {
         return 'New Client'
       }
-    },
+    }
   },
   watch: {
-    id(newValue) {
+    id (newValue) {
       this.isProfileExists = false
 
       if (!newValue) {
@@ -218,13 +219,13 @@ export default {
       } else {
         this.getData()
       }
-    },
+    }
   },
-  created() {
+  created () {
     this.getData()
   },
   methods: {
-    getClearFormObject() {
+    getClearFormObject () {
       return {
         id: null,
         name: null,
@@ -232,17 +233,17 @@ export default {
         city: null,
         created_date: new Date(),
         created_mm_dd_yyyy: null,
-        progress: 0,
+        progress: 0
       }
     },
-    getData() {
+    getData () {
       if (this.id) {
         axios
           .get('/data-sources/data.json')
           .then((r) => {
             const item = find(
               r.data.data,
-              (item) => item.id === parseInt(this.id)
+              item => item.id === parseInt(this.id)
             )
 
             if (item) {
@@ -260,15 +261,15 @@ export default {
             this.$buefy.toast.open({
               message: `Error: ${e.message}`,
               type: 'is-danger',
-              queue: false,
+              queue: false
             })
           })
       }
     },
-    input(v) {
+    input (v) {
       this.createdReadable = moment(v).format('MMM D, Y').toString()
     },
-    submit() {
+    submit () {
       this.isLoading = true
 
       setTimeout(() => {
@@ -276,10 +277,10 @@ export default {
 
         this.$buefy.snackbar.open({
           message: 'Demo only',
-          queue: false,
+          queue: false
         })
       }, 500)
-    },
-  },
+    }
+  }
 }
 </script>

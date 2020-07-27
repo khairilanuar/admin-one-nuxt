@@ -8,7 +8,7 @@ const list = ['Coffee', 'Tea', 'Snicker', 'Mars']
 
 test.beforeEach(() => {
   wrapper = mount(List, {
-    propsData: { list },
+    propsData: { list }
   })
 })
 

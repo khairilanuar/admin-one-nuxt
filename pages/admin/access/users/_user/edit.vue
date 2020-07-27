@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="section is-main-section">
-      <user-form :user-uuid="$route.params.user"></user-form>
+      <user-form :user-uuid="$route.params.user" />
     </section>
   </div>
 </template>
@@ -12,16 +12,16 @@ import UserForm from '~/components/Forms/UserForm'
 export default {
   name: 'UserEdit',
   meta: {
-    permission: 'update-user',
+    permission: 'update-user'
   },
   components: {
-    UserForm,
+    UserForm
   },
   data: () => {
     return {
-      user: null,
+      user: null
     }
   },
-  mounted() {},
+  mounted () {}
 }
 </script>

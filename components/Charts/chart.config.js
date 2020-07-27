@@ -2,16 +2,16 @@ export const chartColors = {
   default: {
     primary: '#00D1B2',
     info: '#209CEE',
-    danger: '#FF3860',
-  },
+    danger: '#FF3860'
+  }
 }
 
 export const baseChartOptions = {
   maintainAspectRatio: false,
   legend: {
-    display: false,
+    display: false
   },
-  responsive: true,
+  responsive: true
 }
 
 export const chartOptionsMain = {
@@ -24,7 +24,7 @@ export const chartOptionsMain = {
     xPadding: 12,
     mode: 'nearest',
     intersect: 0,
-    position: 'nearest',
+    position: 'nearest'
   },
   scales: {
     yAxes: [
@@ -33,13 +33,13 @@ export const chartOptionsMain = {
         gridLines: {
           drawBorder: false,
           color: 'rgba(29,140,248,0.0)',
-          zeroLineColor: 'transparent',
+          zeroLineColor: 'transparent'
         },
         ticks: {
           padding: 20,
-          fontColor: '#9a9a9a',
-        },
-      },
+          fontColor: '#9a9a9a'
+        }
+      }
     ],
 
     xAxes: [
@@ -48,13 +48,13 @@ export const chartOptionsMain = {
         gridLines: {
           drawBorder: false,
           color: 'rgba(225,78,202,0.1)',
-          zeroLineColor: 'transparent',
+          zeroLineColor: 'transparent'
         },
         ticks: {
           padding: 20,
-          fontColor: '#9a9a9a',
-        },
-      },
-    ],
-  },
+          fontColor: '#9a9a9a'
+        }
+      }
+    ]
+  }
 }

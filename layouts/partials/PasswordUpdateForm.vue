@@ -14,7 +14,7 @@
           autcomplete="current-password"
         />
       </b-field>
-      <hr />
+      <hr>
       <b-field horizontal label="New password" message="Required. New password">
         <b-input
           v-model="form.password"
@@ -37,7 +37,7 @@
           autocomplete="new-password"
         />
       </b-field>
-      <hr />
+      <hr>
       <b-field horizontal>
         <div class="control">
           <button
@@ -58,32 +58,32 @@ import CardComponent from '~/components/CardComponent'
 export default {
   name: 'PasswordUpdateForm',
   components: {
-    CardComponent,
+    CardComponent
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       form: {
         password_current: null,
         password: null,
-        password_confirmation: null,
-      },
+        password_confirmation: null
+      }
     }
   },
   methods: {
-    submit() {
+    submit () {
       this.isLoading = true
       setTimeout(() => {
         this.isLoading = false
         this.$buefy.snackbar.open(
           {
             message: 'Updated',
-            queue: false,
+            queue: false
           },
           500
         )
       })
-    },
-  },
+    }
+  }
 }
 </script>

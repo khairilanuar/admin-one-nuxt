@@ -56,7 +56,7 @@
               </option>
             </b-select>
           </b-field>
-          <hr />
+          <hr>
           <b-field label="Subject" message="Message subject" horizontal>
             <b-input
               v-model="form.subject"
@@ -77,18 +77,24 @@
               required
             />
           </b-field>
-          <hr />
+          <hr>
           <b-field horizontal>
             <b-field grouped>
               <div class="control">
-                <b-button native-type="submit" type="is-primary"
-                  >Submit</b-button
+                <b-button
+                  native-type="submit"
+                  type="is-primary"
                 >
+                  Submit
+                </b-button>
               </div>
               <div class="control">
-                <b-button type="is-primary is-outlined" @click="reset"
-                  >Reset</b-button
+                <b-button
+                  type="is-primary is-outlined"
+                  @click="reset"
                 >
+                  Reset
+                </b-button>
               </div>
             </b-field>
           </b-field>
@@ -102,20 +108,20 @@
             type="is-primary"
           />
         </b-field>
-        <hr />
+        <hr>
         <b-field label="Radio" class="has-check" horizontal>
           <radio-picker
             v-model="customElementsForm.radio"
             :options="{ one: 'One', two: 'Two' }"
-          ></radio-picker>
+          />
         </b-field>
-        <hr />
+        <hr>
         <b-field label="Switch" horizontal>
           <b-switch v-model="customElementsForm.switch">
             Default
           </b-switch>
         </b-field>
-        <hr />
+        <hr>
         <b-field label="File" horizontal>
           <file-picker v-model="customElementsForm.file" />
         </b-field>
@@ -140,9 +146,9 @@ export default {
     RadioPicker,
     CheckboxPicker,
     CardComponent,
-    TitleBar,
+    TitleBar
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       form: {
@@ -151,25 +157,25 @@ export default {
         phone: null,
         department: null,
         subject: null,
-        question: null,
+        question: null
       },
       customElementsForm: {
         checkbox: [],
         radio: null,
         switch: true,
-        file: null,
+        file: null
       },
-      departments: ['Business Development', 'Marketing', 'Sales'],
+      departments: ['Business Development', 'Marketing', 'Sales']
     }
   },
   computed: {
-    titleStack() {
+    titleStack () {
       return ['Admin', 'Forms']
-    },
+    }
   },
   methods: {
-    submit() {},
-    reset() {
+    submit () {},
+    reset () {
       this.form = mapValues(this.form, (item) => {
         if (item && typeof item === 'object') {
           return []
@@ -179,9 +185,9 @@ export default {
 
       this.$buefy.snackbar.open({
         message: 'Reset successfully',
-        queue: false,
+        queue: false
       })
-    },
-  },
+    }
+  }
 }
 </script>

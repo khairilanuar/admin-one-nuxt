@@ -30,8 +30,7 @@
             </ValidationProvider>
 
             <b-field :label="$t('application.email')" horizontal>
-              <b-input type="email" placeholder="email@saya.com" maxlength="30">
-              </b-input>
+              <b-input type="email" placeholder="email@saya.com" maxlength="30" />
             </b-field>
 
             <b-field
@@ -58,7 +57,7 @@
             <b-field label="Nota tambahan" horizontal>
               <b-input maxlength="512" type="textarea" />
             </b-field>
-            <hr />
+            <hr>
             <b-field horizontal>
               <div class="buttons">
                 <b-button
@@ -98,47 +97,47 @@ export default {
     CardComponent,
     Notification,
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver
   },
   props: {
     redirectUrl: { type: String, default: '/application/success' },
     cancelUrl: { type: String, default: '/' },
-    registrationId: { type: String, default: null },
+    registrationId: { type: String, default: null }
   },
-  data() {
+  data () {
     return {
       data: {},
       email: '',
       password: '',
       error: '',
       isLoading: false,
-      isLoadingForm: false,
+      isLoadingForm: false
     }
   },
   computed: {
-    isEdit() {
+    isEdit () {
       return !!this.registrationId
-    },
+    }
   },
-  mounted() {
+  mounted () {
     /*
     this.$buefy.snackbar.open({
       message: 'Please login',
       queue: false,
     })
     */
-    return import(`vee-validate/dist/locale/ms_MY.json`).then((locale) => {
+    return import('vee-validate/dist/locale/ms_MY.json').then((locale) => {
       localize('ms', locale)
     })
   },
   methods: {
-    submitForm() {
+    submitForm () {
       const data = {
         name: this.data.name || '',
         email: this.data.email || '',
         identification_no: this.data.identification_no || '',
         aid_type_id: 1,
-        note: this.data.note || '',
+        note: this.data.note || ''
       }
 
       let promise = null
@@ -157,7 +156,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false,
+            queue: false
           })
           this.$router.push(this.redirectUrl)
         })
@@ -166,10 +165,10 @@ export default {
           this.$buefy.snackbar.open({
             message: error.response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
         })
-    },
-  },
+    }
+  }
 }
 </script>

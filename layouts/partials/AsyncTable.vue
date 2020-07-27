@@ -74,30 +74,30 @@ export default {
   props: {
     dataUrl: {
       type: String,
-      default: null,
+      default: null
     },
     search: {
       type: String,
-      default: null,
+      default: null
     },
     checkable: {
       type: Boolean,
-      default: false,
+      default: false
     },
     checkedRows: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     perPage: {
       type: Number,
-      default: 10,
+      default: 10
     },
     currentPage: {
       type: Number,
-      default: 1,
-    },
+      default: 1
+    }
   },
-  data() {
+  data () {
     return {
       data: [],
       checked: this.checkedRows,
@@ -111,16 +111,16 @@ export default {
       sortDir: 'desc',
       from: 0,
       to: 0,
-      total: 0,
+      total: 0
     }
   },
   computed: {},
   watch: {
-    search(newSearch, oldSearch) {
+    search (_) {
       this.debouncedLoadData()
-    },
+    }
   },
-  mounted() {
+  mounted () {
     if (this.dataUrl) {
       this.loadData()
     }
@@ -130,14 +130,14 @@ export default {
     this.debouncedLoadData = this.$lodash.debounce(this.loadData, 300)
   },
   methods: {
-    loadData() {
+    loadData () {
       this.isLoading = true
       const params = {
         sortBy: this.sortBy,
         sortDir: this.sortDir,
         page: this.page,
         perPage: this.pageLength,
-        search: this.search ? this.search : null,
+        search: this.search ? this.search : null
       }
       this.$axios
         .get(this.dataUrl, { params })
@@ -157,7 +157,7 @@ export default {
                 response.data.payload.meta.pagination.count
               this.pages = Array.from(
                 { length: this.lastPage },
-                (v, k) => k + 1
+                (_, k) => k + 1
               )
             } else {
               // no presenter
@@ -169,7 +169,7 @@ export default {
               this.page = response.data.payload.current_page
               this.pages = Array.from(
                 { length: response.data.payload.last_page },
-                (v, k) => k + 1
+                (_, k) => k + 1
               )
             }
           }
@@ -180,29 +180,29 @@ export default {
           this.isLoading = false
           this.$buefy.toast.open({
             message: `Error: ${error.message}`,
-            type: 'is-danger',
+            type: 'is-danger'
           })
         })
     },
-    goPage(page) {
+    goPage (page) {
       this.page = page
       this.loadData()
       this.$emit('page-change', page)
     },
-    goSort(field, order) {
+    goSort (field, order) {
       this.sortBy = field
       this.sortDir = order
       this.loadData()
       this.$emit('sort', field, order)
     },
-    goCheck(checkedList, row) {
+    goCheck (checkedList, row) {
       this.$emit('check', checkedList, row)
     },
-    goClick(row) {
+    goClick (row) {
       // eslint-disable-next-line no-console
       console.log(row)
       this.$emit('click', row)
-    },
-  },
+    }
+  }
 }
 </script>

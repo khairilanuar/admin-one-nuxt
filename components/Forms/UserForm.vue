@@ -16,7 +16,7 @@
             <b-field label="Profile Image" horizontal>
               <file-picker />
             </b-field>
-            <hr />
+            <hr>
             <ValidationProvider
               v-slot="{ errors }"
               name="First Name"
@@ -73,8 +73,7 @@
                 icon="label"
                 placeholder="Select role"
                 @typing="getFilteredRoles"
-              >
-              </b-taginput>
+              />
             </b-field>
             <ValidationProvider
               v-if="!isEdit"
@@ -122,7 +121,7 @@
                 {{ data.confirmed ? 'Yes' : 'No' }}
               </b-switch>
             </b-field>
-            <hr />
+            <hr>
             <b-field horizontal>
               <div class="buttons">
                 <b-button
@@ -156,7 +155,7 @@
           :avatar="data.file"
           class="image has-max-width is-aligned-center"
         />
-        <hr />
+        <hr>
         <b-field label="Name">
           <b-input :value="data.name" custom-class="is-static" readonly />
         </b-field>
@@ -169,7 +168,7 @@
         <b-field label="Created">
           <b-input value="" custom-class="is-static" readonly />
         </b-field>
-        <hr />
+        <hr>
         <b-field label="Progress">
           <progress
             :value="data.progress"
@@ -201,12 +200,12 @@ export default {
     Notification,
     FilePicker,
     ValidationProvider,
-    ValidationObserver,
+    ValidationObserver
   },
   props: {
     redirectUrl: { type: String, default: '/admin/access/users' },
     cancelUrl: { type: String, default: '/admin/access/users' },
-    userUuid: { type: String, default: null },
+    userUuid: { type: String, default: null }
   },
   data: () => {
     return {
@@ -219,15 +218,15 @@ export default {
       filteredRoles: [],
 
       defaultData: { confirmed: true },
-      data: {},
+      data: {}
     }
   },
   computed: {
-    isEdit() {
+    isEdit () {
       return !!this.userUuid
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.resetForm()
     this.formTitle = 'Add User'
 
@@ -238,10 +237,10 @@ export default {
     }
   },
   methods: {
-    resetForm() {
+    resetForm () {
       this.data = this.$lodash.cloneDeep(this.defaultData)
     },
-    loadRoles() {
+    loadRoles () {
       this.$axios
         .get('/api/role', { params: { per_page: 100 } })
         .then((response) => {
@@ -249,7 +248,7 @@ export default {
         })
         .catch()
     },
-    loadUser(uuid) {
+    loadUser (uuid) {
       this.isLoadingForm = true
       this.$axios
         .get('/api/user/' + uuid)
@@ -261,16 +260,16 @@ export default {
           this.$buefy.snackbar.open({
             message: response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
           this.isLoadingForm = false
         })
     },
-    submitForm() {
+    submitForm () {
       const data = {
         email: this.data.email || '',
         first_name: this.data.first_name || '',
-        last_name: this.data.last_name || '',
+        last_name: this.data.last_name || ''
       }
 
       let promise = null
@@ -289,7 +288,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false,
+            queue: false
           })
           this.$router.push(this.redirectUrl)
         })
@@ -298,15 +297,15 @@ export default {
           this.$buefy.snackbar.open({
             message: error.response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
         })
     },
-    getFilteredRoles(text) {
+    getFilteredRoles (text) {
       this.filteredRoles = this.roles.filter((option) => {
         return option.name.toString().toLowerCase().includes(text.toLowerCase())
       })
-    },
-  },
+    }
+  }
 }
 </script>

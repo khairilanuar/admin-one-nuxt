@@ -13,20 +13,20 @@ export default {
   layout: 'public',
   name: 'Main',
   components: {
-    ApplicationForm,
+    ApplicationForm
   },
-  data() {
+  data () {
     return {
       data: {},
       email: '',
       password: '',
       error: '',
       isLoading: false,
-      isLoadingForm: false,
+      isLoadingForm: false
     }
   },
   computed: {},
-  mounted() {
+  mounted () {
     /*
     this.$buefy.snackbar.open({
       message: 'Please login',
@@ -35,13 +35,13 @@ export default {
     */
   },
   methods: {
-    submitForm() {
+    submitForm () {
       const data = {
         name: this.data.name || '',
         email: this.data.email || '',
         identification_no: this.data.identification_no || '',
         aid_type_id: 1,
-        note: this.data.note || '',
+        note: this.data.note || ''
       }
 
       let promise = null
@@ -60,7 +60,7 @@ export default {
         .then((response) => {
           this.$buefy.snackbar.open({
             message: response.data.message,
-            queue: false,
+            queue: false
           })
           this.$router.push(this.redirectUrl)
         })
@@ -69,12 +69,12 @@ export default {
           this.$buefy.snackbar.open({
             message: error.response.data.message,
             type: 'is-danger',
-            queue: false,
+            queue: false
           })
         })
-    },
+    }
   },
-  head() {
+  head () {
     return {
       title: 'Permohonan',
       meta: [
@@ -82,14 +82,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
-        },
+          content: 'My custom description'
+        }
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
-      },
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
-  },
+  }
 }
 </script>

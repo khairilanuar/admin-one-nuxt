@@ -2,7 +2,7 @@
   <div class="card is-card-widget">
     <header v-if="title" class="card-header">
       <p class="card-header-title">
-        <b-icon v-if="icon" :icon="icon" custom-size="default"></b-icon>
+        <b-icon v-if="icon" :icon="icon" custom-size="default" />
         {{ title }}
       </p>
       <a
@@ -12,7 +12,7 @@
         aria-label="more options"
         @click.prevent="headerIconClick"
       >
-        <b-icon :icon="headerIcon" custom-size="default"></b-icon>
+        <b-icon :icon="headerIcon" custom-size="default" />
       </a>
     </header>
     <div class="card-content">
@@ -27,21 +27,21 @@ export default {
   props: {
     title: {
       type: String,
-      default: null,
+      default: null
     },
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     headerIcon: {
       type: String,
-      default: null,
-    },
+      default: null
+    }
   },
   methods: {
-    headerIconClick() {
+    headerIconClick () {
       this.$emit('header-icon-click')
-    },
-  },
+    }
+  }
 }
 </script>

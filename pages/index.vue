@@ -1,5 +1,5 @@
 <template>
-  <section></section>
+  <section />
 </template>
 
 <script>
@@ -7,23 +7,23 @@ export default {
   layout: 'public',
   name: 'Main',
   components: {},
-  data() {
+  data () {
     return {
       email: '',
       password: '',
       error: '',
-      isLoading: false,
+      isLoading: false
     }
   },
   computed: {},
-  mounted() {
+  mounted () {
     this.$buefy.snackbar.open({
       message: 'Please login',
-      queue: false,
+      queue: false
     })
   },
   methods: {
-    login() {
+    login () {
       try {
         this.isLoading = true
         this.error = ''
@@ -42,9 +42,9 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
-    },
+    }
   },
-  head() {
+  head () {
     return {
       title: 'Home',
       meta: [
@@ -52,14 +52,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
-        },
+          content: 'My custom description'
+        }
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
-      },
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
-  },
+  }
 }
 </script>

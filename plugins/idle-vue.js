@@ -6,7 +6,7 @@ export default function ({ store }) {
   const options = {
     eventEmitter: eventsHub,
     store,
-    idleTime: (process.env.IDLE_TIMEOUT || 20) * 60 * 1000,
+    idleTime: (process.env.IDLE_TIMEOUT || 20) * 60 * 1000
   }
 
   Vue.use(IdleVue, options)

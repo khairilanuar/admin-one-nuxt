@@ -11,7 +11,7 @@
           <div class="level-item">
             <div class="logo">
               <a href="https://infinitum.com.my">
-                <img src="~assets/logo-only-red.png" alt="logo" />
+                <img src="~assets/logo-only-red.png" alt="logo">
               </a>
             </div>
           </div>
@@ -28,10 +28,10 @@ import { mapState } from 'vuex'
 export default {
   name: 'FooterBar',
   computed: {
-    year() {
+    year () {
       return moment().year()
     },
-    ...mapState(['isFooterBarVisible']),
-  },
+    ...mapState(['isFooterBarVisible'])
+  }
 }
 </script>

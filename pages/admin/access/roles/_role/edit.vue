@@ -12,16 +12,16 @@ import RoleForm from '~/components/Forms/RoleForm'
 export default {
   name: 'RoleEdit',
   meta: {
-    permission: 'update-role',
+    permission: 'update-role'
   },
   components: {
-    RoleForm,
+    RoleForm
   },
   data: () => {
     return {
-      user: null,
+      user: null
     }
   },
-  mounted() {},
+  mounted () {}
 }
 </script>

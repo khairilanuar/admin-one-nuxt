@@ -1,5 +1,5 @@
 import lodash from 'lodash'
 
-export default ({ app }, inject) => {
+export default ({ _ }, inject) => {
   inject('lodash', lodash)
 }

@@ -7,19 +7,19 @@ export const state = () => {
       batches: null,
       courses: null,
       student_statuses: null,
-      student_course_statuses: null,
-    },
+      student_course_statuses: null
+    }
   }
 }
 
 export const mutations = {
-  set_data(state, params) {
+  set_data (state, params) {
     state.data[params.ref] = params.data
-  },
+  }
 }
 
 export const actions = {
-  refData({ commit, state }, ref, force = false) {
+  refData ({ commit, state }, ref, force = false) {
     return new Promise((resolve, reject) => {
       // ref keys to api url map
       const refMap = referencesMap
@@ -52,15 +52,15 @@ export const actions = {
           reject(err)
         })
     })
-  },
+  }
 }
 
 export const getters = {
-  get: (state) => (reference) => {
+  get: state => (reference) => {
     // eslint-disable-next-line no-console
     // console.log(state.data)
     // eslint-disable-next-line
     // console.log(state.data.departments)
     return state.data[reference]
-  },
+  }
 }

@@ -1,12 +1,14 @@
 export default function ({ isServer, store, req, app }) {
   // If nuxt generate, pass this middleware
   // eslint-disable-next-line no-useless-return
-  // if (isServer && !req) return
+  if (isServer && !req) {
+    // return
+  }
   store.commit('auth/SET_USER', {
     roles: app.$storage.getLocalStorage('roles'),
     permissions: app.$storage.getLocalStorage('permissions'),
     token: app.$storage.getLocalStorage('token'),
-    user: app.$storage.getLocalStorage('user'),
+    user: app.$storage.getLocalStorage('user')
   })
   app.$storage.setLocalStorage('lastActive', +new Date())
 }

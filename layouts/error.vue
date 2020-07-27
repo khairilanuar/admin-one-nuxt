@@ -7,13 +7,17 @@
             <div class="has-text-centered">
               <div>
                 <div class="error-page-icon">
-                  <span class="icon"
-                    ><i class="mdi mdi-power-plug default"></i
-                  ></span>
+                  <span
+                    class="icon"
+                  ><i class="mdi mdi-power-plug default" /></span>
                 </div>
                 <div class="error-page-caption">
-                  <h1 v-if="error.statusCode === 404">Page not found</h1>
-                  <h1 v-else>An error occurred</h1>
+                  <h1 v-if="error.statusCode === 404">
+                    Page not found
+                  </h1>
+                  <h1 v-else>
+                    An error occurred
+                  </h1>
                 </div>
                 <div class="error-page-action">
                   <div class="buttons is-centered">
@@ -28,7 +32,9 @@
         </div>
       </div>
     </div>
-    <div class="hero-foot has-text-centered"><div class="logo"></div></div>
+    <div class="hero-foot has-text-centered">
+      <div class="logo" />
+    </div>
   </section>
 </template>
 
@@ -37,16 +43,16 @@ export default {
   layout: 'empty',
   name: 'Error',
   props: {
-    error: { type: Object, default: null },
+    error: { type: Object, default: null }
   },
   auth: false,
-  data() {
+  data () {
     return {}
   },
   computed: {},
-  mounted() {},
+  mounted () {},
   methods: {},
-  head() {
+  head () {
     return {
       title: 'Login',
       meta: [
@@ -54,14 +60,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
-        },
+          content: 'My custom description'
+        }
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
-      },
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
-  },
+  }
 }
 </script>

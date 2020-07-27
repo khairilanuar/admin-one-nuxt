@@ -30,7 +30,7 @@
       <div class="navbar-end">
         <nav-bar-menu class="has-divider">
           <b-icon icon="menu" custom-size="default" />
-          <span> </span>
+          <span />
           <div slot="dropdown" class="navbar-dropdown">
             <nuxt-link
               to="/profile"
@@ -48,7 +48,7 @@
               <b-icon icon="email" custom-size="default" />
               <span>Messages</span>
             </a>
-            <hr class="navbar-divider" />
+            <hr class="navbar-divider">
             <a class="navbar-item">
               <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
@@ -74,7 +74,7 @@
               <b-icon icon="email" custom-size="default" />
               <span>Messages</span>
             </a>
-            <hr class="navbar-divider" />
+            <hr class="navbar-divider">
             <a class="navbar-item" @click="logout">
               <b-icon icon="logout" custom-size="default" />
               <span>Log Out</span>
@@ -113,34 +113,34 @@ export default {
   name: 'NavBar',
   components: {
     UserAvatar,
-    NavBarMenu,
+    NavBarMenu
   },
-  data() {
+  data () {
     return {
-      isMenuNavBarActive: false,
+      isMenuNavBarActive: false
     }
   },
   computed: {
-    menuNavBarToggleIcon() {
+    menuNavBarToggleIcon () {
       return this.isMenuNavBarActive ? 'close' : 'dots-vertical'
     },
-    menuToggleMobileIcon() {
+    menuToggleMobileIcon () {
       return this.isAsideMobileExpanded ? 'backburger' : 'forwardburger'
     },
     ...mapState({
-      isNavBarVisible: (state) => state.isNavBarVisible,
-      isAsideMobileExpanded: (state) => state.isAsideMobileExpanded,
-      userName: (state) => state.auth.user.full_name,
-    }),
+      isNavBarVisible: state => state.isNavBarVisible,
+      isAsideMobileExpanded: state => state.isAsideMobileExpanded,
+      userName: state => state.auth.user.full_name
+    })
   },
   methods: {
-    menuToggleMobile() {
+    menuToggleMobile () {
       this.$store.commit('asideMobileStateToggle')
     },
-    menuNavBarToggle() {
+    menuNavBarToggle () {
       this.isMenuNavBarActive = !this.isMenuNavBarActive
     },
-    logout() {
+    logout () {
       this.$store
         .dispatch('auth/logout')
         .then(() => {
@@ -155,7 +155,7 @@ export default {
           this.$store.commit('auth/CLEAR_USER')
           this.$router.push('/?logout')
         })
-    },
-  },
+    }
+  }
 }
 </script>

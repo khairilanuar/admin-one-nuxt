@@ -2,8 +2,8 @@ import createMultiTabState from 'vuex-multi-tab-state'
 
 export const plugins = [
   createMultiTabState({
-    statesPaths: ['idleVue', 'shared'],
-  }),
+    statesPaths: ['idleVue', 'shared']
+  })
 ]
 
 export const state = () => ({
@@ -20,17 +20,17 @@ export const state = () => ({
 
   /* Aside */
   isAsideVisible: true,
-  isAsideMobileExpanded: false,
+  isAsideMobileExpanded: false
 })
 
 export const mutations = {
   /* A fit-them-all commit */
-  basic(state, payload) {
+  basic (state, payload) {
     state[payload.key] = payload.value
   },
 
   /* User */
-  user(state, payload) {
+  user (state, payload) {
     if (payload.name) {
       state.userName = payload.name
     }
@@ -43,7 +43,7 @@ export const mutations = {
   },
 
   /* Aside Mobile */
-  asideMobileStateToggle(state, payload = null) {
+  asideMobileStateToggle (state, payload = null) {
     const htmlClassName = 'has-aside-mobile-expanded'
 
     let isShow
@@ -61,5 +61,5 @@ export const mutations = {
     }
 
     state.isAsideMobileExpanded = isShow
-  },
+  }
 }

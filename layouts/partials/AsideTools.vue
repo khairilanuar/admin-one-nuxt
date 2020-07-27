@@ -1,7 +1,7 @@
 <template>
   <div class="aside-tools">
     <div class="aside-tools-label">
-      <b-icon v-if="icon" :icon="icon" custom-size="default"></b-icon>
+      <b-icon v-if="icon" :icon="icon" custom-size="default" />
       <slot name="label" />
     </div>
   </div>
@@ -13,12 +13,12 @@ export default {
   props: {
     icon: {
       type: String,
-      default: null,
+      default: null
     },
     label: {
       type: String,
-      default: null,
-    },
-  },
+      default: null
+    }
+  }
 }
 </script>

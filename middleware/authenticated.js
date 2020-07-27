@@ -1,6 +1,6 @@
 import { SnackbarProgrammatic as Snackbar } from 'buefy'
 
-export default function ({ store, redirect, route, from, app }) {
+export default function ({ store, redirect, route, from, _ }) {
   // check authenticated
   if (!store.getters['auth/isAuthenticated']) {
     return redirect('/login')
@@ -17,7 +17,7 @@ export default function ({ store, redirect, route, from, app }) {
       Snackbar.open({
         message: `Error! You don't have permission to access: ${route.fullPath}`,
         type: 'is-danger',
-        queue: false,
+        queue: false
       })
     }
   }

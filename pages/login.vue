@@ -7,8 +7,7 @@
             <div class="card has-card-header-background">
               <header class="card-header">
                 <p class="card-header-title">
-                  <span class="icon"><i class="mdi mdi-lock default" /></span
-                  ><span>Login</span>
+                  <span class="icon"><i class="mdi mdi-lock default" /></span><span>Login</span>
                 </p>
               </header>
               <div class="card-content">
@@ -53,19 +52,19 @@
                       </b-field>
                     </ValidationProvider>
                     <div class="field">
-                      <label class="b-checkbox checkbox is-thin"
-                        ><input
-                          type="checkbox"
-                          true-value="true"
-                          value="false"
-                        />
+                      <label
+                        class="b-checkbox checkbox is-thin"
+                      ><input
+                         type="checkbox"
+                         true-value="true"
+                         value="false"
+                       >
                         <span class="check is-black" />
                         <span class="control-label">
                           Remember me
-                        </span></label
-                      >
+                        </span></label>
                     </div>
-                    <hr />
+                    <hr>
                     <b-notification
                       v-if="error.length"
                       type="is-danger"
@@ -86,8 +85,7 @@
                           native-type="submit"
                           type="is-primary"
                           value="Login"
-                        >
-                        </b-button>
+                        />
                       </div>
                       <div class="control">
                         <b-button
@@ -107,7 +105,9 @@
         </div>
       </div>
     </div>
-    <div class="hero-foot has-text-centered"><div class="logo"></div></div>
+    <div class="hero-foot has-text-centered">
+      <div class="logo" />
+    </div>
   </section>
 </template>
 
@@ -119,16 +119,16 @@ export default {
   name: 'Login',
   components: { ValidationProvider, ValidationObserver },
   middleware: 'anonymous',
-  data() {
+  data () {
     return {
       email: '',
       password: '',
       error: '',
-      isLoading: false,
+      isLoading: false
     }
   },
   computed: {},
-  mounted() {
+  mounted () {
     /*
     this.$buefy.snackbar.open({
       message: 'Please login',
@@ -137,7 +137,7 @@ export default {
     */
   },
   methods: {
-    login() {
+    login () {
       try {
         this.isLoading = true
         this.error = ''
@@ -156,9 +156,9 @@ export default {
 
         this.$router.push('/')
       } catch (e) {}
-    },
+    }
   },
-  head() {
+  head () {
     return {
       title: 'Login',
       meta: [
@@ -166,14 +166,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'My custom description',
-        },
+          content: 'My custom description'
+        }
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
-      },
+        class: 'has-aside-mobile-transition has-aside-expanded'
+      }
     }
-  },
+  }
 }
 </script>

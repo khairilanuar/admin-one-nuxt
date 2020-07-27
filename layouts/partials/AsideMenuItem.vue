@@ -37,39 +37,39 @@ export default {
   props: {
     item: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
-  data() {
+  data () {
     return {
-      isDropdownActive: false,
+      isDropdownActive: false
     }
   },
   computed: {
-    componentIs() {
+    componentIs () {
       return this.item.to ? 'router-link' : 'a'
     },
-    hasDropdown() {
+    hasDropdown () {
       return !!this.item.menu
     },
-    dropdownIcon() {
+    dropdownIcon () {
       return this.isDropdownActive ? 'minus' : 'plus'
     },
-    itemTo() {
+    itemTo () {
       return this.item.to ? this.item.to : null
     },
-    itemHref() {
+    itemHref () {
       return this.item.href ? this.item.href : null
-    },
+    }
   },
   methods: {
-    menuClick() {
+    menuClick () {
       this.$emit('menu-click', this.item)
 
       if (this.hasDropdown) {
         this.isDropdownActive = !this.isDropdownActive
       }
-    },
-  },
+    }
+  }
 }
 </script>

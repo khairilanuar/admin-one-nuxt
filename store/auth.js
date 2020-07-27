@@ -3,12 +3,12 @@ export const state = () => {
     user: null,
     permissions: null,
     roles: null,
-    token: null,
+    token: null
   }
 }
 
 export const mutations = {
-  SET_USER(state, payload) {
+  SET_USER (state, payload) {
     this.$storage.setLocalStorage('user', payload.user || null)
     this.$storage.setLocalStorage('permissions', payload.permissions || null)
     this.$storage.setLocalStorage('roles', payload.roles || null)
@@ -24,7 +24,7 @@ export const mutations = {
     state.roles = payload.roles || null
     state.token = payload.token || null
   },
-  CLEAR_USER(state) {
+  CLEAR_USER (state) {
     state.token = null
     state.user = null
     state.permissions = null
@@ -37,11 +37,11 @@ export const mutations = {
     this.$storage.removeLocalStorage('user')
     this.$storage.removeLocalStorage('permissions')
     this.$storage.removeLocalStorage('roles')
-  },
+  }
 }
 
 export const actions = {
-  login({ commit }, data) {
+  login ({ commit }, data) {
     return new Promise((resolve, reject) => {
       this.$axios
         .post('/api/auth/login', data)
@@ -55,7 +55,7 @@ export const actions = {
         })
     })
   },
-  logout({ commit }) {
+  logout ({ commit }) {
     return new Promise((resolve, reject) => {
       this.$axios
         .post('/api/auth/logout')
@@ -68,17 +68,17 @@ export const actions = {
           reject(err.response)
         })
     })
-  },
+  }
 }
 
 export const getters = {
-  isAuthenticated(state) {
+  isAuthenticated (state) {
     return !!state.user
   },
-  loggedUser(state) {
+  loggedUser (state) {
     return state.user
   },
-  hasPermission: (state) => (permission) => {
-    return !!state.permissions.find((p) => p.name === permission)
-  },
+  hasPermission: state => (permission) => {
+    return !!state.permissions.find(p => p.name === permission)
+  }
 }

@@ -14,34 +14,34 @@ export default {
   props: {
     options: {
       type: Object,
-      default: null,
+      default: null
     },
     type: {
       type: String,
-      default: null,
+      default: null
     },
     // eslint-disable-next-line vue/require-prop-types
     value: {
-      default: null,
-    },
+      default: null
+    }
   },
-  data() {
+  data () {
     return {
-      newValue: null,
+      newValue: null
     }
   },
   watch: {
-    value(newValue) {
+    value (newValue) {
       this.newValue = newValue
-    },
+    }
   },
-  created() {
+  created () {
     this.newValue = this.value
   },
   methods: {
-    input() {
+    input () {
       this.$emit('input', this.newValue)
-    },
-  },
+    }
+  }
 }
 </script>

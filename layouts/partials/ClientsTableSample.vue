@@ -20,7 +20,7 @@
       <template slot-scope="props">
         <b-table-column class="has-no-head-mobile is-image-cell">
           <div class="image">
-            <img :src="props.row.file" class="is-rounded" />
+            <img :src="props.row.file" class="is-rounded">
           </div>
         </b-table-column>
         <b-table-column label="Name" field="name" sortable>
@@ -42,15 +42,15 @@
             :value="props.row.progress"
             class="progress is-small is-primary"
             max="100"
-            >{{ props.row.progress }}</progress
           >
+            {{ props.row.progress }}
+          </progress>
         </b-table-column>
         <b-table-column label="Created">
           <small
             :title="props.row.created"
             class="has-text-grey is-abbr-like"
-            >{{ props.row.created }}</small
-          >
+          >{{ props.row.created }}</small>
         </b-table-column>
         <b-table-column custom-key="actions" class="is-actions-cell">
           <div class="buttons is-right">
@@ -101,14 +101,14 @@ export default {
   props: {
     dataUrl: {
       type: String,
-      default: null,
+      default: null
     },
     checkable: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
-  data() {
+  data () {
     return {
       isModalActive: false,
       trashObject: null,
@@ -116,19 +116,19 @@ export default {
       isLoading: false,
       paginated: false,
       perPage: 10,
-      checkedRows: [],
+      checkedRows: []
     }
   },
   computed: {
-    trashObjectName() {
+    trashObjectName () {
       if (this.trashObject) {
         return this.trashObject.name
       }
 
       return null
-    },
+    }
   },
-  mounted() {
+  mounted () {
     if (this.dataUrl) {
       this.isLoading = true
       axios
@@ -146,27 +146,27 @@ export default {
           this.isLoading = false
           this.$buefy.toast.open({
             message: `Error: ${e.message}`,
-            type: 'is-danger',
+            type: 'is-danger'
           })
         })
     }
   },
   methods: {
-    trashModal(trashObject) {
+    trashModal (trashObject) {
       this.$swal('hello')
       this.trashObject = trashObject
       this.isModalActive = true
     },
-    trashConfirm() {
+    trashConfirm () {
       this.isModalActive = false
       this.$buefy.snackbar.open({
         message: 'Confirmed',
-        queue: false,
+        queue: false
       })
     },
-    trashCancel() {
+    trashCancel () {
       this.isModalActive = false
-    },
-  },
+    }
+  }
 }
 </script>
