@@ -1,4 +1,4 @@
-import referencesMap from '~/static/references_map'
+import referencesMap from '~/assets/static/references_map'
 
 export const state = () => {
   return {
@@ -19,7 +19,7 @@ export const mutations = {
 }
 
 export const actions = {
-  refData({ commit, state }, ref, force = false) {
+  refData({ commit, state }, { ref, refParam = 0, force = false }) {
     return new Promise((resolve, reject) => {
       // ref keys to api url map
       const refMap = referencesMap
@@ -41,7 +41,7 @@ export const actions = {
       }
 
       this.$axios
-        .get(refMap[ref], { params: { ref: 1 } })
+        .get(refMap[ref], { params: { ref: refParam || 1 } })
         .then((res) => {
           commit('set_data', { ref, data: res.data.payload })
           // eslint-disable-next-line

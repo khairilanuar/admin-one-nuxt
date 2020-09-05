@@ -21,11 +21,7 @@
         >
           <form @submit.prevent="submit">
             <b-field label="ID" horizontal>
-              <b-input
-                v-model="form.id"
-                custom-class="is-static"
-                readonly
-              ></b-input>
+              <b-input v-model="form.id" custom-class="is-static" readonly />
             </b-field>
             <hr />
             <b-field label="Avatar" horizontal>
@@ -37,21 +33,21 @@
                 v-model="form.name"
                 placeholder="e.g. John Doe"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="Company" message="Client's company name" horizontal>
               <b-input
                 v-model="form.company"
                 placeholder="e.g. Berton & Steinway"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="City" message="Client's city" horizontal>
               <b-input
                 v-model="form.city"
                 placeholder="e.g. Geoffreyton"
                 required
-              ></b-input>
+              />
             </b-field>
             <b-field label="Created" horizontal>
               <b-datepicker
@@ -64,7 +60,7 @@
             </b-field>
             <hr />
             <b-field label="Progress" horizontal>
-              <b-slider v-model="form.progress"></b-slider>
+              <b-slider v-model="form.progress" />
             </b-field>
             <hr />
             <b-field horizontal>
@@ -89,32 +85,20 @@
           />
           <hr />
           <b-field label="Name">
-            <b-input
-              :value="form.name"
-              custom-class="is-static"
-              readonly
-            ></b-input>
+            <b-input :value="form.name" custom-class="is-static" readonly />
           </b-field>
           <b-field label="Company">
-            <b-input
-              :value="form.company"
-              custom-class="is-static"
-              readonly
-            ></b-input>
+            <b-input :value="form.company" custom-class="is-static" readonly />
           </b-field>
           <b-field label="City">
-            <b-input
-              :value="form.city"
-              custom-class="is-static"
-              readonly
-            ></b-input>
+            <b-input :value="form.city" custom-class="is-static" readonly />
           </b-field>
           <b-field label="Created">
             <b-input
               :value="createdReadable"
               custom-class="is-static"
               readonly
-            ></b-input>
+            />
           </b-field>
           <hr />
           <b-field label="Progress">
@@ -122,8 +106,9 @@
               :value="form.progress"
               class="progress is-small is-primary"
               max="100"
-              >{{ form.progress }}</progress
             >
+              {{ form.progress }}
+            </progress>
           </b-field>
         </card-component>
       </tiles>

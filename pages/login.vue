@@ -60,9 +60,7 @@
                           value="false"
                         />
                         <span class="check is-black" />
-                        <span class="control-label">
-                          Remember me
-                        </span></label
+                        <span class="control-label"> Remember me </span></label
                       >
                     </div>
                     <hr />
@@ -92,7 +90,7 @@
                       <div class="control">
                         <b-button
                           tag="nuxt-link"
-                          to="/forgot-password"
+                          :to="localePath('/forgot-password')"
                           type="is-text"
                         >
                           Forgot Password?
@@ -146,7 +144,7 @@ export default {
           .dispatch('auth/login', data)
           .then(() => {
             this.isLoading = false
-            this.$router.push('/')
+            this.$router.push('/admin')
           })
           .catch((err) => {
             window.console.log(err.response)
@@ -154,7 +152,7 @@ export default {
             this.isLoading = false
           })
 
-        this.$router.push('/')
+        this.$router.push('/admin')
       } catch (e) {}
     },
   },
@@ -171,7 +169,7 @@ export default {
       ],
       htmlAttrs: {
         lang: 'en',
-        class: 'has-aside-mobile-transition has-aside-expanded',
+        class: '',
       },
     }
   },

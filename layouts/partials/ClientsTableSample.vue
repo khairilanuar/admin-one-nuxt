@@ -42,8 +42,9 @@
             :value="props.row.progress"
             class="progress is-small is-primary"
             max="100"
-            >{{ props.row.progress }}</progress
           >
+            {{ props.row.progress }}
+          </progress>
         </b-table-column>
         <b-table-column label="Created">
           <small

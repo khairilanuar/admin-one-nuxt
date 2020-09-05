@@ -3,9 +3,7 @@
     <title-bar :title-stack="titleStack" />
     <hero-bar>
       Profile
-      <router-link slot="right" to="/" class="button">
-        Dashboard
-      </router-link>
+      <router-link slot="right" to="/" class="button"> Dashboard </router-link>
     </hero-bar>
     <section class="section is-main-section">
       <tiles>

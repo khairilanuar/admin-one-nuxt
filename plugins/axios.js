@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import { Crypton } from 'laravel-crypton'
 
-export default function ({ $axios, redirect }) {
-  /*
+export default function ({ $axios, redirect, app }) {
   $axios.onRequest((config) => {
-    // eslint-disable-next-line no-console
-    console.log('Making request to ' + config.url)
+    config.headers['Accept-Language'] = app.i18n.locale
+    // $axios.setHeader('Accept-Language', 'ms')
   })
 
+  /*
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status)
     if (code === 401) {

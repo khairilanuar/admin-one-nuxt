@@ -6,7 +6,7 @@
         <div class="buttons is-right">
           <b-button
             tag="nuxt-link"
-            to="/access/roles/create"
+            :to="localePath('/admin/access/roles/create')"
             type="is-primary"
             size=""
           >
@@ -95,10 +95,12 @@
             >
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{
-                    name: 'access-roles-role-edit',
-                    params: { role: props.row.id },
-                  }"
+                  :to="
+                    localePath({
+                      name: 'admin-access-roles-role-edit',
+                      params: { role: props.row.id },
+                    })
+                  "
                   class="button is-small is-primary"
                   title="Edit"
                 >
@@ -127,7 +129,7 @@
 
 <script>
 import Notification from '~/layouts/partials/Notification'
-import AsyncTable from '~/layouts/partials/AsyncTable'
+import AsyncTable from '~/components/AsyncTable'
 import CardComponent from '~/components/CardComponent'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'

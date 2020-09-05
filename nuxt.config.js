@@ -92,19 +92,26 @@ export default {
     [
       'nuxt-i18n',
       {
+        baseUrl: process.env.APP_URL,
+        seo: false,
         locales: [
           {
             code: 'ms',
+            iso: 'ms-MY',
             file: 'ms_MY.js',
           },
           {
             code: 'en',
+            iso: 'en-US',
             file: 'en_US.js',
           },
         ],
-        defaultLocale: 'ms',
+        strategy: 'prefix_except_default',
+        defaultLocale: 'en',
         lazy: true,
         langDir: 'lang/',
+        parsePages: false,
+        vueI18nLoader: true,
       },
     ],
   ],
@@ -169,6 +176,9 @@ export default {
    */
   build: {
     transpile: ['vee-validate/dist/rules'],
+    /*    splitChunks: {
+      layouts: true,
+    }, */
     /*
      ** You can extend webpack config here
      */
@@ -181,6 +191,10 @@ export default {
           loader: 'eslint-loader',
           exclude: /(node_modules)/,
         })
+      }
+
+      if (ctx && ctx.isClient) {
+        config.optimization.splitChunks.maxSize = 204800
       }
     },
   },

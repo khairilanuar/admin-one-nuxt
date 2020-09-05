@@ -24,5 +24,7 @@
 /* Animate.css custom build (just selected animations to minimize bundle size) */
 @import "../css/animate.min.css";
 
+@import "../css/transition.css";
+
 /* include local mdi icons */
 @import "../../node_modules/@mdi/font/css/materialdesignicons.min.css";

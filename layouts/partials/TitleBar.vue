@@ -9,7 +9,7 @@
               {{ title }}
             </li>
           </ul>
-          <div style="padding-left: 15px;">
+          <div style="padding-left: 15px">
             <slot name="left" />
           </div>
         </div>

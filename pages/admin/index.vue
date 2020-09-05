@@ -40,12 +40,12 @@
         @header-icon-click="fillChartData"
       >
         <div v-if="defaultChart.chartData" class="chart-area">
-          <zingchart :data="chartData" />
+          <!--<zingchart :data="chartData" />-->
           <line-chart
             ref="bigChart"
             :chart-data="defaultChart.chartData"
             :extra-options="defaultChart.extraOptions"
-            style="height: 100%;"
+            style="height: 100%"
             chart-id="big-line-chart"
           >
           </line-chart>
@@ -75,6 +75,7 @@ export default {
   name: 'Home',
   components: {
     ClientsTableSample,
+    // eslint-disable-next-line vue/no-unused-components
     zingchart: zingchartVue,
     LineChart,
     CardComponent,

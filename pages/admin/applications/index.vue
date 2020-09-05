@@ -6,13 +6,14 @@
         <div class="buttons is-right">
           <b-button
             tag="nuxt-link"
-            to="/access/users/create"
+            :to="localePath('/admin/applications/create')"
             type="is-primary"
             size=""
           >
             <b-icon icon="plus" custom-size="default" />
-            <span>Add User</span>
+            <span>Add Application</span>
           </b-button>
+          <!--
           <b-button
             :disabled="!checkedRows.length"
             type="is-danger"
@@ -22,17 +23,10 @@
             <b-icon icon="delete-alert" custom-size="default" />
             <span>Delete</span>
           </b-button>
+          -->
         </div>
       </template>
     </title-bar>
-    <!--
-    <hero-bar>
-      Users
-      &lt;!&ndash;<nuxt-link slot="right" to="/" class="button">
-        Dashboard
-      </nuxt-link>&ndash;&gt;
-    </hero-bar>
-    -->
     <section class="section is-main-section">
       <notification v-if="false" class="is-success">
         <div>
@@ -43,10 +37,10 @@
 
       <card-component class="has-table has-mobile-sort-spaced">
         <async-table
-          ref="userTable"
+          ref="applicationTable"
           :checkable="true"
           :checked-rows="checkedRows"
-          data-url="/api/user"
+          data-url="/api/application"
           @check="check"
         >
           <template v-slot:table="props">
@@ -55,34 +49,39 @@
               {{ props.row.id }}
             </b-table-column>
             -->
-            <b-table-column label="First Name" field="first_name" sortable>
-              {{ props.row.first_name }}
+            <b-table-column label="Status" field="status" sortable>
+              {{ props.row.status }}
             </b-table-column>
-            <b-table-column label="Last Name" field="last_name" sortable>
-              {{ props.row.last_name }}
+            <b-table-column label="Zone" field="aid_zone" sortable>
+              {{ props.row.aid_zone }}
+            </b-table-column>
+            <b-table-column label="Name" field="name" sortable>
+              <nuxt-link
+                :to="
+                  localePath({
+                    name: 'admin-applications-uuid',
+                    params: { uuid: props.row.uuid },
+                  })
+                "
+                >{{ props.row.name }}</nuxt-link
+              >
+            </b-table-column>
+            <b-table-column label="Id. No" field="identification_no" sortable>
+              {{ props.row.identification_no }}
             </b-table-column>
             <b-table-column label="Email" field="email" sortable>
               {{ props.row.email }}
-              <b-tooltip label="core">
-                <b-icon
-                  v-if="props.row.is_core"
-                  icon="shield-lock-outline"
-                  size="is-small"
-                  type="is-danger"
-                />
-              </b-tooltip>
             </b-table-column>
-            <b-table-column label="Roles" field="roles.name">
-              <small>
-                <b-tag
-                  v-for="(role, id) in props.row.roles"
-                  :key="id"
-                  type="is-grey"
-                >
-                  {{ role.name }}
-                </b-tag>
-              </small>
+            <b-table-column label="Handphone" field="handphone">
+              {{ props.row.handphone }}
             </b-table-column>
+            <b-table-column label="City" field="city">
+              {{ props.row.city }}
+            </b-table-column>
+            <b-table-column label="Aid Type" field="aid_type_id" sortable>
+              {{ props.row.aid_type }}
+            </b-table-column>
+            <!--
             <b-table-column
               label="Confirmed"
               field="confirmed"
@@ -92,6 +91,7 @@
               <b-icon v-if="props.row.confirmed" icon="shield-check" />
               <b-icon v-else icon="shield-outline" class="" />
             </b-table-column>
+            -->
             <b-table-column label="Created" field="created_at" sortable>
               <small
                 :title="props.row.created_at"
@@ -102,14 +102,27 @@
             <b-table-column custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
+                  :to="
+                    localePath({
+                      name: 'admin-applications-uuid',
+                      params: { uuid: props.row.uuid },
+                    })
+                  "
+                  class="button is-small is-primary"
+                >
+                  <b-icon icon="account-edit" size="is-small" />
+                </nuxt-link>
+                <!--
+                <nuxt-link
                   :to="{
-                    name: 'access-users-user-edit',
-                    params: { user: props.row.uuid },
+                    name: 'access-applications-uuid',
+                    params: { uuid: props.row.uuid },
                   }"
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
                 </nuxt-link>
+                -->
                 <b-button
                   :disabled="
                     props.row.is_core ||
@@ -117,7 +130,7 @@
                   "
                   size="is-small"
                   type="is-danger"
-                  @click.prevent="deleteUser(props.row)"
+                  @click.prevent="deleteApplication(props.row)"
                 >
                   <b-icon icon="delete" size="is-small" />
                 </b-button>
@@ -132,15 +145,15 @@
 
 <script>
 import Notification from '~/layouts/partials/Notification'
-import AsyncTable from '~/layouts/partials/AsyncTable'
+import AsyncTable from '~/components/AsyncTable'
 import CardComponent from '~/components/CardComponent'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
 
 export default {
-  name: 'Users',
+  name: 'Applications',
   meta: {
-    permission: 'read-user',
+    // permission: 'read-application',
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
@@ -160,35 +173,35 @@ export default {
   },
   computed: {
     titleStack() {
-      return ['Access', 'Users']
+      return ['Application']
     },
   },
   mounted() {},
   methods: {
     showAdd() {
-      this.$router.redirect('/admin/access/users/create')
+      this.$router.redirect('/admin/application/create')
     },
     resetForm() {
       this.form = this.$lodash.clone(this.formDefault)
     },
-    deleteUser(user) {
+    deleteApplication(user) {
       this.$buefy.dialog.confirm({
-        title: 'Deleting user',
-        message: `Are you sure you want to delete user <b>${user.full_name}</b> ?<br/>This action cannot be undone.`,
+        title: 'Deleting application',
+        message: `Are you sure you want to delete application <b>${user.name}</b> ?<br/>This action cannot be undone.`,
         confirmText: 'Delete User',
         type: 'is-danger',
         hasIcon: true,
         focusOn: 'cancel',
         onConfirm: () => {
           this.$axios
-            .delete(`/api/user/${user.uuid}`)
+            .delete(`/api/application/${user.id}`)
             .then(({ data }) => {
               if (data.success) {
                 this.$buefy.snackbar.open({
-                  message: 'User ' + user.full_name + ' has been deleted.',
+                  message: 'User ' + user.name + ' has been deleted.',
                   queue: false,
                 })
-                this.$refs.userTable.loadData()
+                this.$refs.applicationTable.loadData()
               } else {
                 this.$buefy.snackbar.open({
                   message: data.message,
@@ -206,21 +219,6 @@ export default {
             })
         },
       })
-      // latest swal has some css issue
-      /*
-      this.$swal({
-        title: 'Confirmation',
-        text: 'Are you sure to delete user: ' + user.first_name,
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes',
-        showLoaderOnConfirm: true
-      }).then((result) => {
-        if (result.value) {
-
-        }
-      })
-      */
     },
     bulkDeleteUsers() {
       // TODO:

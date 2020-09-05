@@ -39,7 +39,7 @@
                       v-for="(permission, idx) in permissions"
                       :key="idx"
                       class="box"
-                      style="width: 100%; padding: 10px;"
+                      style="width: 100%; padding: 10px"
                     >
                       <b-checkbox
                         v-model="data.permissions"
@@ -52,14 +52,14 @@
                         <div
                           v-for="(subPermission, idx2) in permission.children"
                           :key="idx2"
-                          style="margin-left: 20px;"
+                          style="margin-left: 20px"
                         >
                           <b-checkbox
                             v-model="data.permissions"
                             :native-value="subPermission.id"
                             size="is-small"
                           >
-                            <strong style="font-size: 115%;">{{
+                            <strong style="font-size: 115%">{{
                               subPermission.label
                             }}</strong>
                           </b-checkbox>
@@ -67,7 +67,7 @@
                             v-for="(subPermission2,
                             idx3) in subPermission.children"
                             :key="idx3"
-                            style="margin-left: 20px;"
+                            style="margin-left: 20px"
                           >
                             <b-checkbox
                               v-model="data.permissions"
@@ -79,7 +79,7 @@
                           </div>
                         </div>
                       </tiles>
-                      <span style="clear: both;" />
+                      <span style="clear: both" />
                     </div>
                   </tiles>
                 </div>

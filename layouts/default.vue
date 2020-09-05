@@ -11,7 +11,7 @@
 import NavBar from '~/layouts/partials/NavBar'
 import AsideMenu from '~/layouts/partials/AsideMenu'
 import FooterBar from '~/layouts/partials/FooterBar'
-import menu from '~/static/menu'
+import menu from '~/assets/static/menu'
 
 export default {
   name: 'Home',

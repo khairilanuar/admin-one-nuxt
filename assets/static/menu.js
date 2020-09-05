@@ -2,10 +2,35 @@ export default {
   items: [
     // 'Main',
     [
+      /*
       {
         to: '/admin',
         icon: 'desktop-mac',
         label: 'Dashboard',
+      },
+      */
+      {
+        to: '/admin/applications',
+        icon: 'account-question',
+        label: 'Applications',
+      },
+      {
+        to: '/admin/demands',
+        icon: 'package-variant',
+        label: 'Demands',
+      },
+    ],
+    'Modules',
+    [
+      {
+        to: '/admin/inventories',
+        icon: 'package-variant',
+        label: 'Inventories',
+      },
+      {
+        to: '/admin/items',
+        icon: 'food-variant',
+        label: 'Items',
       },
     ],
     'System',
@@ -41,6 +66,17 @@ export default {
       */
     ],
     'Settings',
-    [],
+    [
+      {
+        to: '/admin/settings/aid-zones',
+        label: 'Aid Zones',
+        icon: 'map-marker-path',
+      },
+      {
+        to: '/admin/settings/aid-types',
+        label: 'Aid Types',
+        icon: 'lifebuoy',
+      },
+    ],
   ],
 }

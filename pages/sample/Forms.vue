@@ -3,9 +3,7 @@
     <title-bar :title-stack="titleStack" />
     <hero-bar>
       Forms
-      <router-link slot="right" to="/" class="button">
-        Dashboard
-      </router-link>
+      <router-link slot="right" to="/" class="button"> Dashboard </router-link>
     </hero-bar>
     <section class="section is-main-section">
       <card-component title="Forms" icon="ballot">
@@ -34,9 +32,7 @@
           <b-field message="Do not enter the leading zero" horizontal>
             <b-field>
               <p class="control">
-                <a class="button is-static">
-                  +44
-                </a>
+                <a class="button is-static"> +44 </a>
               </p>
               <b-input v-model="form.phone" type="tel" name="phone" expanded />
             </b-field>
@@ -111,9 +107,7 @@
         </b-field>
         <hr />
         <b-field label="Switch" horizontal>
-          <b-switch v-model="customElementsForm.switch">
-            Default
-          </b-switch>
+          <b-switch v-model="customElementsForm.switch"> Default </b-switch>
         </b-field>
         <hr />
         <b-field label="File" horizontal>

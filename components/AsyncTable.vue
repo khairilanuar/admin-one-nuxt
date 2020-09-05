@@ -11,7 +11,7 @@
       :hoverable="true"
       :data="data"
       :total="total"
-      style="font-size: 85%;"
+      style="font-size: 85%"
       pagination-size="is-small"
       default-sort="id"
       default-sort-direction="desc"
@@ -76,6 +76,10 @@ export default {
       type: String,
       default: null,
     },
+    params: {
+      type: Object,
+      default: () => {},
+    },
     search: {
       type: String,
       default: null,
@@ -132,13 +136,14 @@ export default {
   methods: {
     loadData() {
       this.isLoading = true
-      const params = {
+      let params = {
         sortBy: this.sortBy,
         sortDir: this.sortDir,
         page: this.page,
         perPage: this.pageLength,
         search: this.search ? this.search : null,
       }
+      params = { ...this.params, ...params }
       this.$axios
         .get(this.dataUrl, { params })
         .then((response) => {

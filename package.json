@@ -63,9 +63,9 @@
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^9.0.3",
     "vue-jest": "^4.0.0-beta.4",
-    "worker-loader": "^2.0.0"
+    "worker-loader": "^3.0.2"
   },
   "ava": {
     "require": [

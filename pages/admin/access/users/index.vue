@@ -6,7 +6,7 @@
         <div class="buttons is-right">
           <b-button
             tag="nuxt-link"
-            to="/access/users/create"
+            :to="localePath('/admin/access/users/create')"
             type="is-primary"
             size=""
           >
@@ -102,10 +102,12 @@
             <b-table-column custom-key="actions" class="is-actions-cell">
               <div class="buttons is-right">
                 <nuxt-link
-                  :to="{
-                    name: 'access-users-user-edit',
-                    params: { user: props.row.uuid },
-                  }"
+                  :to="
+                    localePath({
+                      name: 'admin-access-users-user-edit',
+                      params: { user: props.row.uuid },
+                    })
+                  "
                   class="button is-small is-primary"
                 >
                   <b-icon icon="account-edit" size="is-small" />
@@ -132,7 +134,7 @@
 
 <script>
 import Notification from '~/layouts/partials/Notification'
-import AsyncTable from '~/layouts/partials/AsyncTable'
+import AsyncTable from '~/components/AsyncTable'
 import CardComponent from '~/components/CardComponent'
 import TitleBar from '~/layouts/partials/TitleBar'
 import HeroBar from '~/layouts/partials/HeroBar'
